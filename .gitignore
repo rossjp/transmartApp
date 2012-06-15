@@ -1,4 +1,9 @@
 target
-transmartApp.log
 application.properties
+transmart.log
+transmartApp.log
+null.log
 System.out
+.classpath
+.settings
+.project

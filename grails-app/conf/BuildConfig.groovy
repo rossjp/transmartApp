@@ -16,14 +16,13 @@
  * 
  *
  ******************************************************************/
-
+  
 
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 
 //grails.plugin.location.rmodules = "C:\\SVN\\repo1\\pharma\\transmart\\trunk\\plugins\\Rmodules"
-grails.plugin.location.rmodules = "/Users/jliu/SVN_HOME/repo1/GPL1.0/RModules"
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.dependency.resolution = {
@@ -52,6 +51,15 @@ grails.project.dependency.resolution = {
 		compile 'org.ncibi.metab:metab-ws-client:1.0'
   
     }
+
+    plugins {
+        compile ":hibernate:$grailsVersion"
+        build ":tomcat:$grailsVersion"
+        compile ":quartz:1.0-RC2"
+        build ":rdc-rmodules:0.2"
+        compile ":spring-security-core:1.2.7.1"
+        build ":build-info:1.1"
+		compile ":prototype:1.0"
+		compile ":resources:1.1.6"
+    }
 }
-
-

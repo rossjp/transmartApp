@@ -16,13 +16,12 @@
  * 
  *
  ******************************************************************/
-
+  
 
 package com.recomdata.transmart.data.export
 
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.groovy.grails.commons.ApplicationHolder;
-import org.codehaus.groovy.grails.commons.ConfigurationHolder;
 import org.json.JSONArray
 import org.json.JSONObject
 import org.quartz.JobDataMap;
@@ -43,9 +42,9 @@ class ExportService {
 	def i2b2ExportHelperService
 	def dataCountService
 	def jobResultsService
-	def jobStatusService
+	def asyncJobService
 	def quartzScheduler
-	def config = ConfigurationHolder.config
+	def grailsApplication
 
 	def Map createJSONFileObject(fileType, dataFormat, fileDataCount, gplId, gplTitle) {
 		def file = [:]
@@ -68,7 +67,7 @@ class ExportService {
 	}
 	
 	def getMetaData(params) {
-		def dataTypesMap = config.com.recomdata.transmart.data.export.dataTypesMap
+		def dataTypesMap = grailsApplication.config.com.recomdata.transmart.data.export.dataTypesMap
 		
 		//The result instance id's are stored queries which we can use to get information from the i2b2 schema.
 		def rID1 = RequestValidator.nullCheck(params.result_instance_id1)
@@ -176,7 +175,7 @@ class ExportService {
 		jobResultsService[jobName] = [:]
 		//jobResultsService[jobName]['altViewerURL'] = params.querySummary1 + ((params.querySummary2 != '') ? ' <br/> ' + params.querySummary2 : '')
 		def querySummary = 'Subset 1:' + params.querySummary1 + ((params.querySummary2 != '') ? ' <br/> Subset 2:' + params.querySummary2 : '')
-		jobStatusService.updateStatus(jobName, jobStatus, null, querySummary, null)
+		asyncJobService.updateStatus(jobName, jobStatus, null, querySummary, null)
 		
 		log.debug("Sending ${newJob.jobName} back to the client")
 		JSONObject result = new JSONObject()
@@ -315,7 +314,7 @@ class ExportService {
 		def jobDetail = new JobDetail(params.jobName, params.analysis, GenericJobService.class)
 		jobDetail.setJobDataMap(jdm)
 
-		if (jobStatusService.updateStatus(params.jobName, statusList[2]))	{
+		if (asyncJobService.updateStatus(params.jobName, statusList[2]))	{
 			return
 		}
 		def trigger = new SimpleTrigger("triggerNow"+Math.random(), params.analysis)
@@ -327,7 +326,7 @@ class ExportService {
 		 "Triggering Data-Export Job","Gathering Data","Running Conversions","Running Analysis","Rendering Output"]
 		
 		jobResultsService[params.jobName]["StatusList"] = statusList
-		jobStatusService.updateStatus(params.jobName, statusList[0])
+		asyncJobService.updateStatus(params.jobName, statusList[0])
 		 
 		def al = new AccessLog(username:userName, event:"${params.analysis}, Job: ${params.jobName}",
 		eventmessage:"", accesstime:new java.util.Date())
@@ -337,7 +336,7 @@ class ExportService {
 		def rID1 = RequestValidator.nullCheck(params.result_instance_id1)
 		def rID2 = RequestValidator.nullCheck(params.result_instance_id2)
 		log.debug('rID1 :: ' + rID1 + ' :: rID2 :: ' + rID2)
-		jobStatusService.updateStatus(params.jobName, statusList[1])
+		asyncJobService.updateStatus(params.jobName, statusList[1])
 		
 		log.debug("Checking to see if the user cancelled the job prior to running it")
 		if (jobResultsService[params.jobName]["Status"] == "Cancelled")	{
@@ -350,8 +349,7 @@ class ExportService {
 	def getExportJobs(userName) {
 		JSONObject result = new JSONObject()
 		JSONArray rows = new JSONArray()
-		def config = ConfigurationHolder.config
-		def maxJobs = config.com.recomdata.transmart.data.export.max.export.jobs.loaded
+		def maxJobs = grailsApplication.config.com.recomdata.transmart.data.export.max.export.jobs.loaded
 		
 		maxJobs = maxJobs ? maxJobs : 0
 		
@@ -388,6 +386,13 @@ class ExportService {
 		def job = AsyncJob.findByJobName(jobName)
 		def exportDataProcessor = new ExportDataProcessor()
 		
-		return exportDataProcessor.getExportJobFileStream(job.viewerURL)
+		def tempDir = grailsApplication.config.com.recomdata.plugins.tempFolderDirectory
+		def ftpServer = grailsApplication.config.com.recomdata.transmart.data.export.ftp.server
+		def ftpServerPort = grailsApplication.config.com.recomdata.transmart.data.export.ftp.serverport
+		def ftpServerUserName = grailsApplication.config.com.recomdata.transmart.data.export.ftp.username
+		def ftpServerPassword = grailsApplication.config.com.recomdata.transmart.data.export.ftp.password
+		def ftpServerRemotePath = grailsApplication.config.com.recomdata.transmart.data.export.ftp.remote.path
+
+		return exportDataProcessor.getExportJobFileStream(job.viewerURL, tempDir, ftpServer, ftpServerPort, ftpServerUserName, ftpServerPassword, ftpServerRemotePath)
 	}
 }

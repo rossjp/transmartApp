@@ -16,7 +16,7 @@
  * 
  *
  ******************************************************************/
-
+  
 
 /**
  * $Id: SearchFilter.groovy 10125 2011-10-20 19:12:48Z mmcduffie $
@@ -25,8 +25,10 @@
  **/
 
 import grails.converters.*
+import grails.validation.Validateable
 import org.apache.log4j.Logger
 
+@Validateable
 class SearchFilter {
 
     static Logger log = Logger.getLogger(SearchFilter.class)
