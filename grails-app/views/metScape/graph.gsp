@@ -4,10 +4,10 @@
 <meta name="layout" content="main"/>
 <title>Cytoscape Web example</title>
 <!-- JSON support for IE (needed to use JS API) -->
-<script type="text/javascript" src="/transmartApp/js/cytoscape_web/json2.min.js"></script>
-<script type="text/javascript" src="/transmartApp/js/cytoscape_web/AC_OETags.min.js"></script>
-<script type="text/javascript" src="/transmartApp/js/cytoscape_web/cytoscapeweb.min.js"></script>
-<script type="text/javascript" src='/transmartApp/js/ext/ext-all.js'></script>
+<script type="text/javascript" src="/transmart/js/cytoscape_web/json2.min.js"></script>
+<script type="text/javascript" src="/transmart/js/cytoscape_web/AC_OETags.min.js"></script>
+<script type="text/javascript" src="/transmart/js/cytoscape_web/cytoscapeweb.min.js"></script>
+<script type="text/javascript" src='/transmart/js/ext/ext-all.js'></script>
 <script type="text/javascript">
 var pageInfo = {
 		basePath :"${request.getContextPath()}"
@@ -108,9 +108,9 @@ function buildNetwork(response) {
     // initialization options
     var options = {
         // where you have the Cytoscape Web SWF
-        swfPath: "/transmartApp/swf/CytoscapeWeb",
+        swfPath: "/transmart/swf/CytoscapeWeb",
         // where you have the Flash installer SWF
-        flashInstallerPath: "/transmartApp/swf/playerProductInstall"
+        flashInstallerPath: "/transmart/swf/playerProductInstall"
     };
     
     // init and draw
