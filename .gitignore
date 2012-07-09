@@ -1,4 +1,5 @@
 target
+target-eclipse
 application.properties
 transmart.log
 transmartApp.log

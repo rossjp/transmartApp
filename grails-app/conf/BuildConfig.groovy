@@ -49,7 +49,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 		compile 'org.ncibi.metab:metab-ws-client:1.0'
-  
+		runtime 'postgresql:postgresql:9.0-801.jdbc4'
     }
 
     plugins {
@@ -59,7 +59,7 @@ grails.project.dependency.resolution = {
         build ":rdc-rmodules:0.2"
         compile ":spring-security-core:1.2.7.1"
         build ":build-info:1.1"
-		compile ":prototype:1.0"
+		runtime ":prototype:1.0"
 		compile ":resources:1.1.6"
     }
 }
