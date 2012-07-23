@@ -20,10 +20,11 @@
 
 package transmart
 
+import org.transmart.searchapp.SearchKeyword
+
 class SessionController {
 
     def index = {
-		for(session.)
 		render(view:'details') 
 	}
 }
