@@ -213,8 +213,7 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.resnet.resultsUrl,
                 tabTip: pageData.resnet.credentials
-            } 
-            , 
+            }, 
             {
                 id: "tab8",
                 iconCls: "genegoTab",
@@ -225,8 +224,27 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.genego.resultsUrl,
                 tabTip: pageData.genego.credentials
+            },
+            {
+                id: "tab9",
+                iconCls: "docTab",
+                title: "MetScape",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.metscape.inputUrl,
+            },
+            {
+                id: "tab10",
+                iconCls: "docTab",
+                title: "Session Info",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.session.resultsUrl,
             }
-            
         ]
     });
     return tabpanel;
@@ -446,6 +464,28 @@ function activateTab(tab) {
         setButtonVisibility("tea",false);
         setButtonVisibility("contextHelp", false);
         break;
+    
+	case "tab9":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;
+	    
+	case "tab10":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;
     }
 }
 

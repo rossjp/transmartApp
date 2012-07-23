@@ -107,7 +107,9 @@
 				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
 				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 			    },
-
+				metscape: {
+					inputUrl:"${createLink(controller:'metScape', action:'index')}"
+				},
 			    pictor: {
 			   		<g:if test="${session.searchFilter.pictorTerms != null}">
 						resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
@@ -125,6 +127,9 @@
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
 			    },
+			    session: {
+				    resultsUrl: "${createLink(controller:'session', action:'index')}"
+				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
 			    jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",
 				heatmapUrl: "${createLink(controller:'heatmap',action:'initheatmap')}",
