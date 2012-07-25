@@ -108,7 +108,7 @@
 				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 			    },
 				metscape: {
-					inputUrl:"${createLink(controller:'metScape', action:'index')}"
+					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
 			    pictor: {
 			   		<g:if test="${session.searchFilter.pictorTerms != null}">
@@ -237,6 +237,10 @@
 				    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
 				        tabpanel.remove(Ext.getCmp("tab8"));
 					}				       
+				}
+
+				if(${session.searchFilter.globalFilter.getGeneFilters().size()} == 0) {
+					 tabpanel.remove(Ext.getCmp("tab9"));
 				}
 				
 			    // set active tab

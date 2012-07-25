@@ -24,6 +24,7 @@ import org.ncibi.metab.network.NetworkType
 import org.ncibi.metab.ws.client.MetabolicNetworkService
 import org.ncibi.metab.ws.encoder.json.MetabolicNetworkResponseJSONObject
 import org.ncibi.ws.HttpRequestType
+import org.transmart.searchapp.SearchKeyword
 
 
 
@@ -34,8 +35,18 @@ class MetScapeController {
 		render(view: "inputOptions")
 	}
 	
+	def gene = {
+		def geneids = ""
+		for(SearchKeyword keyword: session.searchFilter.globalFilter.getGeneFilters()) {
+			geneids += keyword.uniqueId.replaceAll("[\\D]", "")
+		}
+		render(view: "graph",
+			model:[cids:"", geneids:geneids, taxid:9606, networktype:"CREG"])
+	}
+	
 	def graph = {
-		render(view: "graph")
+		render(view: "graph", 
+			model:[cids:params?.cids, geneids:params?.geneids, taxid:params?.taxid, networktype:params?.networktype])
 	}
 	
 	def network = {

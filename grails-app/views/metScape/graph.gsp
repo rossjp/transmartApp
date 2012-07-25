@@ -13,10 +13,10 @@ var pageInfo = {
 		basePath :"${request.getContextPath()}"
 	}
 window.onload=function() {
-	var cids = "${params.cids}"
-	var geneids = "${params.geneids}"
-	var networktype = "${params.networktype}"
-	var taxid = "${params.taxid}"
+	var cids = "${cids}"
+	var geneids = "${geneids}"
+	var networktype = "${networktype}"
+	var taxid = "${taxid}"
 	Ext.Ajax.request({
 		url: pageInfo.basePath+'/metScape/network',
 		params: {cids: cids, geneids: geneids, networktype: networktype, taxid: taxid },
