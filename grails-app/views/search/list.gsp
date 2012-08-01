@@ -128,7 +128,7 @@
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
 			    },
 			    session: {
-				    resultsUrl: "${createLink(controller:'session', action:'index')}"
+				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
 				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
 			    jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",

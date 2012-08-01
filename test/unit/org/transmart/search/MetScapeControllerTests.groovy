@@ -16,7 +16,7 @@
  * 
  *
  ******************************************************************/
-package transmartapp
+package org.transmart.search
 
 import grails.test.*
 

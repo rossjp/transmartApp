@@ -18,11 +18,11 @@
  ******************************************************************/
   
 
-package transmart
+package org.transmart.serach
 
 import org.transmart.searchapp.SearchKeyword
 
-class SessionController {
+class SessionInfoController {
 
     def index = {
 		render(view:'details') 
