@@ -71,7 +71,7 @@
 				<sec:ifNotGranted roles="ROLE_PUBLIC_USER">
 				     hideInternal:false,
 				</sec:ifNotGranted>
-				trial: {
+				trial: { // tab1 - see maintabpanel.js
 				    count: "${searchresult.trialCount}",
 				    analysisCount: "${searchresult.analysisCount}",
 				    resultsUrl: "${createLink(controller:'trial', action:'datasourceTrial')}",
@@ -79,18 +79,18 @@
 				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
 			    },
 
-				pretrial: {
+				pretrial: { // tab2 - see maintabpanel.js
 				    count: "${searchresult.allAnalysiCount}",
 				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
 				    resultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResult')}",
 				    teaResultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResultTEA')}",
 				    filterUrl: "${createLink(controller:'experimentAnalysis', action:'showFilter')}"
 				},
-				profile: {
+				profile: { // tab3 - see maintabpanel.js
 				    count: "${searchresult.profileCount}",
 				    resultsUrl: "${createLink(controller:'expressionProfile', action:'datasourceResult')}"
 				},
-			    jubilant: {
+			    jubilant: { // tab4 - see maintabpanel.js
 				    activeCard: 0,
 				    resultsUrl: "${createLink(controller:'literature', action:'datasourceJubilant')}",
 				    filterUrl: "${createLink(controller:'literature', action:'showJubFilter')}",
@@ -102,15 +102,12 @@
 				    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
 				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
 			    },
-			    doc: {
+			    doc: {  // tab5 - see maintabpanel.js
 				    count: "${searchresult.documentCount}",
 				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
 				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 			    },
-				metscape: {
-					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
-				},
-			    pictor: {
+			    pictor: { // tab 6 - see maintabpanel.js
 			   		<g:if test="${session.searchFilter.pictorTerms != null}">
 						resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
 	    			</g:if>
@@ -119,15 +116,24 @@
 					</g:else>
 			    },
 
-			    resnet: {
+			    resnet: { // tab 7 - see maintabpanel.js
 			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
 			   		credentials: "ID/Password=Pathway Studio ID/Password"
 			    },
-			    genego: {
+			    genego: { // tab 8 - see maintabpanel.js
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
 			    },
-			    session: {
+				metscape: { // tab9 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
+				},
+				conceptgen: { // tab10 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
+				},
+				metab2mesh: { // tab11 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
+				},
+			    session: { // tab12 - see maintabpanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
 				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
@@ -224,8 +230,6 @@
 				    tabpanel.remove(Ext.getCmp("tab5"));
 					tabpanel.remove(Ext.getCmp("tab6"));
 				    tabpanel.remove(Ext.getCmp("tab7"));
-				    //tabpanel.remove(Ext.getCmp("tab8"));
-				    //tabpanel.remove(Ext.getCmp("tab9"));
 				} else  {
 					// All tabs should show only if the external configuration is correct
 					if ("${grailsApplication.config.com.recomdata.searchtool.pictorURL}" == "")    {
@@ -239,6 +243,7 @@
 					}				       
 				}
 
+				// disable the MetScape tab if the search result is not a gene??
 				if(${session.searchFilter.globalFilter.getGeneFilters().size()} == 0) {
 					 tabpanel.remove(Ext.getCmp("tab9"));
 				}

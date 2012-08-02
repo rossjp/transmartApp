@@ -65,7 +65,8 @@ function createSearchTabs(toolbar) {
                             discardUrl: true,
                             method: "POST"
                         }
-                    },{
+                    },
+                    {
                         id: "trial-results-panel",
                         autoLoad: {
                             url: pageData.trial.resultsUrl,
@@ -226,6 +227,17 @@ function createSearchTabs(toolbar) {
                 tabTip: pageData.genego.credentials
             },
             {
+                id: "tab8",
+                iconCls: "genegoTab",
+                title: "GeneGo",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.genego.resultsUrl,
+                tabTip: pageData.genego.credentials
+            },
+            {
                 id: "tab9",
                 iconCls: "docTab",
                 title: "MetScape",
@@ -237,6 +249,26 @@ function createSearchTabs(toolbar) {
             },
             {
                 id: "tab10",
+                iconCls: "docTab",
+                title: "ConceptGen",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.conceptgen.inputUrl,
+            },
+            {
+                id: "tab11",
+                iconCls: "docTab",
+                title: "Metab2Mesh",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.metab2mesh.inputUrl,
+            },
+            {
+                id: "tab12",
                 iconCls: "docTab",
                 title: "Session Info",
                 listeners: {activate: activateTab},
@@ -477,6 +509,28 @@ function activateTab(tab) {
 	    break;
 	    
 	case "tab10":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;
+	    
+	case "tab11":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;
+	    
+	case "tab12":
 	    setButtonVisibility("filters", false);
 	    setButtonVisibility("summary", false);
 	    setButtonVisibility("heatmap", false);

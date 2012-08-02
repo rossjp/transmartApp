@@ -252,8 +252,8 @@ public class SearchController{
 
 		def filter = session.searchFilter;
 		def sResult = new SearchResult()
-		//	log.info "doSearch:"+params
-		//log.info "isTextOnly = " + filter.globalFilter.isTextOnly()
+		log.info "doSearch:"+params
+		log.info "isTextOnly = " + filter.globalFilter.isTextOnly()
 		SearchService.doResultCount(sResult,filter)
 		filter.summaryWithLinks = createSummaryWithLinks(filter)
 		filter.createPictorTerms()
