@@ -26,9 +26,6 @@ import org.ncibi.metab.ws.encoder.json.MetabolicNetworkResponseJSONObject
 import org.ncibi.ws.HttpRequestType
 import org.transmart.searchapp.SearchKeyword
 
-
-
-
 class MetScapeController {
 
     def index = {
