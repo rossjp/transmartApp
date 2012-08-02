@@ -16,7 +16,7 @@
  * 
  *
  ******************************************************************/
-package org.transmart.serach
+package org.transmart.search
 
 import grails.converters.JSON
 

@@ -18,7 +18,7 @@
  ******************************************************************/
   
 
-package org.transmart.serach
+package org.transmart.search
 
 import org.transmart.searchapp.SearchKeyword
 
