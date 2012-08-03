@@ -4,7 +4,7 @@ package org.transmart.search
 
 import grails.test.mixin.*
 import org.junit.*
-import org.transmart.serach.SessionInfoController;
+import org.transmart.search.SessionInfoController;
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
