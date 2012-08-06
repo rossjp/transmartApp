@@ -7,6 +7,9 @@
 </head>
 <body>
   <div class="body">
+  <div class="geneIdList">
+  <p>GeneId List: ${geneids}</p>
+  </div>
   <table border="1">
   <tr>
   	  <th>Keyword</th>

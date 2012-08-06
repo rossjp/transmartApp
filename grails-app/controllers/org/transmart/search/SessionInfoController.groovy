@@ -25,6 +25,8 @@ import org.transmart.searchapp.SearchKeyword
 class SessionInfoController {
 
     def index = {
-		render(view:'details') 
+		def geneids = SearchUtils.geneidString(session)
+		render(view:'details',
+			model: [geneids: geneids]) 
 	}
 }
