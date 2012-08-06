@@ -33,10 +33,8 @@ class MetScapeController {
 	}
 	
 	def gene = {
-		def geneids = ""
-		for(SearchKeyword keyword: session.searchFilter.globalFilter.getGeneFilters()) {
-			geneids += keyword.uniqueId.replaceAll("[\\D]", "")
-		}
+		def geneids = SearchUtils.geneidString(session)
+		log.debug("Gene List: $geneids")
 		render(view: "graph",
 			model:[cids:"", geneids:geneids, taxid:9606, networktype:"CREG"])
 	}
