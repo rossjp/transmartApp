@@ -29,6 +29,35 @@ window.onload=function() {
 	});
 };
 
+function changeLayout(layout) {
+	if (!vis) return;
+	vis.layout(layout);
+}
+
+function reviewParameters(){
+	var html = makeParameterHtml();
+	document.getElementById('parameterPanel').innerHTML = html;
+}
+
+function hideParameters(){
+	var html = '';
+	document.getElementById('parameterPanel').innerHTML = html;
+}
+
+function makeParameterHtml(){
+	var cids = "${cids}";
+	var geneids = "${geneids}";
+	var networktype = "${networktype}";
+	var taxid = "${taxid}";
+			
+	return "<ul>" 
+		+ "<li>Compound ids: " + cids + "</li>"
+		+ "<li>Gene ids: " + geneids + "</li>"
+		+ "<li>Network type: " + networktype + "</li>"
+		+ "<li>Taxid: " + taxid + "</li>"
+		+ "</ul>";
+}
+
 function buildNetwork(response) {
 	// id of Cytoscape Web container div
     var div_id = "main";
@@ -114,22 +143,25 @@ function buildNetwork(response) {
     };
     
     // init and draw
-    var vis = new org.cytoscapeweb.Visualization(div_id, options);
+    vis = new org.cytoscapeweb.Visualization(div_id, options);
     vis.draw({ network: networ_json, visualStyle: visual_style, edgeLabelsVisible: true });
 }
 </script>
 <style>
 /* The Cytoscape Web container must have its dimensions set. */
-html, body { height: 100%; width: 100%; padding: 0; margin: 0; }
-#main { width: 100%; height: 100%; }
+html, body { height: 99%; width: 99%; padding: 1px; margin: 1px; padding-right:20px; padding-bottom: 30px;}
+#main {height: 99%; width: 99%; padding: 2px; margin: 5px; border-style:solid; border-color: black;}
 </style>
 </head>
 <body>
-<div id="main">
-
-
-
+<div id="controls">
+<form>Layout: <g:select name="layout" from="${layouts}" onChange="changeLayout(this.value)"/>&nbsp; &nbsp; 
+<a href="#controls" onclick="reviewParameters()">review parameters</a>&nbsp; &nbsp; 
+<a href="#controls" onclick="hideParameters()">hide parameters</a>
+</form>
+<div id="parameterPanel"></div>
 </div>
-
+<div id="main">
+</div>
 </body>
 </html>

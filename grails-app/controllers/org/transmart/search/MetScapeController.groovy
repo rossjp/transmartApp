@@ -27,6 +27,8 @@ import org.ncibi.ws.HttpRequestType
 import org.transmart.searchapp.SearchKeyword
 
 class MetScapeController {
+	
+	def layouts = ['ForceDirected','Circle', 'Radial', 'Tree'].asList()
 
     def index = {
 		render(view: "inputOptions")
@@ -34,14 +36,21 @@ class MetScapeController {
 	
 	def gene = {
 		def geneids = SearchUtils.geneidString(session)
-		log.debug("Gene List: $geneids")
+		log.info("Gene List: $geneids")
+		for (layout in layouts) {
+			log.info("Layout: " + layout);
+		}
 		render(view: "graph",
-			model:[cids:"", geneids:geneids, taxid:9606, networktype:"CREG"])
+			model:[cids:"", geneids:geneids, taxid:9606, networktype:"CREG", layouts:layouts])
 	}
 	
 	def graph = {
+		log.info("Gene List: $geneids")
+		for (layout in layouts) {
+			log.info("Layout: " + layout);
+		}
 		render(view: "graph", 
-			model:[cids:params?.cids, geneids:params?.geneids, taxid:params?.taxid, networktype:params?.networktype])
+			model:[cids:params?.cids, geneids:params?.geneids, taxid:params?.taxid, networktype:params?.networktype,layouts:layouts])
 	}
 	
 	def network = {
