@@ -13,6 +13,16 @@ public class DataAssembler
 	private ResourceBundle msg = ResourceBundle.getBundle("edu.umich.med.transmart.resource.bundle.sql");
 	private DataService ds = new DataService();
 
+	
+	public String searchConcept(String searchTerm, String limit)
+			throws Exception {
+
+		String query = sql.getString("conceptSearchLimit");
+		query = query.replaceFirst("\\?", searchTerm);
+		query = query.replaceFirst("\\?", limit);
+		return tp.createJsArray(rs.select(query));
+	}
+	
 	// CONCEPT NETWORK GRAPH
 	// ***********************************************************************************************************************************************
 

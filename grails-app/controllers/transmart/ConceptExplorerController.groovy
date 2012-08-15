@@ -20,7 +20,21 @@
 
 package transmart
 
+import org.transmart.searchapp.SearchKeyword
+
 class ConceptExplorerController {
 
-    def index = { }
+    def index = { 
+
+	}
+	
+	def search = {
+		def conceptKeyword = "test222"
+		for(SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters()) {
+			conceptKeyword = keyword.keyword
+		}
+		
+		
+		render(view: "search", model:[conceptKeyword:conceptKeyword, taxid:9606])
+	}
 }

@@ -244,6 +244,16 @@ function createSearchTabs(toolbar) {
                 closable: false,
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
+            },
+            {
+                id: "tab11",
+                iconCls: "docTab",
+                title: "Concept Explorer",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.conceptExplorer.resultsUrl,
             }
         ]
     });

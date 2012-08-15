@@ -130,6 +130,9 @@
 			    session: {
 				    resultsUrl: "${createLink(controller:'session', action:'index')}"
 				},
+				conceptExplorer: {
+				    resultsUrl: "${createLink(controller:'conceptExplorer', action:'search')}"
+				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
 			    jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",
 				heatmapUrl: "${createLink(controller:'heatmap',action:'initheatmap')}",
