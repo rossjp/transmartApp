@@ -16,7 +16,7 @@
  * 
  *
  ******************************************************************/
-package transmartapp
+package org.transmart.search
 
 import grails.converters.JSON
 
@@ -25,9 +25,6 @@ import org.ncibi.metab.ws.client.MetabolicNetworkService
 import org.ncibi.metab.ws.encoder.json.MetabolicNetworkResponseJSONObject
 import org.ncibi.ws.HttpRequestType
 import org.transmart.searchapp.SearchKeyword
-
-
-
 
 class MetScapeController {
 

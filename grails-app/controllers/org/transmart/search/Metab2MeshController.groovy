@@ -18,13 +18,13 @@
  ******************************************************************/
   
 
-package transmart
+package org.transmart.search
 
 import org.transmart.searchapp.SearchKeyword
 
-class SessionController {
+class Metab2MeshController {
 
     def index = {
-		render(view:'details') 
+		render(view:'index') 
 	}
 }

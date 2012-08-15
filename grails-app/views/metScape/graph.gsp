@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="main"/>
-<title>Cytoscape Web example</title>
+<title>Metscape Web panel</title>
 <!-- JSON support for IE (needed to use JS API) -->
 <script type="text/javascript" src="/transmart/js/cytoscape_web/json2.min.js"></script>
 <script type="text/javascript" src="/transmart/js/cytoscape_web/AC_OETags.min.js"></script>
@@ -125,7 +125,6 @@ html, body { height: 100%; width: 100%; padding: 0; margin: 0; }
 </style>
 </head>
 <body>
-<div id="header"><g:render template="/layouts/commonheader"	model="['app':'metScape']" /></div>
 <div id="main">
 
 

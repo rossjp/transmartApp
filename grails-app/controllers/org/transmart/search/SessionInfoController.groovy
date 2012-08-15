@@ -1,5 +1,5 @@
 /*************************************************************************
-  * tranSMART - translational medicine data mart
+ * tranSMART - translational medicine data mart
  * 
  * Copyright 2008-2012 Janssen Research & Development, LLC.
  * 
@@ -16,20 +16,17 @@
  * 
  *
  ******************************************************************/
-package transmartapp
+  
 
-import grails.test.*
+package org.transmart.search
 
-class MetScapeControllerTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+import org.transmart.searchapp.SearchKeyword
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+class SessionInfoController {
 
-    void testSomething() {
-
-    }
+    def index = {
+		def geneids = SearchUtils.geneidString(session)
+		render(view:'details',
+			model: [geneids: geneids]) 
+	}
 }

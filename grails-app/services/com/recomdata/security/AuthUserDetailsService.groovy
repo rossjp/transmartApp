@@ -59,7 +59,8 @@ class AuthUserDetailsService implements GrailsUserDetailsService {
 			if (!user) {
 				log.warn "User not found: $username"
 				throw new UsernameNotFoundException('User not found', username)
-			}		
+			}
+			log.info "Found user: $username"		
 			def authorities = user.authorities.collect {new GrantedAuthorityImpl(it.authority)}
 			
 			return new AuthUserDetails(user.username, user.passwd, user.enabled,
