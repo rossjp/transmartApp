@@ -40,9 +40,14 @@ grails.project.dependency.resolution = {
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
         mavenLocal()
+<<<<<<< HEAD
 		//mavenCentral()
 		//mavenRepo "http://developer2.ncibi.org/maven"
         
+=======
+        mavenCentral()
+		mavenRepo "http://developer2.ncibi.org/maven"
+>>>>>>> refs/heads/ncibi-tools
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -50,6 +55,16 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
+		// build - dependency that is only needed by the build process
+		// runtime - dependency that is needed to run the application, but not compile it 
+		//   e.g. JDBC implementation for specific database vendor. This would not typically be needed at compile-time
+		//        because code depends only the JDBC API, rather than a specific implementation thereof
+		// compile - dependency that is needed at both compile-time and runtime. This is the most common case
+		// There are a couple of other dependency scopes:
+		// test - dependency that is only needed by the tests
+		// provided - dependency that is needed at compile-time but should not be packaged with the app
+		//   (usually because it is provided by the container). An example is the Servlet API
+		
 		compile 'org.ncibi.metab:metab-ws-client:1.0'
 		runtime 'postgresql:postgresql:9.0-801.jdbc4'
     }
