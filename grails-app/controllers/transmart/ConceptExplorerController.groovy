@@ -21,11 +21,16 @@
 package transmart
 
 import org.transmart.searchapp.SearchKeyword
+import org.transmart.conceptgen.module.DataAssembler
 
 class ConceptExplorerController {
 
     def index = { 
 
+	}
+	
+	def test = {
+	
 	}
 	
 	def search = {
@@ -34,7 +39,11 @@ class ConceptExplorerController {
 			conceptKeyword = keyword.keyword
 		}
 		
-		
 		render(view: "search", model:[conceptKeyword:conceptKeyword, taxid:9606])
+	}
+	
+	def graph = {
+		render(view: "graph",
+			model:[cids:params?.cids, geneids:params?.geneids, taxid:params?.taxid, networktype:params?.networktype])
 	}
 }

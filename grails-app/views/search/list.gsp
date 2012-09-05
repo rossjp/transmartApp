@@ -78,7 +78,6 @@
 				    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
 				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
 			    },
-<<<<<<< HEAD
 			    session: {
 				    resultsUrl: "${createLink(controller:'session', action:'index')}"
 				},
@@ -192,7 +191,6 @@
 				    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
 				        tabpanel.remove(Ext.getCmp("tab8"));
 					}				       
-=======
 
 				pretrial: { // tab2 - see maintabpanel.js
 				    count: "${searchresult.allAnalysiCount}",
@@ -243,7 +241,7 @@
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
 				conceptgen: { // tab10 - see maintabpanel.js
-					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
+					inputUrl:"${createLink(controller:'conceptExplorer', action:'search')}"
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
@@ -356,7 +354,6 @@
 				    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
 				        tabpanel.remove(Ext.getCmp("tab8"));
 					}				       
->>>>>>> refs/heads/ncibi-tools
 				}
 
 				// disable the MetScape tab if the search result is not a gene??

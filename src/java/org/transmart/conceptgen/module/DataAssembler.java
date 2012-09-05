@@ -5,22 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 import org.transmart.conceptgen.db.JDBCExecuter;
 
 public class DataAssembler
 {
 	private JDBCExecuter rs = new JDBCExecuter();
-	private ResourceBundle msg = ResourceBundle.getBundle("edu.umich.med.transmart.resource.bundle.sql");
+	private ResourceBundle msg = ResourceBundle.getBundle("org.transmart.conceptgen.resource.bundle.sql");
 	private DataService ds = new DataService();
 
 	
-	public String searchConcept(String searchTerm, String limit)
+	public List searchConcept(String searchTerm, String limit)
 			throws Exception {
 
-		String query = sql.getString("conceptSearchLimit");
+		String query = msg.getString("conceptSearchLimit");
 		query = query.replaceFirst("\\?", searchTerm);
 		query = query.replaceFirst("\\?", limit);
-		return tp.createJsArray(rs.select(query));
+		
+		return ds.createConceptDetail(rs.select(query));
+	}
+	
+	public List searchConcept(String searchTerm) throws Exception {
+
+		String query = msg.getString("conceptSearch");
+		query = query.replaceFirst("\\?", searchTerm);
+		
+		return ds.createConceptDetail(rs.select(query));
 	}
 	
 	// CONCEPT NETWORK GRAPH

@@ -1,8 +1,6 @@
-<%@ page contentType="text/html;charset=ISO-8859-1"  import="org.transmart.*; org.transmart.module.*; org.transmart.model.*" %>
+<%@ page contentType="text/html;charset=ISO-8859-1"  import="org.transmart.conceptgen.*; org.transmart.conceptgen.module.*; org.transmart.conceptgen.model.*" %>
 <%
-//String conceptId = request.getParameter("id");
-
-String conceptId = "746575";
+String conceptId = request.getParameter("id");
 String queryType = "conceptPublic";
 String conceptTypeId = "0";
 String owner = "Public";
@@ -37,16 +35,15 @@ for(int i=0; i<list2.size(); i++)
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ConceptGen: Concept Viewer</title>
+<title>ConceptGen > Concept Viewer</title>
 
 
 <!--  CSS --------------------------------------------------------------------------------------------------------------------------------->
 
-<link rel="stylesheet" href="${resource(dir:'css',file:'template.css')}" />
+<link rel="stylesheet" href="${resource(dir:'css',file:'conceptgen.css')}" />
 <link rel="stylesheet" href="${resource(dir:'js/datatables/media/css',file:'demo_table_jui.css')}" />
 <link rel="stylesheet" href="${resource(dir:'js/datatables/extras/TableTools/media/css',file:'TableTools_JUI.css')}" />
 <link rel="stylesheet" href="${resource(dir:'js/jquery-ui/css/smoothness',file:'jquery-ui-1.8.16.custom.css')}" />
-<link rel="stylesheet" href="${resource(dir:'js/jqplot',file:'jquery.jqplot.min.css')}" />
 
 <!--  JS SCRIPT --------------------------------------------------------------------------------------------------------------------------->
 <script>
@@ -68,7 +65,8 @@ var data2 = <%= data2 %>;
 <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
-      function drawChart() {
+      function drawChart() 
+      {
         var data = google.visualization.arrayToDataTable([
          <%= pieInfo %>
         ]);
@@ -79,6 +77,11 @@ var data2 = <%= data2 %>;
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+      }
+
+      function drawNetwork()
+      {
+    	  window.location.href = "graph";
       }
 </script>
 
@@ -104,6 +107,7 @@ var data2 = <%= data2 %>;
 		</table>
 		<div class="lineFull"></div>
 		<div id="container"></div>
+		<input type="button" value="Draw Network" onclick="drawNetwork()">
 	</div>
 </div>
 </body>

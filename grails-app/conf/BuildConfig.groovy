@@ -40,14 +40,9 @@ grails.project.dependency.resolution = {
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
         mavenLocal()
-<<<<<<< HEAD
-		//mavenCentral()
-		//mavenRepo "http://developer2.ncibi.org/maven"
-        
-=======
+
         mavenCentral()
 		mavenRepo "http://developer2.ncibi.org/maven"
->>>>>>> refs/heads/ncibi-tools
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"

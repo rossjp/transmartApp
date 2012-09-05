@@ -1,5 +1,6 @@
 package org.transmart.conceptgen.module;
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -10,7 +11,7 @@ import org.transmart.conceptgen.resource.util.TextParser;
 public class ConceptJsService {
 	private JDBCExecuter rs = new JDBCExecuter();
 	private ResourceBundle sql = ResourceBundle
-			.getBundle("edu.umich.med.transmart.resource.bundle.sql");
+			.getBundle("org.transmart.conceptgen.resource.bundle.sql");
 	private TextParser tp = new TextParser();
 
 	// ***********************************************************************************************************************************************
@@ -91,7 +92,65 @@ public class ConceptJsService {
 
 		return tp.createJsArray(rs.select(query));
 	}
+	
+	public String getConceptDirectInteractionNode(String conceptId, String conceptName, String conceptTypeId, String elementSize, double pvalue,
+			double fdr) throws Exception {
+		String query = "";
 
+		query = sql.getString("conceptListInteractionNode");
+		query = query.replaceFirst("\\?", String.valueOf(fdr));
+		query = query.replaceFirst("\\?", String.valueOf(pvalue));
+		query = query.replaceFirst("\\?", conceptId);
+
+		ArrayList textArray = rs.select(query);
+
+		//String t =  ",{ id: '"+ conceptId +"', label: 'test', conceptTypeId: '122' , elementSize: '98' }";
+		String t =  ",{ id: '"+ conceptId +"', label: '"+ conceptName +"', conceptTypeId: '"+ conceptTypeId +"' , elementSize: '"+ elementSize +"' }";
+		//String t = "";
+		for (int i = 0; i < textArray.size(); i++)
+		{
+			ArrayList record = (ArrayList) textArray.get(i);
+			StringBuffer text = new StringBuffer();
+			
+			t += ",{ id: '"+ (String)record.get(0) +"', label: '"+ (String)record.get(1) +"', conceptTypeId: '"+ (String)record.get(2) +"' , elementSize: "+ (String)record.get(3) +" }";
+			
+		}
+
+		t = "[ " + t.replaceFirst(",", "") + " ]";
+
+		return t;
+	}
+
+	public String getConceptDirectInteractionEdge(String conceptId, double pvalue,
+			double fdr) throws Exception {
+		String query = "";
+
+		query = sql.getString("conceptListInteractionEdge");
+		query = query.replaceFirst("\\?", String.valueOf(fdr));
+		query = query.replaceFirst("\\?", String.valueOf(pvalue));
+		query = query.replaceFirst("\\?", conceptId);
+		
+		ArrayList textArray = rs.select(query);
+
+		String t = "";
+		for (int i = 0; i < textArray.size(); i++)
+		{
+			ArrayList record = (ArrayList) textArray.get(i);
+			StringBuffer text = new StringBuffer();
+			
+			t += ",{ id: '"+ (String)record.get(0) +"-" + (String)record.get(1) +"', target: '"+ (String)record.get(0) +"', source: '"+ (String)record.get(1) +"' }";
+			
+		}
+
+		t = "[ " + t.replaceFirst(",", "") + " ]";
+
+		return t;
+	}
+	
+	
+	
+	
+	
 	public String searchConceptCount(String searchTerm) throws Exception {
 		String query = sql.getString("conceptSearchCount");
 		query = query.replaceAll("\\?", searchTerm);

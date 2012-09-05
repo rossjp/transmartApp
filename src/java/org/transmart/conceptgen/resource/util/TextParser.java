@@ -65,6 +65,7 @@ public class TextParser
 
 		return t;
 	}
+	
 
 	public String createNewLineDelimitedText(ArrayList text)
 	{

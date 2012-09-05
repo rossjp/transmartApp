@@ -25,7 +25,7 @@ public class JDBCExecuter
 
 	public JDBCExecuter()
 	{
-		ResourceBundle db = ResourceBundle.getBundle("edu.umich.med.transmart.resource.bundle.database");
+		ResourceBundle db = ResourceBundle.getBundle("org.transmart.conceptgen.resource.bundle.database");
 		this.url = db.getString("url");
 		this.username = db.getString("username");
 		this.passwd = db.getString("passwd");

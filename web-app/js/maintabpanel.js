@@ -250,12 +250,12 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
-                title: "ConceptGen",
+                title: "conceptExplorer",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
                 loadMask: true,
-                defaultSrc: pageData.conceptgen.inputUrl,
+                defaultSrc: pageData.conceptExplorer.inputUrl,
             },
             {
                 id: "tab11",
@@ -276,17 +276,7 @@ function createSearchTabs(toolbar) {
                 closable: false,
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
-            },
-            {
-                id: "tab13",
-                iconCls: "docTab",
-                title: "Concept Explorer",
-                listeners: {activate: activateTab},
-                xtype: "iframepanel",
-                closable: false,
-                loadMask: true,
-                defaultSrc: pageData.conceptExplorer.resultsUrl,
-            }
+            }    
         ]
     });
     return tabpanel;
