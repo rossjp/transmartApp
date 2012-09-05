@@ -1,5 +1,5 @@
 /*************************************************************************
- * tranSMART - translational medicine data mart
+  * tranSMART - translational medicine data mart
  * 
  * Copyright 2008-2012 Janssen Research & Development, LLC.
  * 
@@ -16,34 +16,31 @@
  * 
  *
  ******************************************************************/
-  
+package org.transmart.searchapp
 
-package org.transmart.search
+class M2MResult {
+	
+		String compoundName
+		String compoundID
+		String descriptorName
+		String descriptorID
+		Double fover
+		Double chiSquare
+		Double fisherExact
+		Double qValue
 
-import org.transmart.searchapp.SearchKeyword
-
-class Metab2MeshController {
-<<<<<<< HEAD
-
-    def index = {
-		render(view:'index') 
-=======
-	def metab2MeshService
-	def index = {
-		def m2mResultList = []
-		def searchTerms = []
-		for (SearchKeyword keyword: session.searchFilter.globalFilter.getDiseaseFilters())
-		{
-			if(keyword != null) 
-			{
-				searchTerms.add(keyword.keyword)
-			}
+		public M2MResult(String compoundName, String compoundID,
+				String descriptorName, String descriptorID, Double fover,
+				Double chiSquare, Double fisherExact, Double qValue) {
+			super();
+			this.compoundName = compoundName
+			this.compoundID = compoundID
+			this.descriptorName = descriptorName
+			this.descriptorID = descriptorID
+			this.fover = fover
+			this.chiSquare = chiSquare
+			this.fisherExact = fisherExact
+			this.qValue = qValue
 		}
-		if (searchTerms[0] != null)
-		{
-			m2mResultList = metab2MeshService.getM2MResultsByDescriptor(searchTerms[0])
-		}
-		render(view: "index", model:[m2mResultList: m2mResultList])
->>>>>>> ncibi-tools
-	}
+
 }

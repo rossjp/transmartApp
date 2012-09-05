@@ -77,6 +77,7 @@
 				    resultsUrl: "${createLink(controller:'trial', action:'datasourceTrial')}",
 				    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
 				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
+<<<<<<< HEAD
 			    },
 			    session: {
 				    resultsUrl: "${createLink(controller:'session', action:'index')}"
@@ -233,6 +234,51 @@
 			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
 			   		credentials: "ID/Password=Pathway Studio ID/Password"
 			    },
+=======
+			    },
+
+				pretrial: { // tab2 - see maintabpanel.js
+				    count: "${searchresult.allAnalysiCount}",
+				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
+				    resultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResult')}",
+				    teaResultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResultTEA')}",
+				    filterUrl: "${createLink(controller:'experimentAnalysis', action:'showFilter')}"
+				},
+				profile: { // tab3 - see maintabpanel.js
+				    count: "${searchresult.profileCount}",
+				    resultsUrl: "${createLink(controller:'expressionProfile', action:'datasourceResult')}"
+				},
+			    jubilant: { // tab4 - see maintabpanel.js
+				    activeCard: 0,
+				    resultsUrl: "${createLink(controller:'literature', action:'datasourceJubilant')}",
+				    filterUrl: "${createLink(controller:'literature', action:'showJubFilter')}",
+				    count: "${searchresult.literatureCount()}",
+				    litJubOncAltCount: "${searchresult.litJubOncAltCount}",
+				    litJubOncIntCount: "${searchresult.litJubOncIntCount}",
+				    litJubAsthmaIntCount: "${searchresult.litJubAsthmaIntCount}",
+				    jubOncologyAlterationUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyAlteration')}",
+				    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
+				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
+			    },
+			    doc: {  // tab5 - see maintabpanel.js
+				    count: "${searchresult.documentCount}",
+				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
+				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
+			    },
+			    pictor: { // tab 6 - see maintabpanel.js
+			   		<g:if test="${session.searchFilter.pictorTerms != null}">
+						resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
+	    			</g:if>
+					<g:else>
+	                	resultsUrl: "${createLink(controller:'search',action:'noResult')}"
+					</g:else>
+			    },
+
+			    resnet: { // tab 7 - see maintabpanel.js
+			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
+			   		credentials: "ID/Password=Pathway Studio ID/Password"
+			    },
+>>>>>>> ncibi-tools
 			    genego: { // tab 8 - see maintabpanel.js
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
@@ -241,7 +287,11 @@
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
 				conceptgen: { // tab10 - see maintabpanel.js
+<<<<<<< HEAD
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'search')}"
+=======
+					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
+>>>>>>> ncibi-tools
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"

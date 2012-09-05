@@ -250,12 +250,20 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
+<<<<<<< HEAD
                 title: "conceptExplorer",
+=======
+                title: "ConceptGen",
+>>>>>>> ncibi-tools
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
                 loadMask: true,
+<<<<<<< HEAD
                 defaultSrc: pageData.conceptExplorer.inputUrl,
+=======
+                defaultSrc: pageData.conceptgen.inputUrl,
+>>>>>>> ncibi-tools
             },
             {
                 id: "tab11",
@@ -276,6 +284,7 @@ function createSearchTabs(toolbar) {
                 closable: false,
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
+<<<<<<< HEAD
             }    
         ]
     });
@@ -496,6 +505,8 @@ function activateTab(tab) {
         setButtonVisibility("tea",false);
         setButtonVisibility("contextHelp", false);
 =======
+=======
+>>>>>>> ncibi-tools
             }
         ]
     });
@@ -715,7 +726,10 @@ function activateTab(tab) {
         setButtonVisibility("studyview", false)
         setButtonVisibility("tea",false);
         setButtonVisibility("contextHelp", false);
+<<<<<<< HEAD
 >>>>>>> refs/heads/ncibi-tools
+=======
+>>>>>>> ncibi-tools
         break;
     
 	case "tab9":
