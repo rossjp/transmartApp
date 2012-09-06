@@ -35,6 +35,7 @@
 	<![endif]-->
 
 		<!--<g:javascript library="prototype" />-->
+
 		<script type="text/javascript" src="${resource(dir:'js', file:'ext/adapter/ext/ext-base.js')}"></script>
 		<script type="text/javascript" src="${resource(dir:'js', file:'ext/ext-all.js')}"></script>
 		<script type="text/javascript" src="${resource(dir:'js', file:'ext/miframe.js')}"></script>
@@ -115,7 +116,6 @@
 	                	resultsUrl: "${createLink(controller:'search',action:'noResult')}"
 					</g:else>
 			    },
-
 			    resnet: { // tab 7 - see maintabpanel.js
 			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
 			   		credentials: "ID/Password=Pathway Studio ID/Password"
@@ -230,6 +230,8 @@
 				    tabpanel.remove(Ext.getCmp("tab5"));
 					tabpanel.remove(Ext.getCmp("tab6"));
 				    tabpanel.remove(Ext.getCmp("tab7"));
+				    //tabpanel.remove(Ext.getCmp("tab8"));
+				    //tabpanel.remove(Ext.getCmp("tab9"));
 				} else  {
 					// All tabs should show only if the external configuration is correct
 					if ("${grailsApplication.config.com.recomdata.searchtool.pictorURL}" == "")    {
@@ -350,7 +352,9 @@
 				helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
 			</script>
 		</sec:ifAnyGranted>
-		<!-- ************************************** --> 
+		<!-- ************************************** -->
+		<g:javascript library="prototype" plugin="prototype"/>
+        <r:layoutResources/> 
 	</head>
 <body>
 		<div id="header-div" style="overflow:hidden; margin-bottom: 2px;">
@@ -374,5 +378,6 @@
 				<input type="hidden" name="selectedpath" value="">
 			</g:form>
 		</div>
+		<r:layoutResources/>
 	</body>
 </html>

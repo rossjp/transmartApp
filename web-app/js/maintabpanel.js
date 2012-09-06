@@ -214,6 +214,7 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.resnet.resultsUrl,
                 tabTip: pageData.resnet.credentials
+<<<<<<< HEAD
             }, 
             {
                 id: "tab8",
@@ -226,6 +227,10 @@ function createSearchTabs(toolbar) {
                 defaultSrc: pageData.genego.resultsUrl,
                 tabTip: pageData.genego.credentials
             },
+=======
+            } 
+            , 
+>>>>>>> origin/postgresMigrate
             {
                 id: "tab8",
                 iconCls: "genegoTab",
@@ -236,6 +241,7 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.genego.resultsUrl,
                 tabTip: pageData.genego.credentials
+<<<<<<< HEAD
             },
             {
                 id: "tab9",
@@ -277,6 +283,10 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
             }
+=======
+            }
+            
+>>>>>>> origin/postgresMigrate
         ]
     });
     return tabpanel;
@@ -496,6 +506,7 @@ function activateTab(tab) {
         setButtonVisibility("tea",false);
         setButtonVisibility("contextHelp", false);
         break;
+<<<<<<< HEAD
     
 	case "tab9":
 	    setButtonVisibility("filters", false);
@@ -540,6 +551,8 @@ function activateTab(tab) {
 	    setButtonVisibility("tea",false);
 	    setButtonVisibility("contextHelp", false);
 	    break;
+=======
+>>>>>>> origin/postgresMigrate
     }
 }
 
