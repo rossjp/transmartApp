@@ -33,82 +33,14 @@ import javax.xml.xpath.*;
 class Metab2MeshService {
 
     boolean transactional = true
-
-    def getDescriptorsByCompoundName(String compoundName) {
-		def descList = []
-		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?compound=" + compoundName;
-			URL ncbiWS = new URL(urlString);
-			URLConnection urlConnection = ncbiWS.openConnection();
-			InputStream inputStream = urlConnection.getInputStream();
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setCoalescing(true);
-			factory.setNamespaceAware(true);
-
-			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream);
-
-			inputStream.close();
-
-			if (xmlDocument != null) {
-				XPath xpath = XPathFactory.newInstance().newXPath();
-
-				String expression = "//MeSH/Descriptor/Name";
-
-				NodeList nodes = (NodeList)xpath.evaluate(expression, xmlDocument, XPathConstants.NODESET);
-
-				for (int i = 0; i < nodes.getLength(); i++) {
-					Node m2mCompoundNode = nodes.item(i);
-					descList.add(m2mCompoundNode.getTextContent());
-				}
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return descList;
-    }
-	
-	def getCompoundsByDescriptorName(String descriptorName) {
-		def compoundList = []
-		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?mesh=" + descriptorName;
-			URL ncbiWS = new URL(urlString);
-			URLConnection urlConnection = ncbiWS.openConnection();
-			InputStream inputStream = urlConnection.getInputStream();
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setCoalescing(true);
-			factory.setNamespaceAware(true);
-
-			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream);
-
-			inputStream.close();
-
-			if (xmlDocument != null) {
-				XPath xpath = XPathFactory.newInstance().newXPath();
-
-				String expression = "//Compound/Name";
-
-				NodeList nodes = (NodeList)xpath.evaluate(expression, xmlDocument, XPathConstants.NODESET);
-
-				for (int i = 0; i < nodes.getLength(); i++) {
-					Node m2mCompoundNode = nodes.item(i);
-					compoundList.add(m2mCompoundNode.getTextContent());
-				}
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return compoundList;
-	}
 	
 	def getM2MResultsByCompound(String compoundName)
 	{
 		def results = []
 		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?compound=" + compoundName;
-			URL ncbiWS = new URL(urlString);
-			URLConnection urlConnection = ncbiWS.openConnection();
+			String urlString = "http://metab2mesh.ncibi.org/fetch?compound=" + URLEncoder.encode(compoundName);
+			URL ncibiWS = new URL(urlString);
+			URLConnection urlConnection = ncibiWS.openConnection();
 			InputStream inputStream = urlConnection.getInputStream();
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -131,9 +63,9 @@ class Metab2MeshService {
 	{
 		def results = []
 		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?mesh=" + descriptorName;
-			URL ncbiWS = new URL(urlString);
-			URLConnection urlConnection = ncbiWS.openConnection();
+			String urlString = "http://metab2mesh.ncibi.org/fetch?mesh=" + URLEncoder.encode(descriptorName) + "&limit=100&publimit=20";
+			URL ncibiWS = new URL(urlString);
+			URLConnection urlConnection = ncibiWS.openConnection();
 			InputStream inputStream = urlConnection.getInputStream();
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -170,12 +102,13 @@ class Metab2MeshService {
 				String cid = (String)xpath.evaluate("Compound/CompoundID/text()", m2mNode, XPathConstants.STRING);
 				String dName = (String)xpath.evaluate("MeSH/Descriptor/Name/text()", m2mNode, XPathConstants.STRING);
 				String did = (String)xpath.evaluate("MeSH/Descriptor/Identifier/text()", m2mNode, XPathConstants.STRING);
+				String didNum = did.replace('D', '68');
 				Double fover = Double.valueOf(xpath.evaluate("Fover/text()", m2mNode, XPathConstants.STRING));
 				Double chiSquare = Double.valueOf(xpath.evaluate("ChiSquare/text()", m2mNode, XPathConstants.STRING));
 				Double fisherExact = Double.valueOf(xpath.evaluate("FisherExact/text()", m2mNode, XPathConstants.STRING));
 				Double qValue = Double.valueOf(xpath.evaluate("Q-Value/text()", m2mNode, XPathConstants.STRING));
 				
-				results.add(new M2MResult(cName, cid, dName, did, fover, chiSquare, fisherExact, qValue));
+				results.add(new M2MResult(cName, cid, dName, did, didNum, fover, chiSquare, fisherExact, qValue));
 			}
 			
 				

@@ -1,5 +1,5 @@
 /*************************************************************************
- * tranSMART - translational medicine data mart
+  * tranSMART - translational medicine data mart
  * 
  * Copyright 2008-2012 Janssen Research & Development, LLC.
  * 
@@ -16,28 +16,34 @@
  * 
  *
  ******************************************************************/
-  
+package org.transmart.searchapp
 
-package org.transmart.search
+class G2MResult {
+		String geneSymbol
+		String geneID
+		String geneDescription
+		String descriptorName
+		String descriptorID
+		String descriptorIDNum
+		String qualifier
+		Double fover
+		Double chiSquare
+		Double fisherExact
 
-import org.transmart.searchapp.SearchKeyword
-
-class Metab2MeshController {
-	def metab2MeshService
-	def index = {
-		def m2mResultList = []
-		def searchTerms = []
-		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
+		public G2MResult(String geneSymbol, String geneID, String geneDescription, String descriptorName, String descriptorID, String descriptorIDNum, String qualifier, Double fover, Double chiSquare, Double fisherExact) 
 		{
-			if(keyword != null & (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')) 
-			{
-				searchTerms.add(keyword.keyword)
-			}
+			super();
+			this.geneSymbol = geneSymbol
+			this.geneID = geneID
+			this.geneDescription = geneDescription
+			this.descriptorName = descriptorName
+			this.descriptorID = descriptorID
+			this.descriptorIDNum = descriptorIDNum
+			this.qualifier = qualifier
+			this.fover = fover
+			this.chiSquare = chiSquare
+			this.fisherExact = fisherExact
 		}
-		if (searchTerms[0] != null)
-		{
-			m2mResultList = metab2MeshService.getM2MResultsByDescriptor(searchTerms[0])
-		}
-		render(view: "index", model:[m2mResultList: m2mResultList])
-	}
+				
+
 }

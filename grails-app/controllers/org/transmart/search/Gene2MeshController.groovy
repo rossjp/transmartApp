@@ -22,22 +22,36 @@ package org.transmart.search
 
 import org.transmart.searchapp.SearchKeyword
 
-class Metab2MeshController {
-	def metab2MeshService
+class Gene2MeshController {
+	def gene2MeshService
 	def index = {
-		def m2mResultList = []
-		def searchTerms = []
+		def g2mResultList = []
+		def geneSearchTerms = []
+		def diseaseSearchTerms = []
 		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
 		{
-			if(keyword != null & (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')) 
+			if(keyword != null)
 			{
-				searchTerms.add(keyword.keyword)
+				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
+				{
+					diseaseSearchTerms.add(keyword.keyword)
+				}
+				else if (keyword.dataCategory == 'GENE')
+				{
+					geneSearchTerms.add(keyword.keyword)
+				}
 			}
+
 		}
-		if (searchTerms[0] != null)
+		if (diseaseSearchTerms[0] != null)
 		{
-			m2mResultList = metab2MeshService.getM2MResultsByDescriptor(searchTerms[0])
+			g2mResultList = gene2MeshService.getG2MResultsByDescriptor(diseaseSearchTerms[0])
 		}
-		render(view: "index", model:[m2mResultList: m2mResultList])
+		else if (geneSearchTerms[0] != null)
+		{
+			g2mResultList = gene2MeshService.getG2MResultsByGene(geneSearchTerms[0])
+		}
+
+		render(view: "index", model:[g2mResultList: g2mResultList])
 	}
 }
