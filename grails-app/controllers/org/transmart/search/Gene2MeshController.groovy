@@ -18,9 +18,40 @@
  ******************************************************************/
   
 
-class GeneExprAnalysisTests extends GroovyTestCase {
+package org.transmart.search
 
-    void testSomething() {
+import org.transmart.searchapp.SearchKeyword
 
-    }
+class Gene2MeshController {
+	def gene2MeshService
+	def index = {
+		def g2mResultList = []
+		def geneSearchTerms = []
+		def diseaseSearchTerms = []
+		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
+		{
+			if(keyword != null)
+			{
+				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
+				{
+					diseaseSearchTerms.add(keyword.keyword)
+				}
+				else if (keyword.dataCategory == 'GENE')
+				{
+					geneSearchTerms.add(keyword.keyword)
+				}
+			}
+
+		}
+		if (diseaseSearchTerms[0] != null)
+		{
+			g2mResultList = gene2MeshService.getG2MResultsByDescriptor(diseaseSearchTerms[0])
+		}
+		else if (geneSearchTerms[0] != null)
+		{
+			g2mResultList = gene2MeshService.getG2MResultsByGene(geneSearchTerms[0])
+		}
+
+		render(view: "index", model:[g2mResultList: g2mResultList])
+	}
 }

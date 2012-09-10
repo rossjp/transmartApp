@@ -286,15 +286,23 @@
 				metscape: { // tab9 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
+<<<<<<< HEAD
 				conceptgen: { // tab10 - see maintabpanel.js
 <<<<<<< HEAD
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'search')}"
 =======
 					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
 >>>>>>> ncibi-tools
+=======
+				conceptExplorer: { // tab10 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'conceptExplorer', action:'index')}"
+>>>>>>> ncibi-tools
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
+				},
+				gene2mesh: { // tab11 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
 				},
 			    session: { // tab12 - see maintabpanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"

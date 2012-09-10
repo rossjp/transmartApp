@@ -2,15 +2,15 @@ target
 target-eclipse
 application.properties
 transmart.log
+transmart.log.*
 transmartApp.log
 null.log
 System.out
 .classpath
 .settings
 .project
-<<<<<<< HEAD
 .link_to_grails_plugins
-
-=======
-.link_to_grails_plugins
->>>>>>> ncibi-tools
+.svn/
+tempImages/
+**/.DS_Store
+.DS_Store

@@ -250,20 +250,12 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
-<<<<<<< HEAD
                 title: "conceptExplorer",
-=======
-                title: "ConceptGen",
->>>>>>> ncibi-tools
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
                 loadMask: true,
-<<<<<<< HEAD
                 defaultSrc: pageData.conceptExplorer.inputUrl,
-=======
-                defaultSrc: pageData.conceptgen.inputUrl,
->>>>>>> ncibi-tools
             },
             {
                 id: "tab11",
@@ -278,14 +270,24 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab12",
                 iconCls: "docTab",
+                title: "Gene2Mesh",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.gene2mesh.inputUrl,
+            },
+            {
+                id: "tab13",
+                iconCls: "docTab",
                 title: "Session Info",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
-<<<<<<< HEAD
-            }    
+            }
+
         ]
     });
     return tabpanel;
@@ -504,232 +506,6 @@ function activateTab(tab) {
         setButtonVisibility("studyview", false)
         setButtonVisibility("tea",false);
         setButtonVisibility("contextHelp", false);
-=======
-=======
->>>>>>> ncibi-tools
-            }
-        ]
-    });
-    return tabpanel;
-}
-
-// create toolbar below search tabs
-function createMainToolbar() {
-
-    var toolbar = new Ext.Toolbar([
-           {
-               id: "filters-show-button",
-               text: "Show Filters",
-               handler: showFilters,
-               cls: "x-btn-text-icon",
-               iconCls: "filtersBtn"
-           }, {
-               id: "filters-hide-button",
-               text: "Hide Filters",
-               handler: showFilters,
-               cls: "x-btn-text-icon",
-               hidden: true,
-               iconCls: "filtersBtn"
-           }, {
-               id: "summary-show-button",
-               text: "Show Summary",
-               handler: showSummary,
-               cls: "x-btn-text-icon",
-               iconCls: "summaryBtn"
-           }, {
-               id: "summary-hide-button",
-               text: "Show Search Results",
-               handler: showSummary,
-               cls: "x-btn-text-icon",
-               hidden: true,
-               iconCls: "summaryBtn"
-           }, {
-               id: "heatmap-button",
-               text: "Heatmap",
-               handler: showHeatmap,
-               cls: "x-btn-text-icon",
-               iconCls: "heatmapBtn"
-           },
-           {
-               id: "tea-button",
-               text: "Analysis View",
-               handler: showTEAView,
-               cls: "x-btn-text-icon",
-               iconCls: "teaBtn"
-           },
-           {
-               id: "studyview-button",
-               text: "Study View",
-               handler: showStudyView,
-               cls: "x-btn-text-icon",
-               iconCls: "studyBtn"
-           },
-           {
-               id: "exportsummary-button",
-               text: "Export Results",
-               handler: exportSummary,
-               cls: "x-btn-text-icon",
-               iconCls: "exportSummaryBtn"
-           },
-           {
-               id: "exportresnet-button",
-               text: "Export to ResNet",
-               handler: exportResNet,
-               cls: "x-btn-text-icon",
-               iconCls: "exportResNetBtn"               
-           },
-           {
-				id:'contextHelp-button',
-			    handler: function(event, toolEl, panel){
-			    	D2H_ShowHelp(filterContextHelpId,helpURL,"wndExternal",CTXT_DISPLAY_FULLHELP );
-			    },
-	            cls: "x-btn-text-icon",
-	            iconCls: "contextHelpBtn"  
-		   },
-		   {
-               xtype: "tbfill"
-           }
-       ]);
-    return toolbar;
-}
-
-function activateTab(tab) {
-    switch (tab.id) {
-    case "tab1":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", false);
-        if(pageData.trial.count>0) {
-            setButtonVisibility("heatmap", true);
-            setButtonVisibility("studyview", true);
-
-            if(pageData.trial.analysisCount>0) {
-                setButtonVisibility("tea",true);
-            } else {
-                setButtonVisibility("tea",false);
-            }
-        } else {
-            setButtonVisibility("heatmap", false);
-            setButtonVisibility("tea",false);
-            setButtonVisibility("studyview", false);
-        }
-        setButtonVisibility("exportsummary", true);
-        setButtonVisibility("exportresnet", false);
-        
-        var contextHelpVisibility = false;
-        if(pageData.trial.analysisCount>0 || pageData.trial.count>0){
-        	contextHelpVisibility = true
-        }
-        setButtonVisibility("contextHelp", contextHelpVisibility);
-        filterContextHelpId = (pageData.trial.analysisCount>0) ? "1027" : "1028";
-        break;
-    case "tab2":
-        setButtonVisibility("filters", true);
-
-        // experiment views
-        if(pageData.pretrial.count>0){
-            setButtonVisibility("studyview", true)
-        } else {
-        	setButtonVisibility("studyview", false)
-        }
-
-        // tea analysis view
-        if(pageData.pretrial.mRNAAnalysisCount>0){
-            setButtonVisibility("tea", true)
-        } else {
-        	setButtonVisibility("tea", false)
-        }
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", true);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("contextHelp", true);
-        
-        var contextHelpVisibility = false;
-        if(pageData.pretrial.mRNAAnalysisCount>0 || pageData.pretrial.count>0){
-        	contextHelpVisibility = true
-        }
-        setButtonVisibility("contextHelp", contextHelpVisibility);
-        filterContextHelpId = (pageData.pretrial.mRNAAnalysisCount>0) ? "1023" : "1023";
-        break;
-    case "tab3":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1040";
-        break;
-    case "tab4":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", pageData.jubilant.litJubOncAltCount > 0);
-        setButtonVisibility("heatmap", false);
-        if (pageData.jubilant.count < 1) 	{
-        	setButtonVisibility("exportsummary", false);
-        } else	{
-        	setButtonVisibility("exportsummary", true);
-        }
-        if (pageData.hideInternal==true || pageData.jubilant.count < 1)  {
-        	setButtonVisibility("exportresnet", false);
-        } else	{
-        	setButtonVisibility("exportresnet", true);
-        }
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1042";
-        break;
-    case "tab5":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1047";
-        break;
-    case "tab6":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        if (pageData.pictor.resultsUrl.length > 1980) {
-            window.alert("Note: The length of the URL for the Pictor query has exceeded the maximum supported by Internet Explorer and some genes may have been excluded from the query.");
-        }
-        setButtonVisibility("contextHelp", false);
-        break;
-
-    case "tab7":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", false);
-        break;
-
-    case "tab8":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", false);
-<<<<<<< HEAD
->>>>>>> refs/heads/ncibi-tools
-=======
->>>>>>> ncibi-tools
         break;
     
 	case "tab9":
@@ -764,8 +540,17 @@ function activateTab(tab) {
 	    setButtonVisibility("tea",false);
 	    setButtonVisibility("contextHelp", false);
 	    break;
-	    
 	case "tab12":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;	    
+	case "tab13":
 	    setButtonVisibility("filters", false);
 	    setButtonVisibility("summary", false);
 	    setButtonVisibility("heatmap", false);

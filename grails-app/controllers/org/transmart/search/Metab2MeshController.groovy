@@ -23,18 +23,13 @@ package org.transmart.search
 import org.transmart.searchapp.SearchKeyword
 
 class Metab2MeshController {
-<<<<<<< HEAD
-
-    def index = {
-		render(view:'index') 
-=======
 	def metab2MeshService
 	def index = {
 		def m2mResultList = []
 		def searchTerms = []
-		for (SearchKeyword keyword: session.searchFilter.globalFilter.getDiseaseFilters())
+		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
 		{
-			if(keyword != null) 
+			if(keyword != null & (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')) 
 			{
 				searchTerms.add(keyword.keyword)
 			}
@@ -44,6 +39,5 @@ class Metab2MeshController {
 			m2mResultList = metab2MeshService.getM2MResultsByDescriptor(searchTerms[0])
 		}
 		render(view: "index", model:[m2mResultList: m2mResultList])
->>>>>>> ncibi-tools
 	}
 }

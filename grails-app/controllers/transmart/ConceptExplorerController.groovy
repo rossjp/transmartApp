@@ -29,7 +29,7 @@ class ConceptExplorerController {
 
 	}
 	
-	def test = {
+	def graph = {
 	
 	}
 	
@@ -42,8 +42,8 @@ class ConceptExplorerController {
 		render(view: "search", model:[conceptKeyword:conceptKeyword, taxid:9606])
 	}
 	
-	def graph = {
-		render(view: "graph",
+	def graph2 = {
+		render(view: "graph2",
 			model:[cids:params?.cids, geneids:params?.geneids, taxid:params?.taxid, networktype:params?.networktype])
 	}
 }
