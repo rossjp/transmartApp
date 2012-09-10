@@ -32,7 +32,7 @@
 	Sorry, no results found.
 </g:if>
 <g:else>
-	<table class="trborderbottom" width="100%">
+	<table class="trborderbottom" width="100%" border="2">
 		<thead>
 		<tr>
 			<th>Compound Name</th>		
