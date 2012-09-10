@@ -2,6 +2,7 @@ target
 target-eclipse
 application.properties
 transmart.log
+transmart.log.*
 transmartApp.log
 null.log
 System.out
@@ -9,3 +10,8 @@ System.out
 .settings
 .project
 .link_to_grails_plugins
+target-eclipse/
+.svn/
+tempImages/
+**/.DS_Store
+.DS_Store

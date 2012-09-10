@@ -127,8 +127,8 @@
 				metscape: { // tab9 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
-				conceptgen: { // tab10 - see maintabpanel.js
-					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
+				conceptExplorer: { // tab10 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'conceptExplorer', action:'index')}"
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"

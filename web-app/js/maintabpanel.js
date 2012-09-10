@@ -250,12 +250,12 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
-                title: "ConceptGen",
+                title: "conceptExplorer",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
                 loadMask: true,
-                defaultSrc: pageData.conceptgen.inputUrl,
+                defaultSrc: pageData.conceptExplorer.inputUrl,
             },
             {
                 id: "tab11",
