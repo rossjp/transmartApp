@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=ISO-8859-1"  import="org.transmart.conceptgen.*; org.transmart.conceptgen.module.*; org.transmart.conceptgen.model.*" %>
 <%
 
-//String conceptId = request.getParameter("id");
-String conceptId = "758880";
+String conceptId = request.getParameter("id");
+String networkType = request.getParameter("networkType");
+//String conceptId = "758880";
 String conceptTypeId = "1";
 String elementSize = "98";
 String conceptName = "TP53";
@@ -10,8 +11,23 @@ double fdr = 0.05;
 double pValue = 0.05;
 
 ConceptJsService cjs = new ConceptJsService();
-String nodes = cjs.getConceptDirectInteractionNode(conceptId, conceptName, conceptTypeId, elementSize, pValue,fdr);
-String edges = cjs.getConceptDirectInteractionEdge(conceptId, pValue,fdr);
+
+String nodes = "";
+String edges = "";
+
+if(networkType.equals("complete"))
+{
+	nodes = cjs.getConceptCompleteInteractionNode(conceptId, conceptName, conceptTypeId, elementSize, pValue,fdr);
+	edges = cjs.getConceptCompleteInteractionEdge(conceptId, pValue,fdr);
+}
+else
+{
+	nodes = cjs.getConceptDirectInteractionNode(conceptId, conceptName, conceptTypeId, elementSize, pValue,fdr);
+	edges = cjs.getConceptDirectInteractionEdge(conceptId, pValue,fdr);	
+}
+
+
+
 
 %>
 
