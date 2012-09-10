@@ -2,6 +2,7 @@ target
 target-eclipse
 application.properties
 transmart.log
+transmart.log.*
 transmartApp.log
 null.log
 System.out
@@ -12,3 +13,5 @@ System.out
 target-eclipse/
 .svn/
 tempImages/
+**/.DS_Store
+.DS_Store
