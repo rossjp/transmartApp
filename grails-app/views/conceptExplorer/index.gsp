@@ -35,7 +35,7 @@ for(int i=0; i<list2.size(); i++)
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ConceptGen - Concept Viewer</title>
+<title>ConceptGen > Concept Viewer</title>
 
 
 <!--  CSS --------------------------------------------------------------------------------------------------------------------------------->
@@ -81,7 +81,16 @@ var data2 = <%= data2 %>;
 
       function drawNetwork()
       {
-    	  window.location.href = "graph";
+    	  var drawComplete = document.getElementById("drawComplete");
+    	  if(drawComplete.checked)
+          {
+
+    		  window.location.href = "graph?id=<%= conceptId %>&networkType=complete";
+          }
+    	  else
+          {
+    		  window.location.href = "graph?id=<%= conceptId %>&networkType=direct";
+          }
       }
 </script>
 
@@ -101,13 +110,19 @@ var data2 = <%= data2 %>;
 				<div id="genelist"></div>
 			</td>
 			<td width="50%">
-			<div id="chart_div" style="width: 600px; height: 400px;"></div>
+				<div id="chart_div" style="width: 600px; height: 400px;"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" value="complete" id="drawComplete"/> Draw Complete Interactions
+				<input type="button" value="Draw Network" onclick="drawNetwork()">
 			</td>
 		</tr>
 		</table>
 		<div class="lineFull"></div>
 		<div id="container"></div>
-		<input type="button" value="Draw Network" onclick="drawNetwork()">
+	
 	</div>
 </div>
 </body>
