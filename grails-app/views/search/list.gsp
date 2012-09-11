@@ -77,122 +77,7 @@
 				    resultsUrl: "${createLink(controller:'trial', action:'datasourceTrial')}",
 				    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
 				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
-<<<<<<< HEAD
 			    },
-			    session: {
-				    resultsUrl: "${createLink(controller:'session', action:'index')}"
-				},
-				conceptExplorer: {
-				    resultsUrl: "${createLink(controller:'conceptExplorer', action:'search')}"
-				},
-			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
-			    jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",
-				heatmapUrl: "${createLink(controller:'heatmap',action:'initheatmap')}",
-				downloadJubSummaryUrl: "${createLink(controller:'literature',action:'downloadJubData')}",
-				downloadResNetUrl: "${createLink(controller:'literature',action:'downloadresnet')}",
-				downloadTrialStudyUrl: "${createLink(controller:'trial', action:'downloadStudy')}",
-				downloadTrialAnalysisUrl: "${createLink(controller:'trial', action:'downloadAnalysisTEA')}",
-				downloadEaUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysis')}",
-				downloadEaTEAUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysisTEA')}"
-				};
-
-			Ext.onReady(function(){
-			    try {
-			    document.execCommand("BackgroundImageCache", false, true);
-			    } catch(err) {}
-
-
-				var picklist = new Ext.app.PickList({
-					id: "categories",
-					storeUrl: "${createLink([controller:'search',action:'loadCategories'])}",
-					renderTo: "search-categories",
-					label: "Category:&nbsp;",
-					disabledClass: "picklist-disabled",
-					onSelect: function(record) {
-				        var combo = Ext.getCmp("search-combobox");
-				        combo.focus();
-				        if ((record.id != "all") || (record.id == "all" && combo.getRawValue().length > 0)) {
-							combo.doQuery(combo.getRawValue(), true);
-				        }
-					}
-				});
-
-				var combo = new Ext.app.SearchComboBox({
-					id: "search-combobox",
-					renderTo: "search-text",
-					searchUrl: "${createLink([action:'loadSearch',controller:'search'])}",
-					submitUrl: "${createLink([action:'newSearch',controller:'search'])}",
-					submitFn: function(param, text) {
-						var combo = Ext.getCmp("search-combobox");
-						combo.setDisabled(true);
-						combo.setRawValue("Searching for " + text + "...");
-						var searchbtn = document.getElementById("search-button");
-						searchbtn.disabled = true;
-						var picklist = Ext.getCmp("categories");
-						picklist.setDisabled(true);
-						var linkbuttons = document.getElementById("linkbuttons-div");
-						linkbuttons.innerHTML = '<span style="color:#a0a0a0;font-size:11px;text-decoration:underline;">browse<br />saved filters</span>';
-						var idfield = document.getElementById("id-field");
-						idfield.value = param;
-						setTimeout("postSubmit();", 100);
-						document.form.submit();
-					},
-					value: "${session?.searchFilter?.searchText}",
-					width: 470,
-			        onSelect: function(record) {
-						this.collapse();
-						if (record != null) {
-							this.submitFn(record.data.id, record.data.keyword);
-						}
-					},
-			        listeners: {
-						"beforequery": {
-							fn: function(queryEvent) {
-					            var picklist = Ext.getCmp("categories");
-					            var rec = picklist.getSelectedRecord();
-								if (rec != null) {
-									queryEvent.query = rec.id + ":" + queryEvent.query;
-								}
-							},
-							scope: this
-						}
-			        }
-				});
-
-				var win = new Ext.app.EditFiltersWindow({
-					id: "editfilters-window",
-					loadUrl: "${createLink([action:'loadCurrentFilters',controller:'search'])}",
-					splitUrl: "${createLink([action:'loadPathwayFilters',controller:'search'])}",
-					searchUrl: "${createLink([action:'loadSearch',controller:'search'])}",
-					submitUrl: "${createLink([action:'searchEdit',controller:'search'])}",
-					categoriesUrl: "${createLink([controller:'search',action:'loadCategories'])}"
-				});
-
-				// build search tabs and toolbar
-				var tabpanel = createMainTabPanel();
-				var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
-				
-				if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
-				    tabpanel.remove(Ext.getCmp("tab1"));
-				    tabpanel.remove(Ext.getCmp("tab3"));
-				    tabpanel.remove(Ext.getCmp("tab4"));
-				    tabpanel.remove(Ext.getCmp("tab5"));
-					tabpanel.remove(Ext.getCmp("tab6"));
-				    tabpanel.remove(Ext.getCmp("tab7"));
-				    //tabpanel.remove(Ext.getCmp("tab8"));
-				    //tabpanel.remove(Ext.getCmp("tab9"));
-				} else  {
-					// All tabs should show only if the external configuration is correct
-					if ("${grailsApplication.config.com.recomdata.searchtool.pictorURL}" == "")    {
-						tabpanel.remove(Ext.getCmp("tab6"));
-					}
-				    if ("${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" == "")  {
-					    tabpanel.remove(Ext.getCmp("tab7"));
-				    }
-				    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
-				        tabpanel.remove(Ext.getCmp("tab8"));
-					}				       
-
 				pretrial: { // tab2 - see maintabpanel.js
 				    count: "${searchresult.allAnalysiCount}",
 				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
@@ -234,51 +119,6 @@
 			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
 			   		credentials: "ID/Password=Pathway Studio ID/Password"
 			    },
-=======
-			    },
-
-				pretrial: { // tab2 - see maintabpanel.js
-				    count: "${searchresult.allAnalysiCount}",
-				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
-				    resultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResult')}",
-				    teaResultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResultTEA')}",
-				    filterUrl: "${createLink(controller:'experimentAnalysis', action:'showFilter')}"
-				},
-				profile: { // tab3 - see maintabpanel.js
-				    count: "${searchresult.profileCount}",
-				    resultsUrl: "${createLink(controller:'expressionProfile', action:'datasourceResult')}"
-				},
-			    jubilant: { // tab4 - see maintabpanel.js
-				    activeCard: 0,
-				    resultsUrl: "${createLink(controller:'literature', action:'datasourceJubilant')}",
-				    filterUrl: "${createLink(controller:'literature', action:'showJubFilter')}",
-				    count: "${searchresult.literatureCount()}",
-				    litJubOncAltCount: "${searchresult.litJubOncAltCount}",
-				    litJubOncIntCount: "${searchresult.litJubOncIntCount}",
-				    litJubAsthmaIntCount: "${searchresult.litJubAsthmaIntCount}",
-				    jubOncologyAlterationUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyAlteration')}",
-				    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
-				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
-			    },
-			    doc: {  // tab5 - see maintabpanel.js
-				    count: "${searchresult.documentCount}",
-				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
-				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
-			    },
-			    pictor: { // tab 6 - see maintabpanel.js
-			   		<g:if test="${session.searchFilter.pictorTerms != null}">
-						resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
-	    			</g:if>
-					<g:else>
-	                	resultsUrl: "${createLink(controller:'search',action:'noResult')}"
-					</g:else>
-			    },
-
-			    resnet: { // tab 7 - see maintabpanel.js
-			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
-			   		credentials: "ID/Password=Pathway Studio ID/Password"
-			    },
->>>>>>> ncibi-tools
 			    genego: { // tab 8 - see maintabpanel.js
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
@@ -286,17 +126,8 @@
 				metscape: { // tab9 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
-<<<<<<< HEAD
-				conceptgen: { // tab10 - see maintabpanel.js
-<<<<<<< HEAD
-					inputUrl:"${createLink(controller:'conceptExplorer', action:'search')}"
-=======
-					inputUrl:"${createLink(controller:'conceptGen', action:'index')}"
->>>>>>> ncibi-tools
-=======
 				conceptExplorer: { // tab10 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'index')}"
->>>>>>> ncibi-tools
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"

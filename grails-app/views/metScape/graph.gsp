@@ -154,8 +154,6 @@ html, body { height: 99%; width: 99%; padding: 1px; margin: 1px; padding-right:2
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-=======
 <div id="controls">
 <form>Layout: <g:select name="layout" from="${layouts}" onChange="changeLayout(this.value)"/>&nbsp; &nbsp; 
 <a href="#controls" onclick="reviewParameters()">review parameters</a>&nbsp; &nbsp; 
@@ -163,7 +161,6 @@ html, body { height: 99%; width: 99%; padding: 1px; margin: 1px; padding-right:2
 </form>
 <div id="parameterPanel"></div>
 </div>
->>>>>>> ncibi-tools
 <div id="main">
 </div>
 </body>
