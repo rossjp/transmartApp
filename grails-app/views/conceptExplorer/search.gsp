@@ -5,7 +5,6 @@ def conceptKeyword2 = "cell";
 DataAssembler da = new DataAssembler();
 def concepts = da.searchConcept(conceptKeyword, "20");
 
-
 %>
 
 <html>
