@@ -81,16 +81,16 @@ var data2 = <%= data2 %>;
 
       function drawNetwork()
       {
-    	  var drawComplete = document.getElementById("drawComplete");
-    	  if(drawComplete.checked)
-          {
-
-    		  window.location.href = "graph?id=<%= conceptId %>&networkType=complete";
-          }
-    	  else
-          {
+//    	  var drawComplete = document.getElementById("drawComplete");
+//    	  if(drawComplete.checked)
+//          {
+//
+//    		  window.location.href = "graph?id=<%= conceptId %>&networkType=complete";
+//          }
+//    	  else
+//          {
     		  window.location.href = "graph?id=<%= conceptId %>&networkType=direct";
-          }
+//          }
       }
 </script>
 
@@ -115,14 +115,13 @@ var data2 = <%= data2 %>;
 		</tr>
 		<tr>
 			<td>
-				<input type="checkbox" value="complete" id="drawComplete"/> Draw Complete Interactions
+		<!--		<input type="checkbox" value="complete" id="drawComplete"/> Draw Complete Interactions -->
 				<input type="button" value="Draw Network" onclick="drawNetwork()">
 			</td>
 		</tr>
 		</table>
 		<div class="lineFull"></div>
 		<div id="container"></div>
-	
 	</div>
 </div>
 </body>

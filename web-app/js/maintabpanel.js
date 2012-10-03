@@ -270,6 +270,16 @@ function createSearchTabs(toolbar) {
             {
                 id: "tab12",
                 iconCls: "docTab",
+                title: "Gene2Mesh",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.gene2mesh.inputUrl,
+            },
+            {
+                id: "tab13",
+                iconCls: "docTab",
                 title: "Session Info",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
@@ -277,6 +287,7 @@ function createSearchTabs(toolbar) {
                 loadMask: true,
                 defaultSrc: pageData.session.resultsUrl,
             }
+
         ]
     });
     return tabpanel;
@@ -529,8 +540,17 @@ function activateTab(tab) {
 	    setButtonVisibility("tea",false);
 	    setButtonVisibility("contextHelp", false);
 	    break;
-	    
 	case "tab12":
+	    setButtonVisibility("filters", false);
+	    setButtonVisibility("summary", false);
+	    setButtonVisibility("heatmap", false);
+	    setButtonVisibility("exportsummary", false);
+	    setButtonVisibility("exportresnet", false);
+	    setButtonVisibility("studyview", false)
+	    setButtonVisibility("tea",false);
+	    setButtonVisibility("contextHelp", false);
+	    break;	    
+	case "tab13":
 	    setButtonVisibility("filters", false);
 	    setButtonVisibility("summary", false);
 	    setButtonVisibility("heatmap", false);

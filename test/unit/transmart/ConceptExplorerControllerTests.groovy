@@ -1,16 +1,15 @@
-package org.transmart.search
+package transmart
 
 
 
 import grails.test.mixin.*
 import org.junit.*
-import org.transmart.search.SessionInfoController;
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(SessionInfoController)
-class SessionInfoControllerTests {
+@TestFor(ConceptExplorerController)
+class ConceptExplorerControllerTests {
 
     void testSomething() {
        fail "Implement me"

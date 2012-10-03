@@ -78,7 +78,6 @@
 				    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
 				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
 			    },
-
 				pretrial: { // tab2 - see maintabpanel.js
 				    count: "${searchresult.allAnalysiCount}",
 				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
@@ -132,6 +131,9 @@
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
+				},
+				gene2mesh: { // tab11 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
 				},
 			    session: { // tab12 - see maintabpanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"

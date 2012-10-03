@@ -10,7 +10,6 @@ System.out
 .settings
 .project
 .link_to_grails_plugins
-target-eclipse/
 .svn/
 tempImages/
 **/.DS_Store
