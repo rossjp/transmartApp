@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=ISO-8859-1"  import="org.transmart.conceptgen.*; org.transmart.conceptgen.module.*; org.transmart.conceptgen.model.*" %>
+<%@ page contentType="text/html;charset=ISO-8859-1"  import="java.util.*; java.net.*; java.io.*; org.transmart.conceptgen.*; org.transmart.conceptgen.module.*; org.transmart.conceptgen.model.*" %>
 <%
 String conceptId = request.getParameter("id");
 String queryType = "conceptPublic";
@@ -7,28 +7,22 @@ String owner = "Public";
 double fdr = 0.05;
 double pValue = 0.05;
 
-ConceptJsService cjs = new ConceptJsService();
-DataAssembler da = new DataAssembler();
-ArrayList list = da.getConceptTypeGroupSize(conceptId, queryType, conceptTypeId, fdr, pValue, owner);
-ArrayList list2 = da.getConceptDetail(conceptId, queryType);
+URL u1 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptName&conceptId=" + conceptId);
+BufferedReader inp1 = new BufferedReader(new InputStreamReader(u1.openStream()));
+String conceptName = inp1.readLine();
 
-String data = cjs.getConceptDirectInteraction(conceptId, pValue,fdr)
-String data2 = cjs.conceptGeneList(conceptId);
-String conceptName = "";
+URL u2 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=enrichment&conceptId=" + conceptId);
+BufferedReader inp2 = new BufferedReader(new InputStreamReader(u2.openStream()));
+String data = inp2.readLine();
 
-String pieInfo = "";
+URL u3 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptGeneList&conceptId=" + conceptId);
+BufferedReader inp3 = new BufferedReader(new InputStreamReader(u3.openStream()));
+String data2 = inp3.readLine();
 
-for(int i=0; i<list.size(); i++)
-{
-	ConceptTypeGroupSize cs = list.get(i);
-	pieInfo +=  "['" + cs.getConceptTypeName() + "', " + cs.getConceptSize() + "],";
-}
+URL u4 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptType&conceptTypeId=0&conceptId=" + conceptId);
+BufferedReader inp4 = new BufferedReader(new InputStreamReader(u4.openStream()));
+String pieInfo = inp4.readLine();
 
-for(int i=0; i<list2.size(); i++)
-{
-	ConceptDetail cd = list2.get(i);
-	conceptName = cd.getConceptName();
-}
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -81,16 +75,16 @@ var data2 = <%= data2 %>;
 
       function drawNetwork()
       {
-//    	  var drawComplete = document.getElementById("drawComplete");
-//    	  if(drawComplete.checked)
-//          {
-//
-//    		  window.location.href = "graph?id=<%= conceptId %>&networkType=complete";
-//          }
-//    	  else
-//          {
+    	  var drawComplete = document.getElementById("drawComplete");
+    	  if(drawComplete.checked)
+          {
+
+    		  window.location.href = "graph?id=<%= conceptId %>&networkType=complete";
+          }
+    	  else
+          {
     		  window.location.href = "graph?id=<%= conceptId %>&networkType=direct";
-//          }
+          }
       }
 </script>
 
@@ -115,13 +109,14 @@ var data2 = <%= data2 %>;
 		</tr>
 		<tr>
 			<td>
-		<!--		<input type="checkbox" value="complete" id="drawComplete"/> Draw Complete Interactions -->
+				<input type="checkbox" value="complete" id="drawComplete"/> Draw Complete Interactions
 				<input type="button" value="Draw Network" onclick="drawNetwork()">
 			</td>
 		</tr>
 		</table>
 		<div class="lineFull"></div>
 		<div id="container"></div>
+	
 	</div>
 </div>
 </body>

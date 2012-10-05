@@ -29,6 +29,10 @@ class ConceptExplorerController {
 
 	}
 	
+	def indexws = {
+	
+	}
+	
 	def graph = {
 	
 	}
@@ -40,6 +44,15 @@ class ConceptExplorerController {
 		}
 		
 		render(view: "search", model:[conceptKeyword:conceptKeyword, taxid:9606])
+	}
+	
+	def searchws = {
+		def conceptKeyword = ""
+		for(SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters()) {
+			conceptKeyword = keyword.keyword
+		}
+		
+		render(view: "searchws", model:[conceptKeyword:conceptKeyword, taxid:9606])
 	}
 	
 	def graph2 = {
