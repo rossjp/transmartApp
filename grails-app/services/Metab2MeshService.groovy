@@ -33,6 +33,7 @@ import javax.xml.xpath.*;
 class Metab2MeshService {
 
     boolean transactional = true
+	int maxPubs = 200
 	
 	def getM2MResultsByCompound(String compoundName)
 	{
@@ -95,8 +96,16 @@ class Metab2MeshService {
 			NodeList nodes = (NodeList)xpath.evaluate(expression, xmlDocument, XPathConstants.NODESET);
 
 			for (int i = 0; i < nodes.getLength(); i++) {
-				
+			
 				Node m2mNode = nodes.item(i);
+				String pmids = ""
+
+				NodeList docNodes = (NodeList)xpath.evaluate(".//PMID", m2mNode, XPathConstants.NODESET)
+
+				pmids += docNodes.item(0).getTextContent()
+				for (int j = 1; j < docNodes.getLength() & j < maxPubs; j++) {
+					pmids += ',' + docNodes.item(j).getTextContent()
+				}
 				
 				String cName = (String)xpath.evaluate("Compound/Name/text()", m2mNode, XPathConstants.STRING);
 				String cid = (String)xpath.evaluate("Compound/CompoundID/text()", m2mNode, XPathConstants.STRING);
@@ -108,7 +117,7 @@ class Metab2MeshService {
 				Double fisherExact = Double.valueOf(xpath.evaluate("FisherExact/text()", m2mNode, XPathConstants.STRING));
 				Double qValue = Double.valueOf(xpath.evaluate("Q-Value/text()", m2mNode, XPathConstants.STRING));
 				
-				results.add(new M2MResult(cName, cid, dName, did, didNum, fover, chiSquare, fisherExact, qValue));
+				results.add(new M2MResult(cName, cid, dName, did, didNum, fover, chiSquare, fisherExact, qValue, pmids));
 			}
 			
 				

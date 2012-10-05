@@ -43,6 +43,7 @@
 			<th>MeSH Qualifier</th>
 			<th>Fold Change</th>
 			<th>ChiSquare</th>
+			<th>Publications</th>
 		</tr>
 		</thead>
 	
@@ -56,7 +57,8 @@
 <%--	  		<td>${m.descriptorID}</td>--%>
 	  		<td><g:formatNumber number="${g.fover}" maxFractionDigits="1" /></td>	
 	  		<td><g:formatNumber number="${g.chiSquare}" maxFractionDigits="1" /></td>	
-	  		<td><g:formatNumber number="${g.fisherExact}" format="00.00E00" /></td>		  			
+	  		<td><g:formatNumber number="${g.fisherExact}" format="00.00E00" /></td>
+	  		<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/${g.pmids}">view in Pubmed</a></td>		  			
 		</tr>
 		</g:each>		
 		</tbody>		

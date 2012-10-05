@@ -29,8 +29,9 @@ class G2MResult {
 		Double fover
 		Double chiSquare
 		Double fisherExact
+		String pmids
 
-		public G2MResult(String geneSymbol, String geneID, String geneDescription, String descriptorName, String descriptorID, String descriptorIDNum, String qualifier, Double fover, Double chiSquare, Double fisherExact) 
+		public G2MResult(String geneSymbol, String geneID, String geneDescription, String descriptorName, String descriptorID, String descriptorIDNum, String qualifier, Double fover, Double chiSquare, Double fisherExact, String pmids) 
 		{
 			super();
 			this.geneSymbol = geneSymbol
@@ -43,6 +44,7 @@ class G2MResult {
 			this.fover = fover
 			this.chiSquare = chiSquare
 			this.fisherExact = fisherExact
+			this.pmids = pmids
 		}
 				
 

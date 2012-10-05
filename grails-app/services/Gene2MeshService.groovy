@@ -33,6 +33,7 @@ import javax.xml.xpath.*;
 class Gene2MeshService {
 
     boolean transactional = true
+	int maxPubs = 200
 	
 	def getG2MResultsByGene(String geneSymbol)
 	{
@@ -94,6 +95,14 @@ class Gene2MeshService {
 			for (int i = 0; i < nodes.getLength(); i++) {
 				
 				Node g2mNode = nodes.item(i)
+				String pmids = ""
+				
+				NodeList docNodes = (NodeList)xpath.evaluate(".//PMID", g2mNode, XPathConstants.NODESET)
+				
+				pmids += docNodes.item(0).getTextContent()
+				for (int j = 1; j < docNodes.getLength() & j < maxPubs; j++) {
+					pmids += ',' + docNodes.item(j).getTextContent()
+				}
 				
 				String geneSymbol = (String)xpath.evaluate("Gene/Symbol/text()", g2mNode, XPathConstants.STRING)
 				String geneID = (String)xpath.evaluate("Gene/Identifier/text()", g2mNode, XPathConstants.STRING)
@@ -105,7 +114,7 @@ class Gene2MeshService {
 				Double fover = Double.valueOf(xpath.evaluate("Fover/text()", g2mNode, XPathConstants.STRING))
 				Double chiSquare = Double.valueOf(xpath.evaluate("ChiSquare/text()", g2mNode, XPathConstants.STRING))
 				Double fisherExact = Double.valueOf(xpath.evaluate("FisherExact/text()", g2mNode, XPathConstants.STRING))		
-				results.add(new G2MResult(geneSymbol, geneID, geneDescription, dName, did, didNum, qualifier, fover, chiSquare, fisherExact))
+				results.add(new G2MResult(geneSymbol, geneID, geneDescription, dName, did, didNum, qualifier, fover, chiSquare, fisherExact, pmids))
 			}
 			
 		}

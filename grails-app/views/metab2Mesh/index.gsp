@@ -43,6 +43,7 @@
 			<th>ChiSquare</th>
 			<th>P-Value</th>
 			<th>Q-Value</th>
+			<th>Publications</th>
 		</tr>
 		</thead>
 	
@@ -56,7 +57,8 @@
 	  		<td><g:formatNumber number="${m.fover}" maxFractionDigits="1" /></td>	
 	  		<td><g:formatNumber number="${m.chiSquare}" maxFractionDigits="1" /></td>	
 	  		<td><g:formatNumber number="${m.fisherExact}" format="00.00E00" /></td>	
-	  		<td><g:formatNumber number="${m.qValue}" format="00.00E00" /></td>		  			
+	  		<td><g:formatNumber number="${m.qValue}" format="00.00E00" /></td>
+	  		<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/${m.pmids}">view in Pubmed</a></td>
 		</tr>
 		</g:each>		
 		</tbody>		

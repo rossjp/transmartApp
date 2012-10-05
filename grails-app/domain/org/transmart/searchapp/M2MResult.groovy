@@ -29,10 +29,12 @@ class M2MResult {
 		Double chiSquare
 		Double fisherExact
 		Double qValue
+		String pmids
+		
 
 		public M2MResult(String compoundName, String compoundID,
 				String descriptorName, String descriptorID, String descriptorIDNum, Double fover,
-				Double chiSquare, Double fisherExact, Double qValue) {
+				Double chiSquare, Double fisherExact, Double qValue, String pmids) {
 			super();
 			this.compoundName = compoundName
 			this.compoundID = compoundID
@@ -43,6 +45,7 @@ class M2MResult {
 			this.chiSquare = chiSquare
 			this.fisherExact = fisherExact
 			this.qValue = qValue
+			this.pmids = pmids
 		}
 				
 
