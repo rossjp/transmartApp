@@ -9,7 +9,7 @@ String conceptName = inp1.readLine();
 
 
 
-URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=cell");
+URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + conceptKeyword);
 BufferedReader inp = new BufferedReader(new InputStreamReader(u.openStream()));
 
 ArrayList<String[]> list = new ArrayList<String[]>();
