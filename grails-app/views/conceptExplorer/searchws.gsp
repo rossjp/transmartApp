@@ -1,15 +1,8 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" import="java.util.*; java.net.*; java.io.*; org.transmart.conceptgen.module.*" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" import="java.util.*; java.net.*; java.io.*; org.transmart.conceptgen.module.*;org.apache.commons.lang.StringEscapeUtils" %>
 <%
-String url = "http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptName&conceptId=" + conceptId;
-
-URL u1 = new URL(url);
-BufferedReader inp1 = new BufferedReader(new InputStreamReader(u1.openStream()));
-String conceptName = inp1.readLine();
 
 
-
-
-URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + conceptKeyword);
+URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + StringEscapeUtils.escapeHtml(conceptKeyword));
 BufferedReader inp = new BufferedReader(new InputStreamReader(u.openStream()));
 
 ArrayList<String[]> list = new ArrayList<String[]>();
@@ -25,6 +18,7 @@ for(String tmp : line)
 	list.add(tmp.split(","));
 }
 
+
 %>
 <html>
 <head>
@@ -39,6 +33,23 @@ for(String tmp : line)
 </head>
 
 <body>
+<%
+if(list.size() == 1)
+{
+
+%>	
+  <div class="content">
+	<div class="resultText"> 
+     There was no results for your search!
+    </div>
+  </div>
+<%
+}
+else
+{
+	
+	System.out.println("2nst ");
+%>
   <div class="content">
 	<table width="100%" border="0" cellspacing="4" cellpadding="4">
 	<% 
@@ -64,5 +75,8 @@ for(String tmp : line)
 	%>
   </table>
   </div>
+<%
+}
+%>
 </body>
 </html>
