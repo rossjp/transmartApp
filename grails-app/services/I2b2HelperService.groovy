@@ -401,9 +401,10 @@ class I2b2HelperService {
 		log.trace("Getting patient set size with id:" + result_instance_id);
 		Integer i=0;
 		groovy.sql.Sql sql = new groovy.sql.Sql(dataSource);
-		String sqlt = """select count(*) as patcount FROM (select distinct patient_num
-		        from qt_patient_set_collection
-				where result_instance_id = ?) as t""";
+
+		String sqlt = """select count(distinct(patient_num)) as patcount FROM qt_patient_set_collection
+				where result_instance_id = ?""";
+
 		log.trace(sqlt);
 		sql.eachRow(sqlt, [result_instance_id], {row ->
 			log.trace("inrow");
@@ -4725,13 +4726,13 @@ class I2b2HelperService {
 			    pw.write("<tr><th>${title}</th></tr>")
 			    pw.write("<tr>")
 			    pw.write("<td>")
-				log.debug("Integrating over the nodes...")
+				log.debug("Interating over the nodes...")
 			    for (int p = 0; p < panels.getLength(); p++) {
 					panel=panels.item(p)
 				    Node panelnumber=(Node)xpath.evaluate("panel_number", panel, XPathConstants.NODE)
 				    
-					if(panelnumber.getTextContent().equalsIgnoreCase("21"))	{
-						log.debug("Skipping the security panel in printing the output")
+					if(panelnumber?.getTextContent()?.equalsIgnoreCase("21")) {
+                        log.debug("Skipping the security panel in printing the output")
 						continue
 					}
 				    
@@ -4740,7 +4741,7 @@ class I2b2HelperService {
 				    }
 				    
 					Node invert=(Node)xpath.evaluate("invert", panel, XPathConstants.NODE)
-				    if(invert.getTextContent().equalsIgnoreCase("1")) {
+				    if(invert?.getTextContent()?.equalsIgnoreCase("1")) {
 					    pw.write("<br><b>NOT</b><br>")
 	  			    } 
 				   
