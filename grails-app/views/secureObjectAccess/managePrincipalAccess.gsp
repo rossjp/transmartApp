@@ -23,9 +23,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="admin" />
         <title>Manage Study Access</title>
-      <script type="text/javascript">
-
-  </script>
     </head>
     <body>
         <div class="body">
@@ -45,21 +42,21 @@
                         <tbody>
                           <tr class="prop">
                                 <td valign="top" class="name" >
-                                    <label for="secureObject">Secure Object:</label>
+                                    <label for="secureobjectid">Study:</label>
                                      <g:select optionKey="id" optionValue="displayName" from="${SecureObject.listOrderByDisplayName()}" name="secureobjectid" value="${secureObjectInstance?.id}" onchange="document.secobjaccessform.submit();"></g:select>
                                 </td>
                             </tr>
 
                             <tr class="prop">
                                 <td valign="top" class="name" >
-                                    <label for="accessLevel">Access Level:</label>
+                                    <label for="accesslevelid">Access Level:</label>
                                     <g:select optionKey="id" optionValue="accessLevelName" from="${SecureAccessLevel.list()}" name="accesslevelid" value="${accesslevelid}" onchange="document.secobjaccessform.submit();"></g:select>
                                 </td>
                             </tr>
 				</tbody>
 				</table>
 
-	<tr><td>&nbsp;</td><td>&nbsp;</td><td><input name="searchtext" id="searchtext"></input>
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td><input name="searchtext" id="searchtext">
                 				<input type="submit" value="Search User/Groups"/></td></tr>
 				</g:form>
 			<table>

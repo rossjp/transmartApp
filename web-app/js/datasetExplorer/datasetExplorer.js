@@ -1214,7 +1214,7 @@ function createOntPanel()
 			split : true,
 	        tools:[
 	               {
-		        		id:'help',
+		        		id:'help help-tree-panel',
 		        		qtip:'Click for context sensitive help',
 			        	handler: function(event, toolEl, panel)
 					    {
@@ -1259,7 +1259,7 @@ function createOntPanel()
 
 	// make the ontSerchByNamePanel
 	shtml='<table style="font:10pt arial;"><tr><td><select id="searchByNameSelect"><option value="left">Starting with</option><option value="right">Ending with</option>\
-		<option value="contains" selected>Containing</option><option value="exact">Exact</option></select>&nbsp;&nbsp;</td<td><input id="searchByNameInput" onkeypress="if(enterWasPressed(event)){searchByName();}" type="text" size="15"></input>&nbsp;</td>\
+		<option value="contains" selected>Containing</option><option value="exact">Exact</option></select>&nbsp;&nbsp;</td<td><input id="searchByNameInput" onkeypress="if(enterWasPressed(event)){searchByName();}" type="text" size="15">&nbsp;</td>\
 		<td><button onclick="searchByName()">Find</button></td></tr><tr><td colspan="2">Select Ontology:<select id="searchByNameSelectOntology"></select></td></tr></table>';
 
 		searchByNameForm = new Ext.Panel(
@@ -1330,7 +1330,7 @@ function createOntPanel()
 		}
 		ontFilterPanel = new Ext.Panel(
 				{
-					title : 'Search by Subject',
+					title : 'Search Terms',
 					id : 'ontFilterPanel',
 					region : 'center',
 					height : 500,
@@ -2320,7 +2320,7 @@ function showQuerySummaryWindow(source)
 					id : 'showQuerySummaryWindow',
 					title : 'Query Summary',
 					layout : 'fit',
-					width : 500,
+					width : 600,
 					height : 500,
 					closable : false,
 					plain : true,
@@ -2335,7 +2335,7 @@ function showQuerySummaryWindow(source)
 					        	   }
 					           }
 					           ],
-					           resizable : false
+					           resizable : true
 				}
 		);
 
@@ -2364,7 +2364,7 @@ function showQuerySummaryWindow(source)
 		// querySummaryPanel.setBody(fakehtml);
 		var q1 = getQuerySummary(1);
 		var q2 = getQuerySummary(2);
-		querySummaryPanel.body.update('<table border="1" height="100%" width="100%"><tr><td width="50%" valign="top" style="padding:10px;"><h2>Subset 1 Criteria</h2>' + q1 + '</td><td valign="top" style="padding:10px;"><h2>Subset 2 Criteria</h2>' + q2 + '</td></tr></table>');
+		querySummaryPanel.body.update('<table border="1" height="100%" width="100%"><tr><td width="50%" valign="top"><div style="padding:10px;"><h2>Subset 1 Criteria</h2>' + q1 + '</div></td><td valign="top"><div style="padding:10px;"><h2>Subset 2 Criteria</h2>' + q2 + '</div></td></tr></table>');
 }
 
 
@@ -3727,7 +3727,7 @@ function showNameQueryDialog()
 					           }
 					           ],
 					           resizable : false,
-					           html : '<br>Query Name:&nbsp<input id="nameQueryDialogInput" type="text" size="50"></input>'
+					           html : '<br>Query Name:&nbsp<input id="nameQueryDialogInput" type="text" size="50">'
 				}
 		);
 	}
@@ -4586,7 +4586,7 @@ function saveComparisonComplete(result)
         closable: true,
         tools: [
                   {
-                	  	id : 'sampleExplorerHelpButton',
+                	  	id : 'saveComparisonWindowHelpButton',
 						qtip: 'Click for Saved Camparison Window Help',
 						disabled : false,
 						handler : function()

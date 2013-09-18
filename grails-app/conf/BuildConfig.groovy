@@ -33,16 +33,16 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
+        mavenRepo([
+          name: 'repo.transmartfoundation.org-public',
+          root: 'https://repo.transmartfoundation.org/content/groups/public'
+        ])
         grailsPlugins()
         grailsHome()
         grailsCentral()
 
         mavenLocal()
         mavenCentral()
-        mavenRepo([
-                name: 'repo.hyve.nl-snapshots',
-                root: 'http://repo.thehyve.nl/content/repositories/snapshots/',
-        ])
     }
     dependencies {
 		runtime 'postgresql:postgresql:9.0-801.jdbc4'
@@ -53,9 +53,9 @@ grails.project.dependency.resolution = {
     plugins {
         compile ":hibernate:$grailsVersion"
         compile ":quartz:1.0-RC2"
-        compile ":rdc-rmodules:0.2"
+        compile ":rdc-rmodules:0.3-SNAPSHOT"
         compile ":spring-security-core:1.2.7.3"
-        compile ":resources:1.1.6"
+        compile ":resources:1.2"
         build ":tomcat:$grailsVersion"
         build ":build-info:1.1"
 		runtime ":prototype:1.0"

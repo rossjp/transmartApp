@@ -31,6 +31,29 @@ import grails.plugins.springsecurity.SecurityConfigType
 
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = "/transmart"
 
+grails.plugins.springsecurity.rejectIfNoRule = true
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugins.springsecurity.interceptUrlMap = [
+        '/login/**'                   : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/css/**'                     : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/js/**'                      : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/images/**'                  : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/static/**'                  : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/search/loadAJAX**'          : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/analysis/getGenePatternFile': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/analysis/getTestFile'       : ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/requestmap/**'              : ['ROLE_ADMIN'],
+        '/role/**'                    : ['ROLE_ADMIN'],
+        '/authUser/**'                : ['ROLE_ADMIN'],
+        '/secureObject/**'            : ['ROLE_ADMIN'],
+        '/accessLog/**'               : ['ROLE_ADMIN'],
+        '/authUserSecureAccess/**'    : ['ROLE_ADMIN'],
+        '/secureObjectPath/**'        : ['ROLE_ADMIN'],
+        '/userGroup/**'               : ['ROLE_ADMIN'],
+        '/secureObjectAccess/**'      : ['ROLE_ADMIN'],
+        '/**'                         : ['IS_AUTHENTICATED_REMEMBERED'], // must be last
+]
+
 grails.config.locations = []
 def defaultConfigFiles = [
 	"${userHome}/.grails/${appName}Config/Config.groovy",
@@ -142,6 +165,13 @@ com.recomdata.transmart.data.export.dataTypesMap=[
 	//,'GSEA':'Gene Set Enrichment Analysis (GSEA)'
 ];
 
+// Data export FTP settings is Rserve running remote in relation to transmartApp
+com.recomdata.transmart.data.export.ftp.server=''
+com.recomdata.transmart.data.export.ftp.serverport=''
+com.recomdata.transmart.data.export.ftp.username=''
+com.recomdata.transmart.data.export.ftp.password=''
+com.recomdata.transmart.data.export.ftp.remote.path=''
+
 // Control which gene/pathway search is used in Dataset Explorer
 // A value of "native" forces Dataset Explorer's native algorithm.
 // Abscence of this property or any other value forces the use of the Search Algorithm
@@ -176,3 +206,4 @@ com.recomdata.skipdisclaimer=true
 
 grails.spring.bean.packages = []
 
+grails.resources.modules = {}

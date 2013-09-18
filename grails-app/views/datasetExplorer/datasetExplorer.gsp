@@ -25,7 +25,9 @@
 
 <title>Dataset Explorer</title>
 
-<LINK REL="SHORTCUT ICON"
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+
+    <LINK REL="SHORTCUT ICON"
 	HREF="${resource(dir:'images', file:'i2b2_hive.ico')}">
 <LINK REL="ICON"
 	HREF="${resource(dir:'images', file:'i2b2_hive.ico')}">
@@ -52,7 +54,6 @@
 <script type="text/javascript"
 	src="${resource(dir:'js/ext-ux', file:'miframe.js')}"></script>
 <script type="text/javascript" src="${resource(dir:'js/datasetExplorer', file:'i2b2common.js')}"></script>
-<!-- <script type="text/javascript" src="${resource(dir:'js/datasetExplorer', file:'dataAssociation.js')}"></script> -->
 <script type="text/javascript"
 	src="${resource(dir:'js/datasetExplorer', file: 'requests.js')}"></script>
 <script type="text/javascript"
