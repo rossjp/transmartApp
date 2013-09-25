@@ -39,7 +39,7 @@
         <script type="text/javascript" src="${resource(dir:'js', file:'ext/ext-all.js')}"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'ext/miframe.js')}"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'filtertree.js')}"></script>
-        <script type="text/javascript" src="${resource(dir:'js', file:'maintabpanel.js')}"></script>
+        <script type="text/javascript" src="${resource(dir:'js', file:'maintabncibipanel.js')}"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'toggle.js')}"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'searchcombobox.js')}"></script>
         <script type="text/javascript" src="${resource(dir:'js', file:'picklist.js')}"></script>
@@ -341,8 +341,8 @@
 	</head>
 	<body>
 		<div id="header-div">
-			<g:render template="/layouts/commonheader" model="['app':'search']" />
-			<g:render template="/layouts/searchheader" model="['app':'search']" />
+			<g:render template="/layouts/commonheader" model="['app':'cross']" />
+			<g:render template="/layouts/crossheader" model="['app':'cross']" />
             <div id="summarycount-div" style="background:#dfe8f6; color:#000; padding:5px 10px 5px 10px;border-top:1px solid #36c;">
                 <span id="summarycount-span" style="font-size:13px; font-weight:bold;">
                     About ${searchresult?.totalCount()} results found
