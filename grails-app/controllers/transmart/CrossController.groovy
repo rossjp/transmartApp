@@ -22,7 +22,7 @@ class CrossController {
 	def experimentAnalysisQueryService
 	def literatureQueryService
 	def TrialQueryService
-	def SearchService
+	def SearchNcibiService
 	def documentService
 	def searchKeywordService
 	String authKeyGG = null
@@ -37,6 +37,7 @@ class CrossController {
 	def loadSearchAnalysis = {
 			def value = params.query.toUpperCase()
 			params.query = 'gene'+SEARCH_DELIMITER+'pathway'+SEARCH_DELIMITER+'genelist'+SEARCH_DELIMITER+'genesig:'+params.query
+			log.info("loadSearchAnalysis, params.query = " + params.query)
 			loadSearch()
 	}
 	/**
@@ -211,7 +212,7 @@ class CrossController {
 		def sResult = new SearchResult()
 		log.info "doSearch:"+params
 		log.info "isTextOnly = " + filter.globalFilter.isTextOnly()
-		SearchService.doResultCount(sResult,filter)
+		SearchNcibiService.doResultCount(sResult,filter)
 		filter.summaryWithLinks = createSummaryWithLinks(filter)
 		filter.createPictorTerms()
 		boolean defaultSet = false;
@@ -248,7 +249,7 @@ class CrossController {
 	 */
 	def search = {
 		def keyword
-		log.info "search: "+params
+		log.info "crossController search: "+params
 
 		if (params.id != null && params.id.length() > 0) {
 			keyword = getSearchKeyword(params.id)

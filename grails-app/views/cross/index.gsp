@@ -97,8 +97,8 @@
 						searchbtn.disabled = true;
 						var picklist = Ext.getCmp("categories");
 						picklist.setDisabled(true);
-						var linkbuttons = document.getElementById("linkbuttons-div");
-						linkbuttons.innerHTML = '<span style="color:#a0a0a0;font-size:11px;text-decoration:underline;">browse<br />saved filters</span>';
+//						var linkbuttons = document.getElementById("linkbuttons-div");
+//						linkbuttons.innerHTML = '<span style="color:#a0a0a0;font-size:11px;text-decoration:underline;">browse<br />saved filters</span>';
 						var idfield = document.getElementById("id-field");
 						idfield.value = param;
 						setTimeout("postSubmit();", 100);
@@ -133,6 +133,7 @@
 			function searchOnClick() {
 				var combo = Ext.getCmp("cross-combobox");
 				var param = combo.getSelectedParam();
+				console.log("cross search on click");
 				if (param != null) {
 					combo.submitFn(param, param);
 				}
