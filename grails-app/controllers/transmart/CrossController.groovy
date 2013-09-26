@@ -241,6 +241,8 @@ class CrossController {
 		def al = new AccessLog(username: user.username, event:"Search", eventmessage:session.searchFilter.marshal(), accesstime:new Date())
 		al.save();
 
+		log.info("Render view.cross.list")
+		
 		render(view:'list',model:[searchresult:sResult,page:false])
 	}
 

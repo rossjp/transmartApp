@@ -215,7 +215,7 @@
                 });
 
                 // build search tabs and toolbar
-                var tabpanel = createMainTabPanel();
+                var tabpanel = createMainTabNcibiPanel();
                 var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
 
 //                if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
@@ -243,13 +243,16 @@
 //                    }
 //                }
 //                // set active tab
+
+				console.log("just before activate tab ${session.searchFilter.acttabname()} ");
                 tabpanel.activate(getActiveTab("${session.searchFilter.acttabname()}"));
 
                 var helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
                 var contact = '${grailsApplication.config.com.recomdata.searchtool.contactUs}';
                 var appTitle = '${grailsApplication.config.com.recomdata.searchtool.appTitle}';
-                var buildVer = 'Build Version: <g:meta name="environment.BUILD_NUMBER"/> - <g:meta name="environment.BUILD_ID"/>';
-
+//                var buildVer = 'Build Version: <g:meta name="environment.BUILD_NUMBER"/> - <g:meta name="environment.BUILD_ID"/>';
+				var buildVer = 'Build Version: NCIBI Demo - V1.1.0';
+				
                 var viewport = new Ext.Viewport({
                     layout: "border",
                     items:[new Ext.Panel({
