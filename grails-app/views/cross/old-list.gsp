@@ -245,6 +245,7 @@
 //                // set active tab
 
 				console.log("just before activate tab ${session.searchFilter.acttabname()} ");
+
                 tabpanel.activate(getActiveTab("${session.searchFilter.acttabname()}"));
 
                 var helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
@@ -343,6 +344,9 @@
 		<!-- ************************************** -->
 	</head>
 	<body>
+		<div id="header-header">
+		In the new header
+		</div>
 		<div id="header-div">
 			<g:render template="/layouts/commonheader" model="['app':'cross']" />
 			<g:render template="/layouts/crossheader" model="['app':'cross']" />
@@ -351,7 +355,7 @@
                     About ${searchresult?.totalCount()} results found
                 </span>
             </div>
-            <div id="summary-div" style="padding:5px 10px 5px 10px;font-size:12px;line-height:17px;">
+            <div id="ncibi-summary-div" style="padding:5px 10px 5px 10px;font-size:12px;line-height:17px;">
                 <b>Filters:</b>&nbsp;${session?.searchFilter?.summaryWithLinks}
             &nbsp;<a class="tiny" style="text-decoration:underline;color:blue;font-size:11px;"
                      href="#" onclick="var win=Ext.getCmp('editfilters-window');win.show();return false;">advanced</a>

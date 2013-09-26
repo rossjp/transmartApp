@@ -22,7 +22,7 @@
 <table style="border:0px; align:left">
 	<tr>
   		<td style="width: 125px; padding-right:0px; vertical-align:middle">
-			<img src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.ncibiLogo)}" alt="tranSMART" style="position: relative; top: 8px;" />
+			<img src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.ncibiLogo)}" alt="NCIBI" style="position: relative; top: 8px;" />
 		</td>
 		<td style="width: 10px; vertical-align:middle;padding-left:0px; padding-right:0px;">
 			<img src="${resource(dir:'images',file:'c-med.gif')}" alt="arrow" style="position: relative; top: 8px;" />
@@ -99,40 +99,27 @@
 	<tr>
 		<td colspan="2">&nbsp;</td>
       	<td colspan="4" style="white-space: nowrap;">
-			<div id="search-categories"></div>
+			<div id="cross-categories"></div>
 		</td>
  	</tr>
 	<tr>
 		<td style="vertical-align: middle;">
-			<g:link	controller="search">
-				<img src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.smallLogo)}" alt="tranSMART" />
+			<g:link	controller="cross">
+				<img src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.ncibiLogo)}" alt="NCIBI" />
 			</g:link>
 		</td>
 		<td style="vertical-align: middle;">
 			<img src="${resource(dir:'images',file:'c-med.gif')}" alt=">" />
 		</td>
 		<td style="vertical-align: middle;">
-			<div id="search-text"></div>
+			<div id="cross-text"></div>
 		</td>
 		<td style="vertical-align: middle;">
-			<g:form name="form" controller="search" action="search">
+			<g:form name="form" controller="cross" action="search">
 				<g:hiddenField id="id-field" name="id" value="" />
 				<input type="hidden" name="sourcepage" value="search" />
-				<button id="search-button" style="vertical-align: middle;" type="button" onclick="searchOnClick();">Search</button>
+				<button id="cross-button" style="vertical-align: middle;" type="button" onclick="searchOnClick();">Search</button>
 			</g:form>
-		</td>
-		<td style="vertical-align: middle; white-space: nowrap;">
-			<div id="linkbuttons-div">
-				<a id="browse-link" class="tiny" style="text-decoration:underline;color:blue;font-size:11px;" href=""
-					onclick="popupWindow('${createLink(controller:'searchHelp', action:'list')}', 'searchhelpwindow');return false;">
-					browse
-				</a>
-				<br />
-				<a id="savedfilters-link" class="tiny" style="text-decoration:underline;color:blue;font-size:11px;"
-					href="${createLink(controller:'customFilter', action:'list')}">
-					saved filters
-				</a>
-			</div>
 		</td>
 		<td style="width: 100%;"></td>
 	</tr>

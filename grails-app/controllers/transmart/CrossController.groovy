@@ -243,7 +243,7 @@ class CrossController {
 
 		log.info("Render view.cross.list")
 		
-		render(view:'list',model:[searchresult:sResult,page:false])
+		render(view:'new-list',model:[searchresult:sResult,page:false])
 	}
 
 	/**
