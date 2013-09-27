@@ -47,31 +47,107 @@
         <script type="text/javascript" src="${resource(dir:'js', file:'utilitiesMenu.js')}"></script>
 
 		<script type="text/javascript" charset="utf-8">
-            Ext.BLANK_IMAGE_URL = "${resource(dir:'js', file:'ext/resources/images/default/s.gif')}";
+			Ext.BLANK_IMAGE_URL = "${resource(dir:'js', file:'ext/resources/images/default/s.gif')}";
 
-            // set ajax to 90*1000 milliseconds
-            Ext.Ajax.timeout = 180000;
+			// set ajax to 90*1000 milliseconds
+			Ext.Ajax.timeout = 180000;
 
-            // this overrides the above
-            Ext.Updater.defaults.timeout = 180000;
+			// this overrides the above
+			Ext.Updater.defaults.timeout = 180000;
 
-            // qtip on
-            Ext.QuickTips.init();
+			// qtip on
+			Ext.QuickTips.init();
 
-            // Create global object to pass all the counts and urls to the main tab panel
-            var pageData = {
-                //activeTab: "${session.searchFilter.acttab()}",
-                //default to 0
-                activeTab:"0" ,
+
+			// Create global object to pass all the counts and urls to the main tab panel
+			var pageData = {
+				//activeTab: "${session.searchFilter.acttab()}",
+				//default to 0
+				activeTab:"0" ,
+				// flag to hideInternal tabs as well as the export resnet button
+				<sec:ifAnyGranted roles="ROLE_PUBLIC_USER">
+			         hideInternal:true,
+				</sec:ifAnyGranted>
+				<sec:ifNotGranted roles="ROLE_PUBLIC_USER">
+				     hideInternal:false,
+				</sec:ifNotGranted>
+				trial: { // tab1 - see maintabpanel.js
+				    count: "${searchresult.trialCount}",
+				    analysisCount: "${searchresult.analysisCount}",
+				    resultsUrl: "${createLink(controller:'trial', action:'datasourceTrial')}",
+				    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
+				    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
+			    },
+				pretrial: { // tab2 - see maintabpanel.js
+				    count: "${searchresult.allAnalysiCount}",
+				    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
+				    resultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResult')}",
+				    teaResultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResultTEA')}",
+				    filterUrl: "${createLink(controller:'experimentAnalysis', action:'showFilter')}"
+				},
+				profile: { // tab3 - see maintabpanel.js
+				    count: "${searchresult.profileCount}",
+				    resultsUrl: "${createLink(controller:'expressionProfile', action:'datasourceResult')}"
+				},
+			    jubilant: { // tab4 - see maintabpanel.js
+				    activeCard: 0,
+				    resultsUrl: "${createLink(controller:'literature', action:'datasourceJubilant')}",
+				    filterUrl: "${createLink(controller:'literature', action:'showJubFilter')}",
+				    count: "${searchresult.literatureCount()}",
+				    litJubOncAltCount: "${searchresult.litJubOncAltCount}",
+				    litJubOncIntCount: "${searchresult.litJubOncIntCount}",
+				    litJubAsthmaIntCount: "${searchresult.litJubAsthmaIntCount}",
+				    jubOncologyAlterationUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyAlteration')}",
+				    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
+				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
+			    },
+			    doc: {  // tab5 - see maintabpanel.js
+				    count: "${searchresult.documentCount}",
+				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
+				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
+			    },
+			    pictor: { // tab 6 - see maintabpanel.js
+			   		<g:if test="${session.searchFilter.pictorTerms != null}">
+						resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
+	    			</g:if>
+					<g:else>
+	                	resultsUrl: "${createLink(controller:'search',action:'noResult')}"
+					</g:else>
+			    },
+
+			    resnet: { // tab 7 - see maintabpanel.js
+			   		resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
+			   		credentials: "ID/Password=Pathway Studio ID/Password"
+			    },
+			    genego: { // tab 8 - see maintabpanel.js
+					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
+					credentials: "User name/Password= Your GeneGo Metacore user name/password"
+			    },
+				metscape: { // tab9 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
+				},
+				conceptExplorer: { // tab10 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'conceptExplorer', action:'searchws')}"
+				},
+				metab2mesh: { // tab11 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
+				},
+				gene2mesh: { // tab11 - see maintabpanel.js
+					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
+				},
 			    session: { // tab12 - see maintabpanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
-				}
-                
-                // flag to hideInternal tabs as well as the export resnet button
-//                cortellis: {
-//                    resultsUrl: "${createLink(controller:'cortellisSearch',action:'search', params:[text: session.searchFilter.getExternalTerms()])}"
-//                }
-            };
+				},
+			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
+			    jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",
+				heatmapUrl: "${createLink(controller:'heatmap',action:'initheatmap')}",
+				downloadJubSummaryUrl: "${createLink(controller:'literature',action:'downloadJubData')}",
+				downloadResNetUrl: "${createLink(controller:'literature',action:'downloadresnet')}",
+				downloadTrialStudyUrl: "${createLink(controller:'trial', action:'downloadStudy')}",
+				downloadTrialAnalysisUrl: "${createLink(controller:'trial', action:'downloadAnalysisTEA')}",
+				downloadEaUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysis')}",
+				downloadEaTEAUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysisTEA')}"
+				};
 
 			Ext.onReady(function(){
 			    try {
@@ -149,12 +225,46 @@
                     categoriesUrl: "${createLink([controller:'cross',action:'loadCategories'])}"
                 });
 
-                // build search tabs and toolbar
-                var tabpanel = createMainTabNcibiPanel();
-//                tabpanel.remove(Ext.getCmp("tab9"));
+				// build search tabs and toolbar
+				var tabpanel = createMainTabNcibiPanel();
+				var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
+				
+				if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
+				    tabpanel.remove(Ext.getCmp("tab1"));
+				    tabpanel.remove(Ext.getCmp("tab3"));
+				    tabpanel.remove(Ext.getCmp("tab4"));
+				    tabpanel.remove(Ext.getCmp("tab5"));
+					tabpanel.remove(Ext.getCmp("tab6"));
+				    tabpanel.remove(Ext.getCmp("tab7"));
+				} else  {
+					// All tabs should show only if the external configuration is correct
+					if ("${grailsApplication.config.com.recomdata.searchtool.pictorURL}" == "")    {
+						tabpanel.remove(Ext.getCmp("tab6"));
+					}
+				    if ("${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" == "")  {
+					    tabpanel.remove(Ext.getCmp("tab7"));
+				    }
+				    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
+				        tabpanel.remove(Ext.getCmp("tab8"));
+					}				       
+				}
 
-                // set active tab
-                tabpanel.activate(getActiveTab("${session.searchFilter.acttabname()}"));
+				// remove all non-ncibi tabs
+				tabpanel.remove(Ext.getCmp("tab1"));
+				tabpanel.remove(Ext.getCmp("tab2"));
+			    tabpanel.remove(Ext.getCmp("tab3"));
+			    tabpanel.remove(Ext.getCmp("tab4"));
+				tabpanel.remove(Ext.getCmp("tab6"));
+			    tabpanel.remove(Ext.getCmp("tab7"));
+			    tabpanel.remove(Ext.getCmp("tab8"));
+				
+				// disable the MetScape tab if the search result is not a gene??
+				if(${session.searchFilter.globalFilter.getGeneFilters().size()} == 0) {
+					 tabpanel.remove(Ext.getCmp("tab9"));
+				}
+				
+			    // set active tab
+			    tabpanel.activate(getActiveTab("${session.searchFilter.acttabname()}"));
 
                 var helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
                 var contact = '${grailsApplication.config.com.recomdata.searchtool.contactUs}';
@@ -202,13 +312,48 @@
             function splitFilter(id) {
             }
 
-            function getActiveTab(sourceName){
+			function getActiveTab(sourceName){
 
-                var tab = 0;
-
-                return tab;
-
-            }
+				var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
+					
+				var tab = 0;
+				if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
+					/*if(sourceName=="trial")
+						tab =-1;
+					else if(sourceName=="pretrial")
+						tab = 0;
+					else if(sourceName =="profile")
+						tab = 0;
+					else if(sourceName =="jubilant")
+						tab = 0;
+					else if(sourceName =="doc")
+						tab =0;
+					else
+						tab =0; */
+					tab = 0;
+				}else{
+		
+			// normal tab
+				if(sourceName=="trial")
+					tab =0;
+				else if(sourceName=="pretrial")
+					tab = 1;
+				else if(sourceName =="profile")
+					tab = 2;
+				else if(sourceName =="jubilant")
+					tab = 3;
+				else if(sourceName =="doc")
+					tab =4;
+				else
+					tab =5;
+				
+				}
+				// override until we figure out what to do
+				tab = 0;
+				return tab;
+				
+			}
+			
 		</script>
 		<title>${grailsApplication.config.com.recomdata.searchtool.appTitle}</title>
 		<!-- ************************************** -->
@@ -220,9 +365,6 @@
 		<!-- ************************************** -->
 	</head>
 	<body>
-		<div id="header-header">
-		In the new header
-		</div>
 		<div id="header-div">
 			<g:render template="/layouts/commonheader" model="['app':'cross']" />
 			<g:render template="/layouts/crossheader" model="['app':'cross']" />

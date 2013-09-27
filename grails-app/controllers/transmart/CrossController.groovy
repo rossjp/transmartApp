@@ -93,6 +93,7 @@ class CrossController {
 		def rows = []
 		rows.add([value: "test", label:"Free text"])
 		rows.add([value: "gene", label:"Gene"])
+		rows.add([value: "disease", label: "disease"])
 		rows.add([value: "mesh", label:"MeSH term"])
 		rows.add([value: "go", label:"GO Category"])
 		rows.add([value: "path", label:"Pathway"])

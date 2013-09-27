@@ -20,6 +20,7 @@ package org.transmart.search
 
 import org.ncibi.metab.ws.encoder.json.MetabolicNetworkResponseJSONObject
 import org.ncibi.metab.ws.client.MetabolicNetworkService
+import org.ncibi.metab.network.NetworkType
 import org.ncibi.ws.HttpRequestType
 
 class MetScapeController {
