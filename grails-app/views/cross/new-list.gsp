@@ -63,80 +63,14 @@
                 //activeTab: "${session.searchFilter.acttab()}",
                 //default to 0
                 activeTab:"0" ,
+			    session: { // tab12 - see maintabpanel.js
+				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
+				}
+                
                 // flag to hideInternal tabs as well as the export resnet button
-                <sec:ifAnyGranted roles="ROLE_PUBLIC_USER">
-                hideInternal:true,
-                </sec:ifAnyGranted>
-                <sec:ifNotGranted roles="ROLE_PUBLIC_USER">
-                hideInternal:false,
-                </sec:ifNotGranted>
-                trial: {
-                    count: "${searchresult.trialCount}",
-                    analysisCount: "${searchresult.analysisCount}",
-                    resultsUrl: "${createLink(controller:'trial', action:'datasourceTrial')}",
-                    teaResultsUrl: "${createLink(controller:'trial', action:'datasourceTrialTEA')}",
-                    filterUrl: "${createLink(controller:'trial', action:'showTrialFilter')}"
-                },
-
-                pretrial: {
-                    count: "${searchresult.allAnalysiCount}",
-                    mRNAAnalysisCount: "${searchresult.mRNAAnalysisCount}",
-                    resultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResult')}",
-                    teaResultsUrl: "${createLink(controller:'experimentAnalysis', action:'datasourceResultTEA')}",
-                    filterUrl: "${createLink(controller:'experimentAnalysis', action:'showFilter')}"
-                },
-                profile: {
-                    count: "${searchresult.profileCount}",
-                    resultsUrl: "${createLink(controller:'expressionProfile', action:'datasourceResult')}"
-                },
-                jubilant: {
-                    activeCard: 0,
-                    resultsUrl: "${createLink(controller:'literature', action:'datasourceJubilant')}",
-                    filterUrl: "${createLink(controller:'literature', action:'showJubFilter')}",
-                    count: "${searchresult.literatureCount()}",
-                    litJubOncAltCount: "${searchresult.litJubOncAltCount}",
-                    litJubOncIntCount: "${searchresult.litJubOncIntCount}",
-                    litJubAsthmaIntCount: "${searchresult.litJubAsthmaIntCount}",
-                    jubOncologyAlterationUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyAlteration')}",
-                    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
-                    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
-                },
-                doc: {
-                    count: "${searchresult.documentCount}",
-                    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
-                    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
-                },
-
-                pictor: {
-                    <g:if test="${session.searchFilter.pictorTerms != null}">
-                    resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pictorURL}" + "&symbol=${session.searchFilter.pictorTerms}"
-                    </g:if>
-                    <g:else>
-                    resultsUrl: "${createLink(controller:'search',action:'noResult')}"
-                    </g:else>
-                },
-
-                resnet: {
-                    resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" + "/app/op?.name=comprehensiveSearch&query=${session.searchFilter.getExternalTerms()}",
-                    credentials: "ID/Password=Pathway Studio ID/Password"
-                },
-                genego: {
-                    resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
-                    credentials: "User name/Password= Your GeneGo Metacore user name/password"
-                },
-                trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",
-                jubSummaryUrl: "${createLink(controller:'literature',action:'jubSummaryJSON')}",
-                heatmapUrl: "${createLink(controller:'heatmap',action:'initheatmap')}",
-                downloadJubSummaryUrl: "${createLink(controller:'literature',action:'downloadJubData')}",
-                downloadResNetUrl: "${createLink(controller:'literature',action:'downloadresnet')}",
-                downloadTrialStudyUrl: "${createLink(controller:'trial', action:'downloadStudy')}",
-                downloadTrialAnalysisUrl: "${createLink(controller:'trial', action:'downloadAnalysisTEA')}",
-                downloadEaUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysis')}",
-                downloadEaTEAUrl: "${createLink(controller:'experimentAnalysis', action:'downloadAnalysisTEA')}",
-                cortellis: {
-                    resultsUrl: "${createLink(controller:'cortellisSearch',action:'search', params:[text: session.searchFilter.getExternalTerms()])}"
-                }
-
+//                cortellis: {
+//                    resultsUrl: "${createLink(controller:'cortellisSearch',action:'search', params:[text: session.searchFilter.getExternalTerms()])}"
+//                }
             };
 
 			Ext.onReady(function(){
@@ -217,34 +151,9 @@
 
                 // build search tabs and toolbar
                 var tabpanel = createMainTabNcibiPanel();
-                var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
+//                tabpanel.remove(Ext.getCmp("tab9"));
 
-//                if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
-//                    tabpanel.remove(Ext.getCmp("tab1"));
-//                    tabpanel.remove(Ext.getCmp("tab3"));
-//                    tabpanel.remove(Ext.getCmp("tab4"));
-//                    tabpanel.remove(Ext.getCmp("tab5"));
-//                    tabpanel.remove(Ext.getCmp("tab6"));
-//                    tabpanel.remove(Ext.getCmp("tab7"));
-//                    //tabpanel.remove(Ext.getCmp("tab8"));
-//                    //tabpanel.remove(Ext.getCmp("tab9"));
-//                } else  {
-//                    // All tabs should show only if the external configuration is correct
-//                    if ("${grailsApplication.config.com.recomdata.searchtool.pictorURL}" == "")    {
-//                        tabpanel.remove(Ext.getCmp("tab6"));
-//                    }
-//                    if ("${grailsApplication.config.com.recomdata.searchtool.pathwayStudioURL}" == "")  {
-//                        tabpanel.remove(Ext.getCmp("tab7"));
-//                    }
-//                    if ("${grailsApplication.config.com.recomdata.searchtool.genegoURL}" == "") {
-//                        tabpanel.remove(Ext.getCmp("tab8"));
-//                    }
-//                    if ("${grailsApplication.config.com.recomdata.searchtool.cortellisEnabled}" == "") {
-//                        tabpanel.remove(Ext.getCmp("tab18"));
-//                    }
-//                }
-//                // set active tab
-
+                // set active tab
                 tabpanel.activate(getActiveTab("${session.searchFilter.acttabname()}"));
 
                 var helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
@@ -295,40 +204,8 @@
 
             function getActiveTab(sourceName){
 
-                var hideInternalTabs = "${grailsApplication.config.com.recomdata.searchtool.hideInternalTabs}";
-
                 var tab = 0;
-                if ((pageData.hideInternal == true) || hideInternalTabs=="true")  {
-                    /*if(sourceName=="trial")
-                     tab =-1;
-                     else if(sourceName=="pretrial")
-                     tab = 0;
-                     else if(sourceName =="profile")
-                     tab = 0;
-                     else if(sourceName =="jubilant")
-                     tab = 0;
-                     else if(sourceName =="doc")
-                     tab =0;
-                     else
-                     tab =0; */
-                    tab = 0;
-                }else{
 
-                    // normal tab
-                    if(sourceName=="trial")
-                        tab =0;
-                    else if(sourceName=="pretrial")
-                        tab = 1;
-                    else if(sourceName =="profile")
-                        tab = 2;
-                    else if(sourceName =="jubilant")
-                        tab = 3;
-                    else if(sourceName =="doc")
-                        tab =4;
-                    else
-                        tab =5;
-
-                }
                 return tab;
 
             }

@@ -40,204 +40,16 @@ function createNcibiSearchTabs(toolbar) {
         autoScroll: true,
         //region: "center",
         items: [ 
-            {
-                id: "tab1",
-                iconCls: "clinicalTrialgovTab",
-                title: "Clinical Trials (" + pageData.trial.analysisCount + ", " + pageData.trial.count + ")",
-                listeners: {activate: activateTab},
-                layout: "card",
-                activeItem: (pageData.trial.analysisCount>0) ? 0 : 2,
-                items: [
-                    {
-                        id: "trial-tea-results-panel",
-                        autoLoad: {
-                            url: pageData.trial.teaResultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    },
-                    {
-                        id: "trial-filter-panel",
-                        autoLoad: {
-                            url: pageData.trial.filterUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    },{
-                        id: "trial-results-panel",
-                        autoLoad: {
-                            url: pageData.trial.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }
-                ]
-            }, 
-            {
-                id: "tab2",
-                iconCls: "expTab",
-                title: "mRNA Analysis (" + pageData.pretrial.mRNAAnalysisCount + ", " + pageData.pretrial.count + ")",
-                listeners: {activate: activateTab},
-                layout: "card",
-                layoutConfig: { deferredRender: true },
-                activeItem: (pageData.pretrial.mRNAAnalysisCount>0) ? 0 : 2,
-                items: [
-                    {
-                        id: "pretrial-tea-results-panel",
-                        autoLoad: {
-                            url: pageData.pretrial.teaResultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST",
-                            timeout: 300000
-                        }
-                    },
-                    {
-                        id: "pretrial-filter-panel",
-                        autoLoad: {
-                            url: pageData.pretrial.filterUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    },{
-                        id: "pretrial-results-panel",
-                        autoLoad: {
-                            url: pageData.pretrial.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }
-                ]
-             } ,             
-             {
-                id: "tab3",
-                iconCls: "profTab",
-                title: "mRNA Profiles (" + pageData.profile.count + ")",
-                listeners: {activate: activateTab},
-                layout: "card",
-                activeItem: 0,
-                items: [
-                    {
-                        id: "profile-results-panel",
-                        autoLoad: {
-                            url: pageData.profile.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }
-                ]
-            },
-            {
-                id: "tab4",
-                iconCls: "jubTab",
-                title: "Literature (" + pageData.jubilant.count + ")",
-                listeners: {activate: activateTab},
-                layout: "card",
-                //layoutConfig: { deferredRender: true },
-                activeItem: 0,
-                items: [
-                    {
-                        id: "jubilant-results-panel",
-                        autoLoad: {
-                            url: pageData.jubilant.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }, {
-                        id: "jubilant-filter-panel",
-                        autoLoad: {
-                            url: pageData.jubilant.filterUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }, {
-                        id: "jubilant-summary-panel"
-                    }
-                ]
-            },
-            {
-                id:"tab5",
-                iconCls: "docTab",
-                   title: "Documents (" + pageData.doc.count + ")",
-                listeners: {
-                    activate: activateTab
-                },
-                layout: "card",
-                layoutConfig: { deferredRender: true },
-                activeItem: 0,
-                items: [
-                    {
-                        id: "documents-results-panel",
-                        autoLoad: {
-                            url: pageData.doc.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }, {
-                        id: "documents-filter-panel",
-                        autoLoad: {
-                            url: pageData.doc.filterUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }
-                ]
-            },
-            {
-                id: "tab6",
-                iconCls: "pictorTab",
-                title: "Pictor",
-                listeners: {activate: activateTab},
-                xtype: "iframepanel",
-                closable: false,
-                loadMask: true,
-                defaultSrc: pageData.pictor.resultsUrl
-            },
-            {
-                id: "tab7",
-                iconCls: "resnetTab",
-                title: "ResNet",
-                listeners: {activate: activateTab},
-                xtype: "iframepanel",
-                closable: false,
-                loadMask: true,
-                defaultSrc: pageData.resnet.resultsUrl,
-                tabTip: pageData.resnet.credentials
-            } 
-            , 
-            {
-                id: "tab8",
-                iconCls: "genegoTab",
-                title: "GeneGo",
-                listeners: {activate: activateTab},
-                xtype: "iframepanel",
-                closable: false,
-                loadMask: true,
-                defaultSrc: pageData.genego.resultsUrl,
-                tabTip: pageData.genego.credentials
-            }
-            ,
-            {
-                id: "tab18",
-                iconCls: "cortellisTab",
-                title: "Cortellis",
-                listeners: {activate: activateTab},
-                xtype: "iframepanel",
-                closable: false,
-                loadMask: true,
-                defaultSrc: pageData.cortellis.resultsUrl
-            }
-            
+                {
+                    id: "tab13",
+                    iconCls: "docTab",
+                    title: "Session Info",
+                    listeners: {activate: activateTab},
+                    xtype: "iframepanel",
+                    closable: false,
+                    loadMask: true,
+//                    defaultSrc: pageData.session.resultsUrl,
+                }
         ]
     });
     return tabpanel;
@@ -325,137 +137,8 @@ function createMainNcibiToolbar() {
 
 function activateTab(tab) {
     switch (tab.id) {
-    case "tab1":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", false);
-        if(pageData.trial.count>0) {
-            setButtonVisibility("heatmap", true);
-            setButtonVisibility("studyview", true);
-
-            if(pageData.trial.analysisCount>0) {
-                setButtonVisibility("tea",true);
-            } else {
-                setButtonVisibility("tea",false);
-            }
-        } else {
-            setButtonVisibility("heatmap", false);
-            setButtonVisibility("tea",false);
-            setButtonVisibility("studyview", false);
-        }
-        setButtonVisibility("exportsummary", true);
-        setButtonVisibility("exportresnet", false);
-        
-        var contextHelpVisibility = false;
-        if(pageData.trial.analysisCount>0 || pageData.trial.count>0){
-        	contextHelpVisibility = true
-        }
-        setButtonVisibility("contextHelp", contextHelpVisibility);
-        filterContextHelpId = (pageData.trial.analysisCount>0) ? "1027" : "1028";
-        break;
-    case "tab2":
-        setButtonVisibility("filters", true);
-
-        // experiment views
-        if(pageData.pretrial.count>0){
-            setButtonVisibility("studyview", true)
-        } else {
-        	setButtonVisibility("studyview", false)
-        }
-
-        // tea analysis view
-        if(pageData.pretrial.mRNAAnalysisCount>0){
-            setButtonVisibility("tea", true)
-        } else {
-        	setButtonVisibility("tea", false)
-        }
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", true);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("contextHelp", true);
-        
-        var contextHelpVisibility = false;
-        if(pageData.pretrial.mRNAAnalysisCount>0 || pageData.pretrial.count>0){
-        	contextHelpVisibility = true
-        }
-        setButtonVisibility("contextHelp", contextHelpVisibility);
-        filterContextHelpId = (pageData.pretrial.mRNAAnalysisCount>0) ? "1023" : "1023";
-        break;
-    case "tab3":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1040";
-        break;
-    case "tab4":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", pageData.jubilant.litJubOncAltCount > 0);
-        setButtonVisibility("heatmap", false);
-        if (pageData.jubilant.count < 1) 	{
-        	setButtonVisibility("exportsummary", false);
-        } else	{
-        	setButtonVisibility("exportsummary", true);
-        }
-        if (pageData.hideInternal==true || pageData.jubilant.count < 1)  {
-        	setButtonVisibility("exportresnet", false);
-        } else	{
-        	setButtonVisibility("exportresnet", true);
-        }
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1042";
-        break;
-    case "tab5":
-        setButtonVisibility("filters", true);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
-        filterContextHelpId="1047";
-        break;
-    case "tab6":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        if (pageData.pictor.resultsUrl.length > 1980) {
-            window.alert("Note: The length of the URL for the Pictor query has exceeded the maximum supported by Internet Explorer and some genes may have been excluded from the query.");
-        }
-        setButtonVisibility("contextHelp", false);
-        break;
-
-    case "tab7":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", false);
-        break;
-
-    case "tab8":
-        setButtonVisibility("filters", false);
-        setButtonVisibility("summary", false);
-        setButtonVisibility("heatmap", false);
-        setButtonVisibility("exportsummary", false);
-        setButtonVisibility("exportresnet", false);
-        setButtonVisibility("studyview", false)
-        setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", false);
+    case "tab999":
+//        setButtonVisibility("filters", false);
         break;
     }
 }
@@ -467,85 +150,6 @@ function activateTab(tab) {
 function showContextSpecificHelp(activetab, button){
 	var contextHelpButton = Ext.getCmp("contextHelp-button");
     switch (activetab.getId()) {
-    case "tab1":
-		switch (button.id){
-		case "filters-show-button":
-				filterContextHelpId = "1025";
-				contextHelpButton.setVisible(true);
-		break;
-		case "filters-hide-button":
-				contextHelpButton.setVisible(false);
-		break;
-		case "tea-button":
-				filterContextHelpId="1027";
-				contextHelpButton.setVisible(true);
-		break;
-		case "studyview-button":
-				filterContextHelpId="1028";
-				contextHelpButton.setVisible(true);
-		break;
-		default:
-			contextHelpButton.setVisible(false);
-		}
-
-	break;
-    case "tab2":
-    	switch (button.id){
-		case "filters-show-button":
-			filterContextHelpId = "1033";
-			contextHelpButton.setVisible(true);
-		break;
-		case "filters-hide-button":
-			contextHelpButton.setVisible(false);
-		break;
-		case "tea-button":
-			filterContextHelpId="1034";
-			contextHelpButton.setVisible(true);
-		break;
-		case "studyview-button":
-			filterContextHelpId="1035";
-			contextHelpButton.setVisible(true);
-		break;
-		default:
-			contextHelpButton.setVisible(false);
-    	}
-    break;
-    case "tab4":
-    	switch(button.id){
-    	case "filters-show-button":
-			filterContextHelpId = "1043";
-			contextHelpButton.setVisible(true);
-		break;
-    	case "filters-hide-button":
-    		filterContextHelpId = "1042";
-			contextHelpButton.setVisible(true);
-		break;
-    	case "summary-show-button":
-			filterContextHelpId = "1319";
-			contextHelpButton.setVisible(true);
-		break;
-		case "summary-hide-button":
-			filterContextHelpId = "1042";
-			contextHelpButton.setVisible(true);
-		break;
-		default:
-			contextHelpButton.setVisible(false);
-    	}
-    break;
-    case "tab5":
-    	switch(button.id){
-    	case "filters-show-button":
-			filterContextHelpId = "1049";
-			contextHelpButton.setVisible(true);
-		break;
-    	case "filters-hide-button":
-    		filterContextHelpId = "1047";
-			contextHelpButton.setVisible(true);
-		break;
-		default:
-			contextHelpButton.setVisible(false);
-    	}
-    break;
     default:
     	contextHelpButton.setVisible(false);
 	}
@@ -557,7 +161,7 @@ function showFilters(button) {
     var layout = activetab.getLayout();
     var activeitem = layout.activeItem;
     if (activeitem.id.indexOf("-results-") > -1 || activeitem.id.indexOf("-summary-") > -1) {
-        if (activetab.id == "tab1" && !Ext.getCmp("trialfilter-tree")) {
+        if (activetab.id == "tab999" && !Ext.getCmp("trialfilter-tree")) {
             showTrialFilterTree(pageData.trialFilterUrl);
         }
         layout.setActiveItem(1);
@@ -568,10 +172,10 @@ function showFilters(button) {
     var showFiltersButton = Ext.getCmp("filters-show-button");
     var hideFiltersButton = Ext.getCmp("filters-hide-button");
     if (showFiltersButton != null) {
-    	if (activetab.id == "tab1" || activetab.id == "tab2")	{
+    	if (activetab.id == "tab999")	{
     	//	var exportSummaryButton = Ext.getCmp( "exportsummary-button");
     	//	exportSummaryButton.setVisible(showFiltersButton.hidden);
-    	} else if(activetab.id == "tab4") {
+    	} else if(activetab.id == "tab999") {
             var showSummaryButton = Ext.getCmp("summary-show-button");
             var hideSummaryButton = Ext.getCmp( "summary-hide-button");
             var exportSummaryButton = Ext.getCmp( "exportsummary-button");
@@ -682,23 +286,11 @@ function exportSummary(button) {
     var layout = activetab.getLayout();
     var activeitem = layout.activeItem;
     switch (activetab.getId()) {
-    case "tab1":
-    	if (activeitem.id.indexOf("-tea-") > -1) {
-    		window.location = pageData.downloadTrialAnalysisUrl;
-    	} else	{
-    		window.location = pageData.downloadTrialStudyUrl;
-    	}
+    case "tab999":
     	break;
-    case "tab2":
-    	if (activeitem.id.indexOf("-tea-")	> -1)	{
-    		window.location = pageData.downloadEaTEAUrl;
-    	} else	{
-    		window.location = pageData.downloadEaUrl;
-    	}
-    	break;
-    case "tab4":
-    	window.location = pageData.downloadJubSummaryUrl;
-    	break;
+//    case "tab4":
+//    	window.location = pageData.downloadJubSummaryUrl;
+//    	break;
     }
 }
 
