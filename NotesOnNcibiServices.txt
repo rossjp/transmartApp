@@ -1,0 +1,36 @@
+For the NCIBI tool tabs in search...
+
+-- Metscape --
+
+
+-- ConceptGen --
+Services:
+http://conceptgen.ncibi.org/ConceptWeb/cws?
+ndexws.gsp and searchws.gsp
+
+SVN:
+https://www.umms.med.umich.edu/codestore/ncibi/conceptGen/ConceptWeb
+
+-- Metab2MeSH and Gene2MeSH --
+Services:
+(in services default package)
+Metab2MeshService.groovy
+Gene2MeShService.groovy
+
+Domain:
+(in domain/org.transmart.searchapp/...)
+M2MResult.groovy
+G2MResult.groovy
+
+Controllers:
+(in controllers/org.transmart.search...)
+Metab2MeshController.groovy
+Gene2MeshController.groovy
+
+Web Service Instructions:
+http://ws.ncibi.org/m2m.html
+http://ws.ncibi.org/g2m.html
+
+SVN:
+https://www.umms.med.umich.edu/codestore/ncibi/metab2mesh/
+https://www.umms.med.umich.edu/codestore/ncibi/gene2mesh/
