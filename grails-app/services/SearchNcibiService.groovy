@@ -69,7 +69,7 @@ public class SearchNcibiService{
 		sResult.metScapeCount = 91
 //		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
 //		log.info("Document Count Duration: ${duration}")
-		sResult.conceptCount = 92
+		sResult.pubmedCount = 92
 //		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
 //		log.info("Document Count Duration: ${duration}")
 		sResult.gene2MeshCount = 93

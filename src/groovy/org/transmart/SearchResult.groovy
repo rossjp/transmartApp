@@ -50,8 +50,9 @@ class SearchResult {
 	int litJubAsthmaPECount = 0
 	int resultCount = 0
 	int profileCount = 0
+	int pubmedCount = 0
 	int metScapeCount = 0
-	int conceptCount = 0
+	int conceptExplorerCount = 0
 	int gene2MeshCount = 0
 	int metab2MeshCount = 0
 	def summary
@@ -63,7 +64,7 @@ class SearchResult {
 	}
 	
 	def totalNCIBICount = {
-		return documentCount + metScapeCount + conceptCount + gene2MeshCount + metab2MeshCount
+		return pubmedCount + metScapeCount + conceptExplorerCount + gene2MeshCount + metab2MeshCount
 	}
 
 	def litJubOncCount = {

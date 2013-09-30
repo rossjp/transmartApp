@@ -91,7 +91,7 @@ class CrossController {
 
 		def categories = SearchKeyword.executeQuery("select distinct k.dataCategory as value, k.displayDataCategory as label from org.transmart.searchapp.SearchKeyword k order by k.dataCategory")
 		def rows = []
-		rows.add([value: "test", label:"Free text"])
+		rows.add([value: "text", label:"Free text"])
 		rows.add([value: "gene", label:"Gene"])
 		rows.add([value: "disease", label: "disease"])
 		rows.add([value: "mesh", label:"MeSH term"])

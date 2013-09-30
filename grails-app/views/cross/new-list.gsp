@@ -101,8 +101,8 @@
 				    jubOncologyInhibitorUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInhibitor')}",
 				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
 			    },
-			    doc: {  // tab5 - see maintabpanel.js
-				    count: "${searchresult.documentCount}",
+			    pubmed: {  // tab5 - see maintabpanel.js
+				    count: "${searchresult.pubmedCount}",
 				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
 				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 			    },
@@ -128,7 +128,7 @@
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
 				conceptExplorer: { // tab10 - see maintabpanel.js
-					count: "${searchresult.conceptCount}",
+					count: "${searchresult.conceptExplorerCount}",
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'searchws')}"
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js

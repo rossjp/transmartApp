@@ -167,7 +167,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id:"tab5",
                 iconCls: "docTab",
-                   title: "PubMed Abstracts (" + pageData.doc.count + ")",
+                   title: "PubMed Abstracts (" + pageData.pubmed.count + ")",
                 listeners: {
                     activate: activateTab
                 },
@@ -178,7 +178,7 @@ function createNcibiSearchTabs(toolbar) {
                     {
                         id: "documents-results-panel",
                         autoLoad: {
-                            url: pageData.doc.resultsUrl,
+                            url: pageData.pubmed.resultsUrl,
                             nocache: true,
                             discardUrl: true,
                             method: "POST"
@@ -186,7 +186,7 @@ function createNcibiSearchTabs(toolbar) {
                     }, {
                         id: "documents-filter-panel",
                         autoLoad: {
-                            url: pageData.doc.filterUrl,
+                            url: pageData.pubmed.filterUrl,
                             nocache: true,
                             discardUrl: true,
                             method: "POST"
