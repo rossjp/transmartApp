@@ -122,17 +122,21 @@
 			    genego: { // tab 8 - see maintabpanel.js
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
-			    },
+			    },						    
 				metscape: { // tab9 - see maintabpanel.js
+					count: "${searchresult.metScapeCount}",
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
 				conceptExplorer: { // tab10 - see maintabpanel.js
+					count: "${searchresult.conceptCount}",
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'searchws')}"
 				},
 				metab2mesh: { // tab11 - see maintabpanel.js
+					count: "${searchresult.metab2MeshCount}",
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
 				},
 				gene2mesh: { // tab11 - see maintabpanel.js
+					count: "${searchresult.gene2MeshCount}",
 					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
 				},
 			    session: { // tab12 - see maintabpanel.js
@@ -370,7 +374,7 @@
 			<g:render template="/layouts/crossheader" model="['app':'cross']" />
             <div id="summarycount-div" style="background:#dfe8f6; color:#000; padding:5px 10px 5px 10px;border-top:1px solid #36c;">
                 <span id="summarycount-span" style="font-size:13px; font-weight:bold;">
-                    About ${searchresult?.totalCount()} results found
+                    About ${searchresult?.totalNCIBICount()} results found
                 </span>
             </div>
             <div id="ncibi-summary-div" style="padding:5px 10px 5px 10px;font-size:12px;line-height:17px;">

@@ -229,7 +229,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab9",
                 iconCls: "docTab",
-                title: "MetScape",
+                title: "MetScape (" + pageData.metscape.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -239,7 +239,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
-                title: "conceptExplorer",
+                title: "conceptExplorer (" + pageData.conceptExplorer.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -249,7 +249,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab11",
                 iconCls: "docTab",
-                title: "Metab2Mesh",
+                title: "Metab2Mesh(" + pageData.metab2mesh.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -259,7 +259,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab12",
                 iconCls: "docTab",
-                title: "Gene2Mesh",
+                title: "Gene2Mesh (" + pageData.gene2mesh.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,

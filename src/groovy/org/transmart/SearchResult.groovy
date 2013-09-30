@@ -50,12 +50,20 @@ class SearchResult {
 	int litJubAsthmaPECount = 0
 	int resultCount = 0
 	int profileCount = 0
+	int metScapeCount = 0
+	int conceptCount = 0
+	int gene2MeshCount = 0
+	int metab2MeshCount = 0
 	def summary
 	def result
 	String resultType
 
 	def totalCount = {
 		return experimentCount + literatureCount() + trialCount + documentCount+ profileCount + cortellisCount
+	}
+	
+	def totalNCIBICount = {
+		return documentCount + metScapeCount + conceptCount + gene2MeshCount + metab2MeshCount
 	}
 
 	def litJubOncCount = {

@@ -46,6 +46,9 @@ public class SearchNcibiService{
 			return TimeCategory.minus(new Date(), start)
 		}
 	
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+
 		sResult.litJubOncAltCount = 0
 		sResult.litJubOncInhCount = 0
 		sResult.litJubOncIntCount = 0
@@ -60,6 +63,22 @@ public class SearchNcibiService{
 		sResult.allAnalysiCount = 0
 		sResult.documentCount = 0
 		sResult.profileCount = 0
+		sResult.documentCount = 10
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.metScapeCount = 91
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.conceptCount = 92
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.gene2MeshCount = 93
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.metab2MeshCount = 94
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		
 		
 //		def duration = benchmark {sResult.litJubOncAltCount = literatureQueryService.litJubOncAltCount(searchFilter)}
 //		log.info("Literature Oncology Alteration Count Duration: ${duration}")
