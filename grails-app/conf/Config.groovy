@@ -144,7 +144,8 @@ org.transmartproject.i2b2.user_id = 'i2b2'
 org.transmartproject.i2b2.group_id = 'Demo'
 //**************************
 
-
+// location of logo for NCIBI search page ("Cross-Database Exploration")
+com.recomdata.searchtool.ncibiLogo="ncibilogosmall.jpg"
 
 // max genes to display after disease search
 com.recomdata.search.gene.max=250;
