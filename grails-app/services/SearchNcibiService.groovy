@@ -18,10 +18,14 @@
  ******************************************************************/
   
 
-import org.transmart.SearchFilter;
-import org.transmart.SearchResult;
-
 import groovy.time.*
+
+import org.transmart.SearchFilter
+import org.transmart.SearchNCIBIResult
+import org.transmart.search.ConceptGenCountService
+import org.transmart.search.Gene2MeshService
+import org.transmart.search.Metab2MeshService
+import org.transmart.search.MetscapeService
 
 /**
   * $Id: SearchService.groovy 10098 2011-10-19 18:39:32Z mmcduffie $
@@ -30,15 +34,14 @@ import groovy.time.*
   *
   */
 public class SearchNcibiService{
-	def literatureQueryService
-	def experimentAnalysisQueryService
-	def trialQueryService
-	def documentService
-	def expressionProfileQueryService
-	def clinicalTrialAnalysisTEAService
+	
+	def metscapeService
+	def conceptGenCountService
+	def gene2MeshService
+	def metab2MeshService
 
-	def doResultCount(SearchResult sResult, SearchFilter searchFilter){
-
+	def doResultCount(SearchNCIBIResult sResult, SearchFilter searchFilter){
+		
 		// Closure to measure the time performance
 		def benchmark = { closure ->
 			def start = new Date()
@@ -46,49 +49,19 @@ public class SearchNcibiService{
 			return TimeCategory.minus(new Date(), start)
 		}
 	
-		sResult.litJubOncAltCount = 0
-		sResult.litJubOncInhCount = 0
-		sResult.litJubOncIntCount = 0
-		sResult.litJubAsthmaAltCount = 0
-		sResult.litJubAsthmaInhCount = 0
-		sResult.litJubAsthmaIntCount = 0
-		sResult.litJubAsthmaPECount = 0
-		sResult.experimentCount = 0
-		sResult.trialCount = 0
-		sResult.analysisCount = 0
-		sResult.mRNAAnalysisCount = 0
-		sResult.allAnalysiCount = 0
-		sResult.documentCount = 0
-		sResult.profileCount = 0
+		def duration = 0;
 		
-//		def duration = benchmark {sResult.litJubOncAltCount = literatureQueryService.litJubOncAltCount(searchFilter)}
-//		log.info("Literature Oncology Alteration Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubOncInhCount = literatureQueryService.litJubOncInhCount(searchFilter)} 
-//		log.info("Literature Oncology Inhibitor Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubOncIntCount = literatureQueryService.litJubOncIntCount(searchFilter)}
-//		log.info("Literature Oncology Interaction Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubAsthmaAltCount = literatureQueryService.litJubAsthmaAltCount(searchFilter)}
-//		log.info("Literature Asthma Alteration Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubAsthmaInhCount = literatureQueryService.litJubAsthmaInhCount(searchFilter)}
-//		log.info("Literature Asthma Inhibitor Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubAsthmaIntCount = literatureQueryService.litJubAsthmaIntCount(searchFilter)}
-//		log.info("Literature Asthma Interaction Count Duration: ${duration}")
-//		duration = benchmark {sResult.litJubAsthmaPECount = literatureQueryService.litJubAsthmaPECount(searchFilter)}
-//		log.info("Literature Asthma Protein Effect Count Duration: ${duration}")
-//		duration = benchmark {sResult.experimentCount = experimentAnalysisQueryService.countExperimentMV(searchFilter)}
-//		log.info("Expression Analysis Count Duration: ${duration}")
-//		duration = benchmark {sResult.trialCount = trialQueryService.countAnalysis(searchFilter)}
-//		log.info("Trial Count Duration: ${duration}")
-//		duration = benchmark {sResult.analysisCount = clinicalTrialAnalysisTEAService.queryExpAnalysisCount(searchFilter)}
-//		log.info("Analysis count and duration: ${sResult.analysisCount} and ${duration}")
-//		duration = benchmark {sResult.mRNAAnalysisCount = experimentAnalysisQueryService.countTEAAnalysis(searchFilter)}
-//		log.info("mRNA Analysis count and duration: ${sResult.mRNAAnalysisCount} and ${duration}")
-//		duration = benchmark {sResult.allAnalysiCount = experimentAnalysisQueryService.countAnalysisMV(searchFilter)}
-//		log.info("All Analysis count and duration: ${sResult.allAnalysiCount} and ${duration}")
-//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
-//		log.info("Document Count Duration: ${duration}")
-//		duration = benchmark {sResult.profileCount = expressionProfileQueryService.countExperiment(searchFilter)}
-//		log.info("Profile Count Duration: ${duration}")
+		duration = benchmark {sResult.metscapeCount = metscapeService.getCount(searchFilter)}
+		log.info("Metscape Count Duration: ${duration}")
+
+		duration = benchmark {sResult.conceptGenCount = conceptGenCountService.getCount(searchFilter)}
+		log.info("Metscape Count Duration: ${duration}")
+
+		duration = benchmark {sResult.gene2MeshCount = gene2MeshService.getCount(searchFilter)}
+		log.info("Metscape Count Duration: ${duration}")
+
+		duration = benchmark {sResult.metab2MeshCount = metab2MeshService.getCount(searchFilter)}
+		log.info("Metscape Count Duration: ${duration}")
 	}
 
 	def createPagingParamMap(params, defaultmax, defaultoffset){
