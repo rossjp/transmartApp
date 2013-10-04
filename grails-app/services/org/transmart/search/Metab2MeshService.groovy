@@ -128,7 +128,7 @@ class Metab2MeshService {
 		return results;
 	}
 	
-	public int getCount(SearchFilter searchFilter){
+	def int getCount(SearchFilter searchFilter){
 		return 94
 	}
 	

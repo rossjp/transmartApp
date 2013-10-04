@@ -124,25 +124,27 @@
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
 			    },
 			    pubmed: { // new tab 0
-				    count: -1,
+				    count: ${searchresult.pubmedCount},
+                    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
+                    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 				},
-				metscape: { // new tab1 - see mainncibitabpanel.js
+				metscape: { // new tab1 - /transmart/web-app/js/maintabncibipanel.js
 					count: ${searchresult.metscapeCount},
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
-				conceptExplorer: { // new tab2 - see mainncibitabpanel.js
+				conceptExplorer: { // new tab2 - /transmart/web-app/js/maintabncibipanel.js
 					count: "${searchresult.conceptGenCount}",
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'searchws')}"
 				},
-				metab2mesh: { // new tab3 - see mainncibitabpanel.js
+				metab2mesh: { // new tab3 - /transmart/web-app/js/maintabncibipanel.js
 					count: "${searchresult.metab2MeshCount}",
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
 				},
-				gene2mesh: { // new tab4 - see mainncibitabpanel.js
+				gene2mesh: { // new tab4 - /transmart/web-app/js/maintabncibipanel.js
 					count: "${searchresult.gene2MeshCount}",
 					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
 				},
-			    session: { // new tab5 - see mainncibitabpanel.js
+			    session: { // new tab5 - /transmart/web-app/js/maintabncibipanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
 				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",

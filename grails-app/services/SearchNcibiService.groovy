@@ -34,6 +34,7 @@ import org.transmart.search.MetscapeService
   */
 public class SearchNcibiService{
 	
+	def pubmedNCIBIService
 	def metscapeService
 	def conceptGenCountService
 	def gene2MeshService
@@ -48,23 +49,21 @@ public class SearchNcibiService{
 			return TimeCategory.minus(new Date(), start)
 		}
 	
-		def duration = 0;
+		def duration = 0
 
-//		duration = benchmark {sResult.metscapeCount = metscapeService.getCount(searchFilter)}
-		duration = benchmark {sResult.metscapeCount = 1}
-		log.info("Metscape Count Duration: ${duration}")
-		log.info("Metscape Count ${sResult.metscapeCount}")
+		duration = benchmark {sResult.pubmedCount = pubmedNCIBIService.getCount(searchFilter)}
+		log.info("Pubmed Count Duration: ${duration}")
 		
-//		duration = benchmark {sResult.conceptGenCount = conceptGenCountService.getCount(searchFilter)}
-		duration = benchmark {sResult.conceptGenCount = 2}
+		duration = benchmark {sResult.metscapeCount = metscapeService.getCount(searchFilter)}
+		log.info("Metscape Count Duration: ${duration}")
+		
+		duration = benchmark {sResult.conceptGenCount = conceptGenCountService.getCount(searchFilter)}
 		log.info("ConceptGen Count Duration: ${duration}")
 
-//		duration = benchmark {sResult.gene2MeshCount = gene2MeshService.getCount(searchFilter)}
-		duration = benchmark {sResult.gene2MeshCount = 3}
+		duration = benchmark {sResult.gene2MeshCount = gene2MeshService.getCount(searchFilter)}
 		log.info("Gene2Mesh Count Duration: ${duration}")
 
-//		duration = benchmark {sResult.metab2MeshCount = metab2MeshService.getCount(searchFilter)}
-		duration = benchmark {sResult.metab2MeshCount = 4}
+		duration = benchmark {sResult.metab2MeshCount = metab2MeshService.getCount(searchFilter)}
 		log.info("Metab2Mesh Count Duration: ${duration}")
 
 	}
