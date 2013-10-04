@@ -1,4 +1,4 @@
-package org.transmart.search
+package org.transmart
 /*************************************************************************
  * tranSMART - translational medicine data mart
  * 
@@ -19,25 +19,25 @@ package org.transmart.search
  ******************************************************************/
   
 
+/**
+ * $Id: SearchResult.groovy 9178 2011-08-24 13:50:06Z mmcduffie $
+ * @author $Author: mmcduffie $
+ * @version $Revision: 9178 $
+ */
+class SearchNCIBIResult {
 
-import org.jfree.util.Log;
-import org.transmart.SearchFilter;
-
-import i2b2.Concept;
-
-class ConceptService {
-	def dataSource;
+	def countmap =[:]
 	
-	public Concept getConceptByBaseCode(String baseCode) throws Exception {
-		return Concept.findByBaseCode(baseCode);
+	def metscapeCount = 0
+	def conceptGenCount = 0
+	def gene2MeshCount = 0
+	def metab2MeshCount = 0
+	def summary
+	def result
+	String resultType
+
+	def totalCount = {
+		return metscapeCount + conceptGenCount + gene2MeshCount + metab2MeshCount
 	}
-	
-	public List<Concept> getChildrenConcepts(Concept concept) throws Exception {
-		if (concept == null || concept.id == null || concept.getLevel() == null) return null;
-		List<Concept> conceptList = 
-			Concept.findAll("from Concept as c where c.fullName like :fullNameLike and level = :levelNew",
-				[fullNameLike: concept.getFullName() + "%", levelNew: concept.getLevel().intValue() + 1]);
-		return conceptList;
-	}
-		
+
 }

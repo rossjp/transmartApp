@@ -3,18 +3,18 @@ package transmart
 import grails.converters.*
 
 import org.hibernate.*
-import org.transmart.GlobalFilter;
-import org.transmart.SearchFilter;
-import org.transmart.SearchResult;
-import org.transmart.biomart.BioDataExternalCode;
-import org.transmart.searchapp.AccessLog;
-import org.transmart.searchapp.AuthUser;
-
+import org.transmart.GlobalFilter
+import org.transmart.SearchFilter
+import org.transmart.SearchNCIBIResult
+import org.transmart.biomart.BioDataExternalCode
+import org.transmart.searchapp.AccessLog
+import org.transmart.searchapp.AuthUser
 import org.transmart.searchapp.CustomFilter
 import org.transmart.searchapp.SearchKeyword
 import org.transmart.searchapp.SearchKeywordTerm
 
 import com.recomdata.util.*
+
 class CrossController {
 
 	def sessionFactory
@@ -210,7 +210,7 @@ class CrossController {
 	def doSearch = {
 
 		def filter = session.searchFilter;
-		def sResult = new SearchResult()
+		def sResult = new SearchNCIBIResult()
 		log.info "doSearch:"+params
 		log.info "isTextOnly = " + filter.globalFilter.isTextOnly()
 		SearchNcibiService.doResultCount(sResult,filter)
@@ -218,26 +218,8 @@ class CrossController {
 		filter.createPictorTerms()
 		boolean defaultSet = false;
 
-		if (sResult.trialCount>0) {
-			session.searchFilter.datasource="trial" ;
-			defaultSet = true;
-		} else if (!defaultSet && sResult.experimentCount>0) {
-			session.searchFilter.datasource="experiment"
-			defaultSet = true;
-		}
-		else if (!defaultSet && sResult.profileCount>0) {
-			session.searchFilter.datasource="profile"
-			defaultSet = true;
-		} else if(!defaultSet && sResult.literatureCount()>0){
-			session.searchFilter.datasource="literature"
-			defaultSet = true;
-		} else if(!defaultSet && sResult.documentCount>0){
-			session.searchFilter.datasource="document"
-			defaultSet = true;
-		} else {
-			session.searchFilter.datasource="document"
-		}
-
+		session.searchFilter.datasource="document"
+		
 		def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
 		def al = new AccessLog(username: user.username, event:"Search", eventmessage:session.searchFilter.marshal(), accesstime:new Date())
 		al.save();

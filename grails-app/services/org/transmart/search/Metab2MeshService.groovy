@@ -18,6 +18,7 @@ package org.transmart.search
  *
  ******************************************************************/
 
+import org.transmart.SearchFilter;
 import org.transmart.searchapp.M2MResult;
 
 import java.awt.print.Printable;
@@ -29,6 +30,7 @@ import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 import org.xml.sax.*;
+
 import javax.xml.xpath.*;
 
 class Metab2MeshService {
@@ -125,4 +127,9 @@ class Metab2MeshService {
 		}
 		return results;
 	}
+	
+	public int getCount(SearchFilter searchFilter){
+		return 94
+	}
+	
 }
