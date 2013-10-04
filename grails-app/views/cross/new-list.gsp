@@ -102,7 +102,7 @@
 				    jubOncologyInteractionUrl: "${createLink(controller:'literature', action:'datasourceJubOncologyInteraction')}"
 			    },
 			    doc: {  // tab5 - see maintabpanel.js
-				    count: "${searchresult.documentCount}",
+				    count: 0,
 				    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
 				    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
 			    },
@@ -123,23 +123,26 @@
 					resultsUrl: "${grailsApplication.config.com.recomdata.searchtool.genegoURL}" + "/cgi/search/ez.cgi?submitted=1&name=${session.searchFilter.getExternalTerms()}",
 					credentials: "User name/Password= Your GeneGo Metacore user name/password"
 			    },
-				metscape: { // tab9 - see maintabpanel.js
-					count: 0,
+			    pubmed: { // new tab 0
+				    count: -1,
+				},
+				metscape: { // new tab1 - see mainncibitabpanel.js
+					count: ${searchresult.metscapeCount},
 					inputUrl:"${createLink(controller:'metScape', action:'gene')}"
 				},
-				conceptExplorer: { // tab10 - see maintabpanel.js
-					count: "${searchresult.conceptCount}",
+				conceptExplorer: { // new tab2 - see mainncibitabpanel.js
+					count: "${searchresult.conceptGenCount}",
 					inputUrl:"${createLink(controller:'conceptExplorer', action:'searchws')}"
 				},
-				metab2mesh: { // tab11 - see maintabpanel.js
-					count: 0,
+				metab2mesh: { // new tab3 - see mainncibitabpanel.js
+					count: "${searchresult.metab2MeshCount}",
 					inputUrl:"${createLink(controller:'metab2Mesh', action:'index')}"
 				},
-				gene2mesh: { // tab11 - see maintabpanel.js
-					count: 0,
+				gene2mesh: { // new tab4 - see mainncibitabpanel.js
+					count: "${searchresult.gene2MeshCount}",
 					inputUrl:"${createLink(controller:'gene2Mesh', action:'index')}"
 				},
-			    session: { // tab12 - see maintabpanel.js
+			    session: { // new tab5 - see mainncibitabpanel.js
 				    resultsUrl: "${createLink(controller:'sessionInfo', action:'index')}"
 				},
 			    trialFilterUrl: "${createLink(controller:'trial',action:'trialFilterJSON')}",

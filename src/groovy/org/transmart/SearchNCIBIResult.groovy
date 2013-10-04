@@ -36,7 +36,7 @@ class SearchNCIBIResult {
 	def result
 	String resultType
 
-	def totalCount = {
+	def totalNCIBICount = {
 		return metscapeCount + conceptGenCount + gene2MeshCount + metab2MeshCount
 	}
 

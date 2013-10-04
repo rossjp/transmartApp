@@ -22,7 +22,7 @@ class CrossController {
 	def experimentAnalysisQueryService
 	def literatureQueryService
 	def TrialQueryService
-	def SearchNcibiService
+	def searchNcibiService
 	def documentService
 	def searchKeywordService
 	String authKeyGG = null
@@ -213,7 +213,11 @@ class CrossController {
 		def sResult = new SearchNCIBIResult()
 		log.info "doSearch:"+params
 		log.info "isTextOnly = " + filter.globalFilter.isTextOnly()
-		SearchNcibiService.doResultCount(sResult,filter)
+		searchNcibiService.doResultCount(sResult,filter)
+		if (sResult) {
+			log.info("sResult exists")
+			log.info("sResults.metscapeCount = " + sResult.metscapeCount)
+		}
 		filter.summaryWithLinks = createSummaryWithLinks(filter)
 		filter.createPictorTerms()
 		boolean defaultSet = false;
