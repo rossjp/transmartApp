@@ -49,7 +49,43 @@ public class SearchNcibiService{
 			return TimeCategory.minus(new Date(), start)
 		}
 	
+<<<<<<< HEAD
 		def duration = 0;
+=======
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+
+		sResult.litJubOncAltCount = 0
+		sResult.litJubOncInhCount = 0
+		sResult.litJubOncIntCount = 0
+		sResult.litJubAsthmaAltCount = 0
+		sResult.litJubAsthmaInhCount = 0
+		sResult.litJubAsthmaIntCount = 0
+		sResult.litJubAsthmaPECount = 0
+		sResult.experimentCount = 0
+		sResult.trialCount = 0
+		sResult.analysisCount = 0
+		sResult.mRNAAnalysisCount = 0
+		sResult.allAnalysiCount = 0
+		sResult.documentCount = 0
+		sResult.profileCount = 0
+		sResult.documentCount = 10
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.metScapeCount = 91
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.conceptCount = 92
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.gene2MeshCount = 93
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		sResult.metab2MeshCount = 94
+//		duration = benchmark {sResult.documentCount = documentService.documentCount(searchFilter)}
+//		log.info("Document Count Duration: ${duration}")
+		
+>>>>>>> 120b25ed84f19d9c481d4cc0f1366d5c61a3bf07
 		
 		duration = benchmark {sResult.metscapeCount = metscapeService.getCount(searchFilter)}
 		log.info("Metscape Count Duration: ${duration}")

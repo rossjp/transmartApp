@@ -374,7 +374,7 @@
 			<g:render template="/layouts/crossheader" model="['app':'cross']" />
             <div id="summarycount-div" style="background:#dfe8f6; color:#000; padding:5px 10px 5px 10px;border-top:1px solid #36c;">
                 <span id="summarycount-span" style="font-size:13px; font-weight:bold;">
-                    About ${searchresult?.totalCount()} results found
+                    About ${searchresult?.totalNCIBICount()} results found
                 </span>
             </div>
             <div id="ncibi-summary-div" style="padding:5px 10px 5px 10px;font-size:12px;line-height:17px;">
