@@ -810,7 +810,7 @@ function showPathwaySearchBox(selectedListEltName, pathwayAndIdEltName, searchIn
 	            	 selectedListElt.setSelectionRange(selectedListText.length, selectedListText.length);
 	             }
 	             
-	             //Put the gene display || transmart search_keywork id in selectedGenesAndIdSNPViewer hidden field, separated by |||
+	             //Put the gene display || transmart search_keyword id in selectedGenesAndIdSNPViewer hidden field, separated by |||
 	             var geneAndIdStr = selectedGeneStr + '||' + record.data.id;
 	             var geneAndIdElt = Ext.get(pathwayAndIdEltName);
 	             var geneAndIdListText = geneAndIdElt.dom.value;
@@ -1901,6 +1901,8 @@ function getTreeNodeFromJsonNode(concept)
     var dimcode				=	null;
     var newnode				=	null;
     var leaf				=	false;
+    var href				=	null;
+    var hrefTarget			=	'_blank';
     var draggable			=	true;
     var comment				=	null;
     var normalunits			=	null;
@@ -1926,6 +1928,7 @@ function getTreeNodeFromJsonNode(concept)
                               : 'N'
 
     //We need to replace the < signs with &lt;
+    oldName = name;
     name = name.replace(/</gi, "&lt;");
 
     var iconCls = null;
@@ -1940,6 +1943,9 @@ function getTreeNodeFromJsonNode(concept)
     if (visualattributes.indexOf('LEAF') != -1 ||
         visualattributes.indexOf('MULTIPLE') != -1) {
         leaf = true;
+	if (oldName.indexOf("http") > -1) {
+	    href = oldName;
+	}
         /* otherwise false; see init */
     }
     if (visualattributes.indexOf('CONTAINER') != -1) {
@@ -1968,7 +1974,9 @@ function getTreeNodeFromJsonNode(concept)
         text          : name,
         draggable     : draggable,
         leaf          : leaf,
-        id            : key,
+        href	      : href,
+	hrefTarget    : hrefTarget,
+	id            : key,
         comment       : comment,
         qtip          : tooltip,
         iconCls       : iconCls,
