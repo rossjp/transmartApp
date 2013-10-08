@@ -1,27 +1,20 @@
 package org.transmart.search
 
-import org.ncibi.service.util.Util
+import org.ncibi.pubmed.RenderUsingSax
 import org.transmart.SearchFilter
-import org.w3c.dom.Document
 
 class PubmedNCIBIService {
 	
-	def getPubmedResultsByGene(String geneSymbol)
+	private int LIMIT = 20;
+	
+	def getPubmedResultsByGene(geneid)
 	{
-		def results = []
-		try {
-			String urlString = "http://nlp.ncibi.org/fetch?tagger=nametagger&type=gene&id=" + URLEncoder.encode(geneSymbol);
-			URL ncibiWS = new URL(urlString)
-			URLConnection urlConnection = ncibiWS.openConnection()
-			InputStream inputStream = urlConnection.getInputStream()
-			
-			Document xmlDocument = Util.xmlDocumentFrom(inputStream)
-
-			results = g2mXmlToG2MResult(xmlDocument)
-			
-		} catch(Exception e) {
-			e.printStackTrace()
-		}
+		def RenderUsingSax r = new RenderUsingSax()
+		
+		r.processDocument(geneid,LIMIT)
+		
+		def results = r.arrayResults()
+		
 		return results
 	}
 

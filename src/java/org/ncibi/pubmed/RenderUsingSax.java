@@ -100,21 +100,18 @@ public class RenderUsingSax {
 		public void startElement(String uri, String localName, String qName,
 				Attributes attributes) throws SAXException {
 
-			switch (qName) {
-			case "Article":
+			if (qName.equals("Article")) {
 				currentAbstract = new Abstract();
 				currentAbstract.pmidString = attributes.getValue("pmid");
-				break;
-			case "Paragraph":
+			} else if (qName.equals("Paragraph")) {
 				paragraph = new StringBuffer();
 				paragraph.append("\n");
-				break;
-			case "Gene":
+			} else if (qName.equals("Gene"))
+			{
 				paragraph.append(content);
 				content="";
 				String id = attributes.getValue("id");
 				paragraph.append(" <a class='gene' href='" + makeHref(id) +"'>");
-				break;
 			}
 		}
 
@@ -125,27 +122,23 @@ public class RenderUsingSax {
 		@Override
 		public void endElement(String uri, String localName, String qName)
 				throws SAXException {
-			switch (qName) {
-			case "Result":
+			
+			if (qName.equals("Result")) {
 				paragraph.append(content);
 				content="";
 				currentAbstract.html = paragraph.toString();
 				list.add(currentAbstract);
-				break;
-			case "Sentence":
+			} else if (qName.equals("Sentence")) {
 				paragraph.append(content);
 				content="";
-				break;
-			case "Paragraph":
+			} else if (qName.equals("Paragraph")) {
 				paragraph.append(content);
 				content="";
 				paragraph.append("\n");
-				break;
-			case "Gene":
+			} else if (qName.equals("Gene")) {
 				paragraph.append(content);
 				content="";
 				paragraph.append("</a> ");				
-				break;
 			}
 		}
 
