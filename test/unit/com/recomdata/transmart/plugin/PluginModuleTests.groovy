@@ -22,6 +22,8 @@ package com.recomdata.transmart.plugin
 
 import grails.test.*
 
+import org.junit.Ignore
+
 class PluginModuleTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
@@ -37,7 +39,7 @@ class PluginModuleTests extends GrailsUnitTestCase {
 		pluginModule.name = 'Test Plugin Module'
 		pluginModule.category = PluginModuleCategory.DEFAULT
 		pluginModule.moduleName = 'TestPluginModule'
-		pluginModule.version = '0.1'
+//		pluginModule.version = '0.1'  -- no such field in domain object - Terry Weymouth - 09/10/2013
 		pluginModule.active = true
 		pluginModule.hasForm = false
 		pluginModule.formLink = null
