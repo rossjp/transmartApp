@@ -24,7 +24,7 @@ class PubmedController {
 		def results = []
 		if (!geneids.empty) {
 			def int geneid = geneids[0]
-			results = pubmedNCIBIService.getPubmedResultsByGene(geneid)
+			results = pubmedNCIBIService.getPubmedResultsByGene(geneid,length)
 			log.info("PubmedNCIBIService - " 
 				+ " length parameter: string = " + lengthString + ", value = " + length + "; " 
 				+ "results size = " + results.size())

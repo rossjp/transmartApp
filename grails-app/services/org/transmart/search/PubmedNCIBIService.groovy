@@ -5,20 +5,18 @@ import org.transmart.SearchFilter
 
 class PubmedNCIBIService {
 	
-	private int LIMIT = 20;
-	
-	def getPubmedResultsByGene(geneid)
+	def getPubmedResultsByGene(int geneid,int limit)
 	{
 		def RenderUsingSax r = new RenderUsingSax()
 		
-		r.processDocument(geneid,LIMIT)
+		r.processDocument(geneid,limit)
 		
-		def results = r.arrayResults()
+		def results = r.getArrayResults()
 		
 		return results
 	}
 
-	def int getCount(SearchFilter searchFilter){
+	def int getCount(SearchFilter searchFilter,int limit){
 		def searchText = searchFilter.searchText
 		if (!searchText) return 0
 		

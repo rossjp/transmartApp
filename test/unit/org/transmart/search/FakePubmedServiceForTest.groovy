@@ -1,17 +1,26 @@
 package org.transmart.search
 
+import org.ncibi.pubmed.PubmedQueryExamplar;
+
 class FakePubmedServiceForTest extends PubmedNCIBIService {
 	
 	def fakeData
 	
-	def expectedValues = [
-			7828893,
-			11850830,
-			16078733
-		]
-
-
-	def setUpFakeData() {
+	def examplar = new PubmedQueryExamplar()
+	
+	def String getInputGeneid() {
+		return examplar.inputGeneid
+	}
+		
+	def String getInputLength() {
+		return examplar.inputLength	
+	}
+	
+	def getExpectedValues() {
+		return examplar.expectedValues
+	}
+	
+	def setUpFakeData() { // based on values actually returned from exemplar (as of 09 Oct 2013) - Terry E. Weymouth
 		def results = []
 		def part = [:]
 		part.pmid = "7828893"
@@ -27,7 +36,8 @@ class FakePubmedServiceForTest extends PubmedNCIBIService {
 	}
 	
 	@Override
-	def getPubmedResultsByGene(geneid) {
+	def getPubmedResultsByGene(geneid,length) {
 		return fakeData;
 	}
+
 }
