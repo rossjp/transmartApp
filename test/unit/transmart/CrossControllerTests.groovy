@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(CrossController)
 class CrossControllerTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }
