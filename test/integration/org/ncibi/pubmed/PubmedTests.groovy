@@ -38,5 +38,14 @@ class PubmedTests {
 			def int n = new Integer(a.pmid).intValue()
 			assertTrue expectedValues.indexOf(n) > -1
 		}
+		
+		//for debugging
+//		print "def results = []\n"
+//		print "def part = []\n"
+//		for (def a in results){
+//			print "part.pmid = " + a.pmid + "\n"
+//			print "part.paragraph = \"" + a.pargraph + "\"\n"
+//			print "results.add(part)"
+//		}
     }
 }
