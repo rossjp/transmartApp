@@ -19,6 +19,7 @@ package org.transmart.search
  ******************************************************************/
 
 import org.transmart.SearchFilter;
+import org.transmart.searchapp.SearchKeyword;
 import org.transmart.searchapp.G2MResult;
 
 import java.awt.print.Printable;
@@ -124,8 +125,59 @@ class Gene2MeshService {
 		return results
 	}
 	
-	def int getCount(SearchFilter searchFilter){
-		return 93
+	def int getCount(SearchFilter searchFilter)
+	{
+		def geneSearchTerms = []
+		def diseaseSearchTerms = []
+		def count = 0
+		
+		for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
+		{
+			if(keyword != null)
+			{
+				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
+				{
+					diseaseSearchTerms.add(keyword.keyword)
+				}
+				else if (keyword.dataCategory == 'GENE')
+				{
+					geneSearchTerms[keyword.keyword] = keyword.dataCategory
+				}
+			}
+
+		}
+	
+		if (diseaseSearchTerms[0] != null)
+		{
+			String urlString = "http://gene2mesh.ncibi.org/fetch?count&mesh=" + URLEncoder.encode(diseaseSearchTerms[0])
+		}
+		else if (geneSearchTerms[0] != null)
+		{
+			String urlString = "http://gene2mesh.ncibi.org/fetch?count&genesymbol=" + URLEncoder.encode(geneSearchTerms[0])
+		}
+		
+		try 
+		{
+			XPath xpath = XPathFactory.newInstance().newXPath()
+			URL ncibiWS = new URL(urlString)
+			URLConnection urlConnection = ncibiWS.openConnection()
+			InputStream inputStream = urlConnection.getInputStream()
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance()
+			factory.setCoalescing(true)
+			factory.setNamespaceAware(true)
+			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream)
+			
+			count = (String)xpath.evaluate("//Count/text()", xmlDocument, XPathConstants.NUMBER)
+			
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace()
+		}
+		
+		return count
+		
 	}	
 
 }
