@@ -24,7 +24,8 @@ public class RenderUsingSax {
 	private static final String BASE_URL = "http://nlp.ncibi.org/fetch";
 	
 	private List <Abstract> resultList = new ArrayList<Abstract>();
-	private int inputValueLimit = 0;
+	private int sentanceLimitOnFetch = 0;
+	private boolean documentCountExceeded = false;
 
 	@SuppressWarnings("deprecation")
 	private static String makeURLString(int geneId, int limit) {
@@ -34,13 +35,14 @@ public class RenderUsingSax {
 	}
 	
 	public void processDocument(int geneId, int limit) throws Exception {
-		inputValueLimit = limit;
+		sentanceLimitOnFetch = limit;
 		resultList = parseToResutlList(geneId, limit);
 	}
 	
 	public String getHtmlResults() {
 		
-		int limit = inputValueLimit;
+		int limit = sentanceLimitOnFetch;
+		documentCountExceeded = false;
 		
 		// make formatted XML output		
 		StringBuffer outBuffer = new StringBuffer();
@@ -55,18 +57,29 @@ public class RenderUsingSax {
 		return outBuffer.toString();		
 	}
 	
-	public Object[] getArrayResults() {
+	public Object[] getArrayResults(int count) {
 		
-		int limit = inputValueLimit;
+		// int limit = inputValueLimit;
+		// Note: inputValueLimit is actual limit on number of sentences
+		// here we have the limit on the number of documents
+		
+		int limit = count;
 		
 		// make array of hash-table values (for Grails)
 		ArrayList<Map<String,String>> holder = new ArrayList<Map<String,String>>();
 		int outCount = 0;
 		for (Abstract a: resultList) {
-			if (++outCount > limit) break;
+			if (++outCount > limit) {
+				documentCountExceeded = true;
+				break;
+			}
 			holder.add(a.toMap());
 		}
 		return (Object[]) holder.toArray();
+	}
+	
+	public boolean moreAvailable() {
+		return documentCountExceeded;
 	}
 
 	private List<Abstract> parseToResutlList(int geneId, int limit) throws ParserConfigurationException, SAXException, IOException {

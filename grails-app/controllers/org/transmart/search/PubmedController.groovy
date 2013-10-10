@@ -5,15 +5,13 @@ import org.transmart.searchapp.SearchKeyword
 
 class PubmedController {
 
-	def DEFAULT_LENGTH = 20
-	
 	def pubmedNCIBIService
 	
     def index() {
 
 		def geneids = []
 		
-		// check params first - for testing 
+		// check params first - for testing and loop back view (to see more articles)
 		def geneidString = params.geneids
 		def lengthString = params.length
 
@@ -29,16 +27,19 @@ class PubmedController {
 		}
 
 		def length = convertLength(lengthString)
-		if (length < 0) {
-			length = DEFAULT_LENGTH
-		}
 
 		def results = []
 		def int geneid = 0
 		def geneSymbol = ""
+		def more = false
 		if (!geneids.empty) {
 			geneid = geneids[0]
-			results = pubmedNCIBIService.getPubmedResultsByGene(geneid,length)
+			if (length < 0) {
+				results = pubmedNCIBIService.getPubmedResultsByGene(geneid)
+			} else {
+				results = pubmedNCIBIService.getPubmedResultsByGene(geneid,length)
+			}
+			more = pubmedNCIBIService.moreDocumentsAvailable
 			geneSymbol = SearchUtils.geneSymbols(session)[0]
 			log.info("PubmedController - " 
 				+ "length parameter: string = " + lengthString + ", value = " + length + "; " 
@@ -46,7 +47,7 @@ class PubmedController {
 		} else {
 			log.info("PubmedController - geneid list is empty!")
 		}
-		render(view: "index", model:[doclets: results, geneid: geneid, genesymbol: geneSymbol])
+		render(view: "index", model:[doclets: results, geneid: geneid, genesymbol: geneSymbol, more: more])
 	}
 	
 	private convertLength(string) {

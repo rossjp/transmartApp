@@ -17,6 +17,16 @@
 	Sorry, no results found.
 </g:if>
 <g:else>
+	<g:if test="${more }">
+		<div class="note">Showing only ${doclets.size()} documents. Additional documents are available.
+			See: up to <a href="${createLink(controller:'pubmed',action:'index',params:[geneids:geneid,length:50])}" target="_blank">50</a>, 
+			up to <a href="${createLink(controller:'pubmed',action:'index',params:[geneids:geneid,length:100])}" target="_blank">100</a>, 
+			<a href="${createLink(controller:'pubmed',action:'index',params:[geneids:geneid,length:100000])}" target="_blank">all</a>
+		</div>
+	</g:if>
+	<g:else>
+		<div class="note">Showing ${doclets.size()} documents. </div>
+	</g:else>
 	<h1>Matches for gene search: ${genesymbol}</h1>
 	<table class="trborderbottom" width="100%" border="2">
 		<thead>
