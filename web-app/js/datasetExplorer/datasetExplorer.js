@@ -218,6 +218,7 @@ Ext.onReady(function()
 						}
 					}
 				}
+                /*
 				,
 				'-'
 				,
@@ -226,7 +227,9 @@ Ext.onReady(function()
 					handler : function()	{
 						exportDataSets();
 					}
-				}]
+				}
+				*/
+				]
 			}
 		);
 
@@ -672,7 +675,7 @@ Ext.onReady(function()
 				//tbar : tb2,
 				activeTab : 0,
 		        tools:[{
-					id:'help',
+					id:'help help-resana-panel',
 					qtip:'Click for Generate Summary Statistics help',
 				    handler: function(event, toolEl, panel){
 				    	D2H_ShowHelp("1074",helpURL,"wndExternal",CTXT_DISPLAY_FULLHELP );
@@ -703,7 +706,7 @@ Ext.onReady(function()
 					{
 					activate : activateTab,
 					deactivate: function(){
-						resultsTabPanel.tools.help.dom.style.display="none";
+                        resultsTabPanel.tools['help help-resana-panel'].dom.style.display="none";
 					}
 					}
 				,
@@ -733,7 +736,7 @@ Ext.onReady(function()
 							getJobsData(p)
 						},
 						deactivate: function(){
-							//resultsTabPanel.tools.help.dom.style.display="none";
+							//resultsTabPanel.tools['help help-resana-panel'].dom.style.display="none";
 						}
 					},
 					collapsible : true						
@@ -758,7 +761,7 @@ Ext.onReady(function()
 			        	 	return;
 						},
 						deactivate: function(){
-							//resultsTabPanel.tools.help.dom.style.display="none";
+							//resultsTabPanel.tools['help help-resana-panel'].dom.style.display="none";
 						}
 					},
 					collapsible : true						
@@ -829,7 +832,7 @@ Ext.onReady(function()
 							getExportJobs(p)
 						},
 						deactivate: function(){
-							//resultsTabPanel.tools.help.dom.style.display="none";
+							//resultsTabPanel.tools['help help-resana-panel'].dom.style.display="none";
 						}
 					},
 					collapsible : true						
@@ -865,7 +868,7 @@ Ext.onReady(function()
 							initMetaCoreTab();
 						},
 						deactivate: function(){
-							//resultsTabPanel.tools.help.dom.style.display="none";
+							//resultsTabPanel.tools['help help-resana-panel'].dom.style.display="none";
 						}
 					},
 					collapsible : true						
@@ -4065,7 +4068,7 @@ function getExportButtonSecurityComplete(result)
 
 function activateTab(tab)
 {
-	resultsTabPanel.tools.help.dom.style.display="";
+    resultsTabPanel.tools['help help-resana-panel'].dom.style.display="";
 }
 
 function getSummaryGridData()
@@ -4164,11 +4167,10 @@ function getAnalysisPanelContent()
 
 function printPreview(content)
 {
-	var stylesheet = "<html><head><link rel='stylesheet' type='text/css' href='css/chartservlet.css'></head><body>";
+	var stylesheet = "<html><head><link rel='stylesheet' type='text/css' href='../css/chartservlet.css'></head><body>";
 	var generator = window.open('', 'name', 'height=400,width=500, resizable=yes, scrollbars=yes');
 	var printbutton = "<input type='button' value=' Print this page 'onclick='window.print();return false;' />";
-	var savebutton = "<input type='button' value='Save'  onclick='document.execCommand(\"SaveAs\",null,\".html\")' />";
-	generator.document.write(stylesheet + printbutton + savebutton + content);
+	generator.document.write(stylesheet + printbutton + content);
 	generator.document.close();
 	// generator.print();
 }
