@@ -19,6 +19,7 @@ package org.transmart.search
  ******************************************************************/
 
 import org.transmart.SearchFilter;
+import org.transmart.searchapp.SearchKeyword;
 import org.transmart.searchapp.M2MResult;
 
 import java.awt.print.Printable;
@@ -128,8 +129,46 @@ class Metab2MeshService {
 		return results;
 	}
 	
-	def int getCount(SearchFilter searchFilter){
-		return 94
+	def int getCount(SearchFilter searchFilter)
+	{
+		def searchTerms = []
+		def count = 0
+		def urlString
+		
+		for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
+		{
+			if(keyword != null & (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE'))
+			{
+				searchTerms.add(keyword.keyword)
+			}
+
+		}
+	
+		if (searchTerms.size() > 0)
+		{
+			urlString = "http://metab2mesh.ncibi.org/fetch?count&mesh=" + URLEncoder.encode(searchTerms[0])
+			try 
+			{
+				XPath xpath = XPathFactory.newInstance().newXPath()
+				URL ncibiWS = new URL(urlString)
+				URLConnection urlConnection = ncibiWS.openConnection()
+				InputStream inputStream = urlConnection.getInputStream()
+	
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance()
+				factory.setCoalescing(true)
+				factory.setNamespaceAware(true)
+				Document xmlDocument = factory.newDocumentBuilder().parse(inputStream)
+				
+				count = (Integer)xpath.evaluate("//Count/text()", xmlDocument, XPathConstants.NUMBER)
+				
+			}
+			catch(Exception e) 
+			{
+				e.printStackTrace()
+			}
+		}
+		
+		return count
 	}
 	
 }

@@ -134,8 +134,6 @@ class Gene2MeshService {
 		
 		for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
 		{
-			System.out.println(keyword.dataCategory)
-			System.out.println(keyword.keyword)
 			if(keyword != null)
 			{
 				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
