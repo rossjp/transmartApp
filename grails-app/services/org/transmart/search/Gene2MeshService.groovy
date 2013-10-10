@@ -130,9 +130,12 @@ class Gene2MeshService {
 		def geneSearchTerms = []
 		def diseaseSearchTerms = []
 		def count = 0
+		def urlString
 		
 		for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
 		{
+			System.out.println(keyword.dataCategory)
+			System.out.println(keyword.keyword)
 			if(keyword != null)
 			{
 				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
@@ -141,39 +144,42 @@ class Gene2MeshService {
 				}
 				else if (keyword.dataCategory == 'GENE')
 				{
-					geneSearchTerms[keyword.keyword] = keyword.dataCategory
+					geneSearchTerms.add(keyword.keyword)
 				}
 			}
 
 		}
 	
-		if (diseaseSearchTerms[0] != null)
+		if (diseaseSearchTerms.size() > 0)
 		{
-			String urlString = "http://gene2mesh.ncibi.org/fetch?count&mesh=" + URLEncoder.encode(diseaseSearchTerms[0])
+			urlString = "http://gene2mesh.ncibi.org/fetch?count&mesh=" + URLEncoder.encode(diseaseSearchTerms[0])
 		}
-		else if (geneSearchTerms[0] != null)
+		else if (geneSearchTerms.size() > 0)
 		{
-			String urlString = "http://gene2mesh.ncibi.org/fetch?count&genesymbol=" + URLEncoder.encode(geneSearchTerms[0])
+			urlString = "http://gene2mesh.ncibi.org/fetch?count&genesymbol=" + URLEncoder.encode(geneSearchTerms[0])
 		}
 		
-		try 
+		if ((diseaseSearchTerms.size() + geneSearchTerms.size()) > 0)
 		{
-			XPath xpath = XPathFactory.newInstance().newXPath()
-			URL ncibiWS = new URL(urlString)
-			URLConnection urlConnection = ncibiWS.openConnection()
-			InputStream inputStream = urlConnection.getInputStream()
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance()
-			factory.setCoalescing(true)
-			factory.setNamespaceAware(true)
-			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream)
-			
-			count = (String)xpath.evaluate("//Count/text()", xmlDocument, XPathConstants.NUMBER)
-			
-		}
-		catch(Exception e) 
-		{
-			e.printStackTrace()
+			try 
+			{
+				XPath xpath = XPathFactory.newInstance().newXPath()
+				URL ncibiWS = new URL(urlString)
+				URLConnection urlConnection = ncibiWS.openConnection()
+				InputStream inputStream = urlConnection.getInputStream()
+	
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance()
+				factory.setCoalescing(true)
+				factory.setNamespaceAware(true)
+				Document xmlDocument = factory.newDocumentBuilder().parse(inputStream)
+				
+				count = (Integer)xpath.evaluate("//Count/text()", xmlDocument, XPathConstants.NUMBER)
+				
+			}
+			catch(Exception e) 
+			{
+				e.printStackTrace()
+			}
 		}
 		
 		return count
