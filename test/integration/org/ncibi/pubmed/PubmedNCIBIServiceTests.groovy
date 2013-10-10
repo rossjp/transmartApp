@@ -52,7 +52,7 @@ class PubmedNCIBIServiceTests {
 		r.processDocument(geneid,length)
 
 		def results = []
-		results = r.arrayResults;
+		results = r.getArrayResults(6);
 		
 		println(results.size())
 		
