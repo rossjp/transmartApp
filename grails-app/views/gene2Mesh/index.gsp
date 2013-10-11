@@ -39,11 +39,11 @@
 			<th>Gene ID</th>
 			<th>Gene Description</th>
 			<th>MeSH Descriptor</th>
-<%--			<th>Descriptor ID</th>--%>
 			<th>MeSH Qualifier</th>
+			<th>p-Value</th>
 			<th>Fold Change</th>
 			<th>ChiSquare</th>
-			<th>Publications</th>
+			<th>Pubs</th>
 		</tr>
 		</thead>
 	
@@ -55,10 +55,11 @@
 	  		<td>${g.geneDescription}</td>		
 	  		<td><a href="http://www.ncbi.nlm.nih.gov/mesh/${g.descriptorIDNum}">${g.descriptorName}</td>	
 <%--	  		<td>${m.descriptorID}</td>--%>
+			<td>${g.qualifier}</td>
+	  		<td><g:formatNumber number="${g.fisherExact}" format="00.00E00" /></td>
 	  		<td><g:formatNumber number="${g.fover}" maxFractionDigits="1" /></td>	
 	  		<td><g:formatNumber number="${g.chiSquare}" maxFractionDigits="1" /></td>	
-	  		<td><g:formatNumber number="${g.fisherExact}" format="00.00E00" /></td>
-	  		<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/${g.pmids}">view in Pubmed</a></td>		  			
+	  		<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/${g.pmids}">view</a></td>		  			
 		</tr>
 		</g:each>		
 		</tbody>		
