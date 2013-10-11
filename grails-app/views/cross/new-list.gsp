@@ -125,8 +125,7 @@
 			    },
 			    pubmed: { // new tab 0
 				    count: ${searchresult.pubmedCount},
-                    resultsUrl: "${createLink(controller:'document', action:'datasourceDocument')}",
-                    filterUrl: "${createLink(controller:'document', action:'showDocumentFilter')}"
+				    inputUrl: "${createLink(controller:'pubmed', action:'index')}",
 				},
 				metscape: { // new tab1 - /transmart/web-app/js/maintabncibipanel.js
 					count: ${searchresult.metscapeCount},

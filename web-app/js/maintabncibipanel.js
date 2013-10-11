@@ -167,32 +167,12 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id:"tab5",
                 iconCls: "docTab",
-                   title: "PubMed Abstracts (" + pageData.pubmed.count + ")",
-                listeners: {
-                    activate: activateTab
-                },
-                layout: "card",
-                layoutConfig: { deferredRender: true },
-                activeItem: 0,
-                items: [
-                    {
-                        id: "documents-results-panel",
-                        autoLoad: {
-                            url: pageData.pubmed.resultsUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }, {
-                        id: "documents-filter-panel",
-                        autoLoad: {
-                            url: pageData.pubmed.filterUrl,
-                            nocache: true,
-                            discardUrl: true,
-                            method: "POST"
-                        }
-                    }
-                ]
+                title: "PubMed Abstracts (" + pageData.pubmed.count + ")",
+                listeners: {activate: activateTab},
+                xtype: "iframepanel",
+                closable: false,
+                loadMask: true,
+                defaultSrc: pageData.pubmed.inputUrl,
             },
             {
                 id: "tab6",

@@ -145,10 +145,7 @@ public class ConceptWebService {
 
 		return t;
 	}
-	
-	
-	
-	
+
 	
 	public String searchConceptCount(String searchTerm) throws Exception {
 		String query = sql.getString("conceptSearchCount");
