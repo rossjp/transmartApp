@@ -54,7 +54,10 @@ public class SearchNcibiService{
 		duration = benchmark {sResult.pubmedCount = pubmedNCIBIService.getCount(searchFilter)}
 		log.info("Pubmed Count Duration: ${duration}")
 		
-		duration = benchmark {sResult.metscapeCount = metscapeService.getCount(searchFilter)}
+		duration = benchmark {
+			def counts = metscapeService.getCount(searchFilter)
+			sResult.metscapeCount = counts.gene + counts.enzyme + counts.reaction + counts.compound
+			}
 		log.info("Metscape Count Duration: ${duration}")
 		
 		duration = benchmark {sResult.conceptGenCount = conceptGenCountService.getCount(searchFilter)}
