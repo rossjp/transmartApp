@@ -13,13 +13,13 @@ class ConceptGenCountService {
 		
 		def value = 0;
 		
-		log.info("ConceptGenCountService: searchText = " + searchText)
+		// log.info("ConceptGenCountService: searchText = " + searchText)
 
         StringBuffer stringBuffer = new StringBuffer();
         try
         {
 			def urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
-			log.info("ConceptGenCountService: urlString = " + urlString)
+			// log.info("ConceptGenCountService: urlString = " + urlString)
             def u = new URL(urlString)
             BufferedReader br = new BufferedReader(new InputStreamReader(u.openStream()));
             String line = "";
