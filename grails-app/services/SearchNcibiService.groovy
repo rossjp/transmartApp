@@ -21,10 +21,8 @@ import groovy.time.*
 
 import org.transmart.SearchFilter
 import org.transmart.SearchNCIBIResult
-import org.transmart.search.ConceptGenCountService
-import org.transmart.search.Gene2MeshService
-import org.transmart.search.Metab2MeshService
-import org.transmart.search.MetscapeService
+import org.transmart.search.count.CountType;
+import org.transmart.search.count.TotallyBogusCountCache
 
 /**
   * $Id: SearchService.groovy 10098 2011-10-19 18:39:32Z mmcduffie $
@@ -40,6 +38,20 @@ public class SearchNcibiService{
 	def gene2MeshService
 	def metab2MeshService
 
+	def int cacheCount(SearchNCIBIResult sResult, SearchFilter searchFilter, CountType type, countsClosure) {
+		def searchText = searchFilter.searchText
+		def int n = 0;
+		if (TotallyBogusCountCache.haveCount(type,searchText)) {
+			n = TotallyBogusCountCache.findCount(type,searchText)
+			//log.info("For Type - " + type + ": count from chache = " + n)
+		} else {
+			n = countsClosure(searchFilter)
+			TotallyBogusCountCache.postCount(type,searchText,n)
+			//log.info("For Type - " + type + ": count from closure = " + n)
+		}
+		return n
+	}
+	
 	def doResultCount(SearchNCIBIResult sResult, SearchFilter searchFilter){
 		
 		// Closure to measure the time performance
@@ -47,26 +59,54 @@ public class SearchNcibiService{
 			def start = new Date()
 			closure.call()
 			return TimeCategory.minus(new Date(), start)
-		}
+		}		
 	
 		def duration = 0
 
-		duration = benchmark {sResult.pubmedCount = pubmedNCIBIService.getCount(searchFilter)}
+		duration = benchmark {
+			sResult.pubmedCount = 
+				cacheCount(sResult, searchFilter, CountType.PUBMED, {
+					def value = pubmedNCIBIService.getCount(it)
+					return value;
+				})
+		}
 		log.info("Pubmed Count Duration: ${duration}")
 		
 		duration = benchmark {
-			def counts = metscapeService.getCount(searchFilter)
-			sResult.metscapeCount = counts.gene + counts.enzyme + counts.reaction + counts.compound
-			}
+			sResult.metscapeCount = 
+				cacheCount(sResult, searchFilter, CountType.METSCAPE, {
+					def counts = metscapeService.getCount(it)
+					def value = counts.gene + counts.enzyme + counts.reaction + counts.compound
+					return value;
+				})
+		}
 		log.info("Metscape Count Duration: ${duration}")
 		
-		duration = benchmark {sResult.conceptGenCount = conceptGenCountService.getCount(searchFilter)}
+		duration = benchmark {
+			sResult.conceptGenCount = 
+				cacheCount(sResult, searchFilter, CountType.CONCEPT, {
+					def value = conceptGenCountService.getCount(it)
+					return value;
+				})
+		}
 		log.info("ConceptGen Count Duration: ${duration}")
 
-		duration = benchmark {sResult.gene2MeshCount = gene2MeshService.getCount(searchFilter)}
+		duration = benchmark {
+			sResult.gene2MeshCount = 
+				cacheCount(sResult, searchFilter, CountType.G2M, {
+					def value = gene2MeshService.getCount(it)
+					return value;
+				})
+		}
 		log.info("Gene2Mesh Count Duration: ${duration}")
 
-		duration = benchmark {sResult.metab2MeshCount = metab2MeshService.getCount(searchFilter)}
+		duration = benchmark {
+			sResult.metab2MeshCount = 
+				cacheCount(sResult, searchFilter, CountType.M2M, {
+					def value = metab2MeshService.getCount(it)
+					return value;
+				})
+		}
 		log.info("Metab2Mesh Count Duration: ${duration}")
 
 	}
