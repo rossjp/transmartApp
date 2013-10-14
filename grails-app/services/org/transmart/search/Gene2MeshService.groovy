@@ -114,7 +114,7 @@ class Gene2MeshService {
 				String dName = (String)xpath.evaluate("MeSH/Descriptor/Name/text()", g2mNode, XPathConstants.STRING)
 				String did = (String)xpath.evaluate("MeSH/Descriptor/Identifier/text()", g2mNode, XPathConstants.STRING)
 				String didNum = did.replace('D', '68');
-				String qualifier = (String)xpath.evaluate("MeSH/Descriptor/text()", g2mNode, XPathConstants.STRING)
+				String qualifier = (String)xpath.evaluate("MeSH/Qualifier/Name/text()", g2mNode, XPathConstants.STRING)
 				Double fover = Double.valueOf(xpath.evaluate("Fover/text()", g2mNode, XPathConstants.STRING))
 				Double chiSquare = Double.valueOf(xpath.evaluate("ChiSquare/text()", g2mNode, XPathConstants.STRING))
 				Double fisherExact = Double.valueOf(xpath.evaluate("FisherExact/text()", g2mNode, XPathConstants.STRING))		
