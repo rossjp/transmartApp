@@ -1,7 +1,17 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" import="java.util.*; java.net.*; java.io.*; org.transmart.conceptgen.module.*" %>
 <%
 
-URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+def URL u
+
+if (gene) {
+	if ((user == null) || (user=="") || (user == 'guest')) {
+		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=public&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+	} else {
+		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=private&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+	}
+} else {
+	u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+}
 BufferedReader inp = new BufferedReader(new InputStreamReader(u.openStream()));
 
 ArrayList<String[]> list = new ArrayList<String[]>();
