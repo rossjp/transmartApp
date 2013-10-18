@@ -1,6 +1,7 @@
 package org.transmart.search
 
-import org.transmart.SearchFilter;
+import org.transmart.SearchFilter
+import org.transmart.searchapp.SearchKeyword;
 
 class ConceptGenCountService {
 	
@@ -10,16 +11,41 @@ class ConceptGenCountService {
 		if (searchFilter.searchText == null) return 0
 
         def searchText = searchFilter.searchText
+        def urlString = "";
+        StringBuffer stringBuffer = new StringBuffer();
+
+
+
+        for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
+        {
+            if(keyword != null)
+            {
+                if (keyword.dataCategory == 'GENE')
+                {
+                    if ((user == null) || (user=="") || (user == 'guest'))
+                    {
+                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
+                    }
+                    else
+                    {
+                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=countPrivate&search=" + URLEncoder.encode(searchText, "UTF-8")
+                    }
+                }
+                else
+                {
+                    urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
+                }
+            }
+
+        }
 		
 		def value = 0;
 		
 		// log.info("ConceptGenCountService: searchText = " + searchText)
 
-        StringBuffer stringBuffer = new StringBuffer();
+
         try
         {
-			def urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
-			// log.info("ConceptGenCountService: urlString = " + urlString)
             def u = new URL(urlString)
             BufferedReader br = new BufferedReader(new InputStreamReader(u.openStream()));
             String line = "";
