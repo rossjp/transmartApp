@@ -76,11 +76,16 @@ else
 	<% 
   	for(String[] rs : list)
 	{
+		String owner = "Public";
+		if(rs[4].equals("Experimental"))
+		{
+			owner = "Private";
+		}
 	%>
   	<tr>
    		<td>
 		<div class="resultText"> 
-			<a href="indexws?id=<%= rs[0].trim() %>&queryType=concept&owner=Public" title="Click on name to launch Concept Explorer">
+			<a href="indexws?id=<%= rs[0].trim() %>&queryType=concept&owner=<%= owner %>" title="Click on name to launch Concept Explorer">
 			<%= rs[1].trim() %></a> 
 		</div>
 		<br />

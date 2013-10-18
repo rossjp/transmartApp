@@ -3,23 +3,29 @@
 String conceptId = request.getParameter("id");
 String queryType = "conceptPublic";
 String conceptTypeId = "0";
-String owner = "Public";
+String owner = request.getParameter("owner");
 double fdr = 0.05;
 double pValue = 0.05;
+String service = "cws";
 
-URL u1 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptName&conceptId=" + conceptId);
+if(owner.equals("Private"))
+{
+   service = "cts";
+}
+
+URL u1 = new URL("http://conceptgen.ncibi.org/ConceptWeb/"+ service +"?qt=conceptName&conceptId=" + conceptId);
 BufferedReader inp1 = new BufferedReader(new InputStreamReader(u1.openStream()));
 String conceptName = inp1.readLine();
 
-URL u2 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=enrichment&conceptId=" + conceptId);
+URL u2 = new URL("http://conceptgen.ncibi.org/ConceptWeb/"+ service +"?qt=enrichment&conceptId=" + conceptId);
 BufferedReader inp2 = new BufferedReader(new InputStreamReader(u2.openStream()));
 String data = inp2.readLine();
 
-URL u3 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptGeneList&conceptId=" + conceptId);
+URL u3 = new URL("http://conceptgen.ncibi.org/ConceptWeb/"+ service +"?qt=conceptGeneList&conceptId=" + conceptId);
 BufferedReader inp3 = new BufferedReader(new InputStreamReader(u3.openStream()));
 String data2 = inp3.readLine();
 
-URL u4 = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=conceptType&conceptTypeId=0&conceptId=" + conceptId);
+URL u4 = new URL("http://conceptgen.ncibi.org/ConceptWeb/"+ service +"?qt=conceptType&conceptTypeId=0&conceptId=" + conceptId);
 BufferedReader inp4 = new BufferedReader(new InputStreamReader(u4.openStream()));
 String pieInfo = inp4.readLine();
 
