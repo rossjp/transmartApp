@@ -4,7 +4,7 @@
 def URL u
 
 if (gene) {
-	if ((user == null) || (user=="") || (user == 'guest')) {
+	if ((user == null) || (user=="") || (user.toString().contains('guest'))) {
 		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=public&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
 	} else {
 		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=private&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
@@ -77,7 +77,7 @@ else
   	for(String[] rs : list)
 	{
 		String owner = "Public";
-		if(rs[4].equals("Experimental"))
+		if(rs[4].trim().equals("Experimental"))
 		{
 			owner = "Private";
 		}

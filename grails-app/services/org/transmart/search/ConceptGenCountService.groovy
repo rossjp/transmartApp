@@ -1,11 +1,16 @@
 package org.transmart.search
 
 import org.transmart.SearchFilter
-import org.transmart.searchapp.SearchKeyword;
+import org.transmart.searchapp.SearchKeyword
+import org.transmart.searchapp.AuthUser
 
 class ConceptGenCountService {
 	
+	def springSecurityService
+	
 	def int getCount(SearchFilter searchFilter){
+		
+		log.info("In ConceptGenCountService: getCount")
 		
 		if (searchFilter == null) return 0
 		if (searchFilter.searchText == null) return 0
@@ -14,25 +19,31 @@ class ConceptGenCountService {
         def urlString = "";
         StringBuffer stringBuffer = new StringBuffer();
 
-
+		def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
 
         for (SearchKeyword keyword: searchFilter.globalFilter.getAllFilters())
         {
             if(keyword != null)
             {
+				log.info("In ConceptGenCountService: category: " + keyword.dataCategory)
+				
                 if (keyword.dataCategory == 'GENE')
                 {
-                    if ((user == null) || (user=="") || (user == 'guest'))
+					log.info("In ConceptGenCountService: user: " + user)
+                    if ((user == null) || (user=="") || (user.toString().contains('guest')))
                     {
-                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
+						log.info("In ConceptGenCountService: guest user")
+                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/cts?qt=count&st=" + URLEncoder.encode(searchText, "UTF-8")
                     }
                     else
                     {
-                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=countPrivate&search=" + URLEncoder.encode(searchText, "UTF-8")
+						log.info("In ConceptGenCountService: private user")
+                        urlString = "http://conceptgen.ncibi.org/ConceptWeb/cts?qt=countPrivate&st=" + URLEncoder.encode(searchText, "UTF-8")
                     }
                 }
                 else
                 {
+					log.info("In ConceptGenCountService: not a GENE")
                     urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
                 }
             }
@@ -41,8 +52,8 @@ class ConceptGenCountService {
 		
 		def value = 0;
 		
-		// log.info("ConceptGenCountService: searchText = " + searchText)
-
+		log.info("ConceptGenCountService: searchText = " + searchText)
+		log.info("URL: " + urlString)
 
         try
         {
@@ -53,6 +64,8 @@ class ConceptGenCountService {
 
             while ((line = br.readLine()) != null)
             {
+				log.info("Line (" + lineNum + "): " + line)
+
                 if (lineNum != 0)
                 {
                     stringBuffer.append(line)
@@ -69,6 +82,8 @@ class ConceptGenCountService {
             e.printStackTrace()
         }
 
-        return value
+		log.info("ConceptGenCountService: count = " + value)
+
+		return value
     }
 }

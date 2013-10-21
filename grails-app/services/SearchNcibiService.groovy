@@ -81,10 +81,13 @@ public class SearchNcibiService{
 				})
 		}
 		log.info("Metscape Count Duration: ${duration}")
+
+		log.info("Just before: Calling conceptGenCountService")
 		
 		duration = benchmark {
 			sResult.conceptGenCount = 
 				cacheCount(sResult, searchFilter, CountType.CONCEPT, {
+					log.info("Calling conceptGenCountService")
 					def value = conceptGenCountService.getCount(it)
 					return value;
 				})
