@@ -241,7 +241,7 @@
 				    tabpanel.remove(Ext.getCmp("tab1"));
 				    tabpanel.remove(Ext.getCmp("tab3"));
 				    tabpanel.remove(Ext.getCmp("tab4"));
-				    tabpanel.remove(Ext.getCmp("tab5"));
+//				    tabpanel.remove(Ext.getCmp("tab5"));
 					tabpanel.remove(Ext.getCmp("tab6"));
 				    tabpanel.remove(Ext.getCmp("tab7"));
 				} else  {

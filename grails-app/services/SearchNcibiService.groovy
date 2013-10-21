@@ -43,11 +43,13 @@ public class SearchNcibiService{
 		def int n = 0;
 		if (TotallyBogusCountCache.haveCount(type,searchText)) {
 			n = TotallyBogusCountCache.findCount(type,searchText)
-			//log.info("For Type - " + type + ": count from chache = " + n)
+			log.info("For Type - " + type + ": count from chache = " + n)
 		} else {
 			n = countsClosure(searchFilter)
-			TotallyBogusCountCache.postCount(type,searchText,n)
-			//log.info("For Type - " + type + ": count from closure = " + n)
+			if (n > -1 ){
+				TotallyBogusCountCache.postCount(type,searchText,n)
+				log.info("For Type - " + type + ": count from closure = " + n)
+			}
 		}
 		return n
 	}

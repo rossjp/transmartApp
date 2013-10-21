@@ -431,14 +431,14 @@ function activateTab(tab) {
         filterContextHelpId="1042";
         break;
     case "tab5":
-        setButtonVisibility("filters", true);
+        setButtonVisibility("filters", false);
         setButtonVisibility("summary", false);
         setButtonVisibility("heatmap", false);
         setButtonVisibility("exportsummary", false);
         setButtonVisibility("exportresnet", false);
         setButtonVisibility("studyview", false)
         setButtonVisibility("tea",false);
-        setButtonVisibility("contextHelp", true);
+        setButtonVisibility("contextHelp", false);
         filterContextHelpId="1047";
         break;
     case "tab6":
@@ -598,20 +598,6 @@ function showContextSpecificHelp(activetab, button){
 		break;
 		case "summary-hide-button":
 			filterContextHelpId = "1042";
-			contextHelpButton.setVisible(true);
-		break;
-		default:
-			contextHelpButton.setVisible(false);
-    	}
-    break;
-    case "tab5":
-    	switch(button.id){
-    	case "filters-show-button":
-			filterContextHelpId = "1049";
-			contextHelpButton.setVisible(true);
-		break;
-    	case "filters-hide-button":
-    		filterContextHelpId = "1047";
 			contextHelpButton.setVisible(true);
 		break;
 		default:

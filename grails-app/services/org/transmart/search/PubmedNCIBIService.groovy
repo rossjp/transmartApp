@@ -36,14 +36,20 @@ class PubmedNCIBIService {
 	}
 	
 	def int getCount(SearchFilter searchFilter,int limit){
-		if (searchFilter == null) return 0
+		if (searchFilter == null) return -1
 		def searchText = searchFilter.searchText
-		if (searchText == null) return 0
+		if (searchText == null) return -1
 
 		def geneid = SearchUtils.firstGeneId(searchFilter)
-		if (geneid == null) return 0;
-		def docs = getPubmedResultsByGene(geneid)
-
-		return docs.size()
+		if (geneid == null) return -1
+		def value = -1
+		try {
+			def docs = getPubmedResultsByGene(geneid)
+			value = docs.size()
+		} catch (Throwable t) {
+			log.info("Failure in Pubmed count.", t);
+		}
+ 
+		return value
 	}
 }
