@@ -97,6 +97,7 @@ class CrossController {
 		rows.add([value: "mesh", label:"MeSH term"])
 		rows.add([value: "go", label:"GO Category"])
 		rows.add([value: "path", label:"Pathway"])
+		rows.add([value: "genesig", label:"Gene Signature/Lists"])
 		def result = [rows:rows]
         render(text:params.callback + "(" + (result as JSON) + ")", contentType:"application/javascript")
 	}

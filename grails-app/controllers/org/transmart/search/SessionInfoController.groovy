@@ -21,12 +21,21 @@
 package org.transmart.search
 
 import org.transmart.searchapp.SearchKeyword
+import org.transmart.searchapp.GeneSignature
 
 class SessionInfoController {
 
     def index = {
 		def geneids = SearchUtils.geneidString(session)
+		def filters = session.searchFilter.globalFilter.getAllFilters()
+		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
+		{
+			if (keyword.dataCategory == 'GENESIG')
+			{
+				keyword.metaClass.gs = GeneSignature.get(keyword.bioDataId)
+			}
+		}
 		render(view:'details',
-			model: [geneids: geneids]) 
+			model: [filters: filters]) 
 	}
 }
