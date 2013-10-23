@@ -67,14 +67,14 @@
 
 <div align="center" style="clear:both; margin-left:auto; margin-right:auto; margin-top:20px;text-align:center">
 <table style="width:auto; border:0px; text-align:center; margin:auto;" align="center">
-	<tr><td colspan=2 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
-		<a href="http://transmartfoundation.org/" target="_blank">
-		<img src="${resource(dir:'images',file:'transmart-foundation-logo.png')}" alt="tranSMART Foundation (logo)"/>
+	<tr><td colspan=3 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
+		<a href="http://www.hopkinsmedicine.org/som/" target="_blank">
+		<img src="${resource(dir:'images',file:'johns-hopkins-medicine-logo.png')}" alt="Johns Hopkins Medical Center (logo)"/>
 		</a>
 	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-		<td colspan=2 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
+		<td colspan=3 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
 			<div style="margin-right:auto;margin-left:auto;width:435px;">
    				<div class="x-box-tl">
 					<div class="x-box-tr">
@@ -144,12 +144,15 @@
 			</div>
 		</td>
 	</tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td>&nbsp;</td></tr>	
 	<tr>
 		<td valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
-			<a href="http://www.hopkinsmedicine.org/som/" target="_blank">
-			<img src="${resource(dir:'images',file:'johns-hopkins-logo.png')}" alt="Johns Hopkins Medical Center (logo)"/>
-			</a>
+		<a href="http://medicine.umich.edu/medschool/" target="_blank">
+		<img src="${resource(dir:'images',file:'umich-umms-logo.png')}" width="250" height="185" alt="University of Michigan - Medical School (logo)"/>
+		</a>
 		</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td valign="middle" style="text-align:center;vertical-align:middle;border:4px;font-size:11px" nowrap="nowrap">
 			<table>
 				<tr><td colspan="4">
