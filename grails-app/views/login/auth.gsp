@@ -147,13 +147,12 @@
 	<tr><td>&nbsp;</td></tr>
 	<tr><td>&nbsp;</td></tr>	
 	<tr>
-		<td valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
+		<td valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px;padding:0px 100px 0px 0px" nowrap="nowrap">
 		<a href="http://medicine.umich.edu/medschool/" target="_blank">
-		<img src="${resource(dir:'images',file:'umich-umms-logo.png')}" width="250" height="185" alt="University of Michigan - Medical School (logo)"/>
+		<img src="${resource(dir:'images',file:'umich-umms-logo.png')}" width="200" height="148" alt="University of Michigan - Medical School (logo)"/>
 		</a>
 		</td>
-		<td>&nbsp;&nbsp;&nbsp;</td>
-		<td valign="middle" style="text-align:center;vertical-align:middle;border:4px;font-size:11px" nowrap="nowrap">
+		<td valign="middle" style="text-align:center;vertical-align:middle;border:4px;font-size:11px;padding:0px 0px 0px 100px" nowrap="nowrap">
 			<table>
 				<tr><td colspan="4">
 					<a href="http://portal.ncibi.org/gateway/" target="_blank">
@@ -168,10 +167,10 @@
 				</td></tr>
 				<tr><td colspan="4">&nbsp;</td></tr>
 				<tr>
-					<td>Gene -<br />Pubmed</td>
-					<td>Gene/Mesh -<br />Concept</td>
-					<td>Gene/Pathway -<br />Compound</td>
-					<td>Gene/Compound -<br />Mesh</td>
+					<td style="text-align:center; font-size:8"><span class="ncibi-caption">Gene -<br />Pubmed</span></td>
+					<td style="text-align:center; font-size:8"><span class="ncibi-caption">Gene/Mesh -<br />Concept</span></td>
+					<td style="text-align:center; font-size:8"><span class="ncibi-caption">Gene/Pathway -<br />Compound</span></td>
+					<td style="text-align:center; font-size:8"><span class="ncibi-caption">Gene/Compound -<br />Mesh</span></td>
 				</tr>
 				<tr>
 					<td><img src="${resource(dir:'images/ncibi',file:'pubmed-gene-icon.gif')}" alt="NCIBI Pubmed tools (logo)"/></td>
