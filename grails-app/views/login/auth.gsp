@@ -67,11 +67,11 @@
 
 <div align="center" style="clear:both; margin-left:auto; margin-right:auto; margin-top:20px;text-align:center">
 <table style="width:auto; border:0px; text-align:center; margin:auto;" align="center">
-	<tr>
-  		<td style="text-align:center;vertical-align:middle;margin-left:-40px;">
-			<img src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.largeLogo)}" alt="Transmart" />
-		</td>
-	 </tr>
+	<tr><td colspan=2 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
+		<a href="http://transmartfoundation.org/" target="_blank">
+		<img src="${resource(dir:'images',file:'transmart-foundation-logo.png')}" alt="tranSMART Foundation (logo)"/>
+		</a>
+	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td colspan=2 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
@@ -142,6 +142,41 @@
 					</div>
 				</div>
 			</div>
+		</td>
+	</tr>
+	<tr>
+		<td valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
+			<a href="http://www.hopkinsmedicine.org/som/" target="_blank">
+			<img src="${resource(dir:'images',file:'johns-hopkins-logo.png')}" alt="Johns Hopkins Medical Center (logo)"/>
+			</a>
+		</td>
+		<td valign="middle" style="text-align:center;vertical-align:middle;border:4px;font-size:11px" nowrap="nowrap">
+			<table>
+				<tr><td colspan="4">
+					<a href="http://portal.ncibi.org/gateway/" target="_blank">
+					<img src="${resource(dir:'images/ncibi',file:'ncibi-large-logo.jpg')}" alt="NCIBI (logo)"/>
+					</a>
+				</td></tr>
+				<tr><td colspan="4">&nbsp;</td></tr>
+				<tr><td colspan="4" style="text-align:center; font-size:20; font-style: bold">
+					<a href="http://portal.ncibi.org/gateway/tryourtools.html" target="_blank">
+					NCIBI Tools
+					</a>
+				</td></tr>
+				<tr><td colspan="4">&nbsp;</td></tr>
+				<tr>
+					<td>Gene -<br />Pubmed</td>
+					<td>Gene/Mesh -<br />Concept</td>
+					<td>Gene/Pathway -<br />Compound</td>
+					<td>Gene/Compound -<br />Mesh</td>
+				</tr>
+				<tr>
+					<td><img src="${resource(dir:'images/ncibi',file:'pubmed-gene-icon.gif')}" alt="NCIBI Pubmed tools (logo)"/></td>
+					<td><img src="${resource(dir:'images/ncibi',file:'concept_icon.gif')}" alt="NCIBI Concept tools (logo)"/></td>
+					<td><img src="${resource(dir:'images/ncibi',file:'compound-icon.png')}" alt="NCIBI Compound tools (logo)"/></td>
+					<td><img src="${resource(dir:'images/ncibi',file:'mimi_icon.gif')}" alt="NCIBI Gene Interaction tools (logo)"/></td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 </table>
