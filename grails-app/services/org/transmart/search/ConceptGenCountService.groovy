@@ -25,25 +25,25 @@ class ConceptGenCountService {
         {
             if(keyword != null)
             {
-				log.info("In ConceptGenCountService: category: " + keyword.dataCategory)
+//				log.info("In ConceptGenCountService: category: " + keyword.dataCategory)
 				
                 if (keyword.dataCategory == 'GENE')
                 {
-					log.info("In ConceptGenCountService: user: " + user)
+//					log.info("In ConceptGenCountService: user: " + user)
                     if ((user == null) || (user=="") || (user.toString().contains('guest')))
                     {
-						log.info("In ConceptGenCountService: guest user")
+//						log.info("In ConceptGenCountService: guest user")
                         urlString = "http://conceptgen.ncibi.org/ConceptWeb/cts?qt=count&st=" + URLEncoder.encode(searchText, "UTF-8")
                     }
                     else
                     {
-						log.info("In ConceptGenCountService: private user")
+//						log.info("In ConceptGenCountService: private user")
                         urlString = "http://conceptgen.ncibi.org/ConceptWeb/cts?qt=countPrivate&st=" + URLEncoder.encode(searchText, "UTF-8")
                     }
                 }
                 else
                 {
-					log.info("In ConceptGenCountService: not a GENE")
+//					log.info("In ConceptGenCountService: not a GENE")
                     urlString = "http://conceptgen.ncibi.org/ConceptWeb/conceptservice?type=count&search=" + URLEncoder.encode(searchText, "UTF-8")
                 }
             }
@@ -52,8 +52,8 @@ class ConceptGenCountService {
 		
 		def value = 0;
 		
-		log.info("ConceptGenCountService: searchText = " + searchText)
-		log.info("URL: " + urlString)
+//		log.info("ConceptGenCountService: searchText = " + searchText)
+//		log.info("URL: " + urlString)
 
         try
         {
@@ -82,7 +82,7 @@ class ConceptGenCountService {
             e.printStackTrace()
         }
 
-		log.info("ConceptGenCountService: count = " + value)
+//		log.info("ConceptGenCountService: count = " + value)
 
 		return value
     }
