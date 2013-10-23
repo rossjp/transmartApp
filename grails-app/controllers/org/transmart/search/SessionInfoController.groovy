@@ -20,8 +20,9 @@
 
 package org.transmart.search
 
-import org.transmart.searchapp.SearchKeyword
+import org.transmart.SearchNCIBIResult
 import org.transmart.searchapp.GeneSignature
+import org.transmart.searchapp.SearchKeyword
 
 class SessionInfoController {
 
@@ -35,6 +36,10 @@ class SessionInfoController {
 				keyword.metaClass.gs = GeneSignature.get(keyword.bioDataId)
 			}
 		}
+		
+		def sResult = new SearchNCIBIResult()
+		searchNcibiService.doResultCount(sResult,filter)
+		
 		render(view:'details',
 			model: [filters: filters]) 
 	}
