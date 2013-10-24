@@ -28,11 +28,17 @@ class Gene2MeshController {
 		def g2mResultList = []
 		def geneSearchTerms = []
 		def diseaseSearchTerms = []
+		def generalSearchTerms = []
+		
 		for (SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters())
 		{
 			if(keyword != null)
 			{
-				if (keyword.dataCategory == 'TEXT' | keyword.dataCategory == 'DISEASE')
+				if (keyword.dataCategory == 'TEXT')
+				{
+					generalSearchTerms.add(keyword.keyword)
+				}
+				else if (keyword.dataCategory == 'DISEASE')
 				{
 					diseaseSearchTerms.add(keyword.keyword)
 				}
@@ -45,11 +51,15 @@ class Gene2MeshController {
 		}
 		if (diseaseSearchTerms[0] != null)
 		{
-			g2mResultList = gene2MeshService.getG2MResultsByDescriptor(diseaseSearchTerms[0])
+			g2mResultList = gene2MeshService.getG2MResults(diseaseSearchTerms[0], 'mesh')
 		}
 		else if (geneSearchTerms[0] != null)
 		{
-			g2mResultList = gene2MeshService.getG2MResultsByGene(geneSearchTerms[0])
+			g2mResultList = gene2MeshService.getG2MResults(geneSearchTerms[0], 'genesymbol')
+		}
+		else if (generalSearchTerms[0] != null)
+		{
+			g2mResultList = gene2MeshService.getG2MResults(generalSearchTerms[0], 'search')
 		}
 
 		render(view: "index", model:[g2mResultList: g2mResultList])

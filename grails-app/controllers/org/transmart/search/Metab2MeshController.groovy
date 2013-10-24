@@ -36,7 +36,7 @@ class Metab2MeshController {
 		}
 		if (searchTerms[0] != null)
 		{
-			m2mResultList = metab2MeshService.getM2MResultsByDescriptor(searchTerms[0])
+			m2mResultList = metab2MeshService.getM2MResults(searchTerms[0], 'search')
 		}
 		render(view: "index", model:[m2mResultList: m2mResultList])
 	}

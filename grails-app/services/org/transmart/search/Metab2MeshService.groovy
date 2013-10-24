@@ -38,37 +38,12 @@ class Metab2MeshService {
 
     boolean transactional = true
 	int maxPubs = 200
-	
-	def getM2MResultsByCompound(String compoundName)
+
+	def getM2MResults(String searchTerm, String searchType)
 	{
 		def results = []
 		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?compound=" + URLEncoder.encode(compoundName);
-			URL ncibiWS = new URL(urlString);
-			URLConnection urlConnection = ncibiWS.openConnection();
-			InputStream inputStream = urlConnection.getInputStream();
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setCoalescing(true);
-			factory.setNamespaceAware(true);
-
-			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream);
-
-			inputStream.close();
-
-			results = m2mXmlToM2mResult(xmlDocument);
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return results;
-	}
-
-	def getM2MResultsByDescriptor(String descriptorName)
-	{
-		def results = []
-		try {
-			String urlString = "http://metab2mesh.ncibi.org/fetch?mesh=" + URLEncoder.encode(descriptorName) + "&limit=100&publimit=20";
+			String urlString = "http://metab2mesh.ncibi.org/fetch?" + searchType + "=" + URLEncoder.encode(searchTerm) + "&limit=100&publimit=20";
 			URL ncibiWS = new URL(urlString);
 			URLConnection urlConnection = ncibiWS.openConnection();
 			InputStream inputStream = urlConnection.getInputStream();

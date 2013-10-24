@@ -38,37 +38,12 @@ class Gene2MeshService {
 
     boolean transactional = true
 	int maxPubs = 200
-	
-	def getG2MResultsByGene(String geneSymbol)
+
+	def getG2MResults(String searchTerm, String searchType)
 	{
 		def results = []
 		try {
-			String urlString = "http://gene2mesh.ncibi.org/fetch?genesymbol=" + URLEncoder.encode(geneSymbol);
-			URL ncibiWS = new URL(urlString)
-			URLConnection urlConnection = ncibiWS.openConnection()
-			InputStream inputStream = urlConnection.getInputStream()
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance()
-			factory.setCoalescing(true)
-			factory.setNamespaceAware(true)
-
-			Document xmlDocument = factory.newDocumentBuilder().parse(inputStream)
-
-			inputStream.close()
-
-			results = g2mXmlToG2MResult(xmlDocument)
-			
-		} catch(Exception e) {
-			e.printStackTrace()
-		}
-		return results
-	}
-
-	def getG2MResultsByDescriptor(String descriptorName)
-	{
-		def results = []
-		try {
-			String urlString = "http://gene2mesh.ncibi.org/fetch?mesh=" + URLEncoder.encode(descriptorName)
+			String urlString = "http://gene2mesh.ncibi.org/fetch?" + searchType + "=" + URLEncoder.encode(searchTerm)
 			URL ncibiWS = new URL(urlString)
 			URLConnection urlConnection = ncibiWS.openConnection()
 			InputStream inputStream = urlConnection.getInputStream()
