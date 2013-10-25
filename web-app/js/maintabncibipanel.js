@@ -167,7 +167,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id:"tab5",
                 iconCls: "docTab",
-                title: "PubMed Abstracts (" + pageData.pubmed.count + ")",
+                title: "Gene to PubMed Abstracts (" + pageData.pubmed.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -209,7 +209,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab9",
                 iconCls: "docTab",
-                title: "MetScape (" + pageData.metscape.count + ")",
+                title: "Compound-Gene Network (" + pageData.metscape.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -219,7 +219,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab10",
                 iconCls: "docTab",
-                title: "conceptExplorer (" + pageData.conceptExplorer.count + ")",
+                title: "CrossDB Concept Explorer (" + pageData.conceptExplorer.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -229,7 +229,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab11",
                 iconCls: "docTab",
-                title: "Metab2Mesh(" + pageData.metab2mesh.count + ")",
+                title: "Compound <=> Mesh(" + pageData.metab2mesh.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -239,7 +239,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab12",
                 iconCls: "docTab",
-                title: "Gene2Mesh (" + pageData.gene2mesh.count + ")",
+                title: "Gene <=> Mesh (" + pageData.gene2mesh.count + ")",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,
@@ -249,7 +249,7 @@ function createNcibiSearchTabs(toolbar) {
             {
                 id: "tab13",
                 iconCls: "docTab",
-                title: "Session Info",
+                title: "(Debug) Session Info",
                 listeners: {activate: activateTab},
                 xtype: "iframepanel",
                 closable: false,

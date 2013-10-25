@@ -1,7 +1,17 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" import="java.util.*; java.net.*; java.io.*; org.transmart.conceptgen.module.*" %>
 <%
 
-URL u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+def URL u
+
+if (gene) {
+	if ((user == null) || (user=="") || (user.toString().contains('guest'))) {
+		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=public&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+	} else {
+		u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cts?qt=private&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+	}
+} else {
+	u = new URL("http://conceptgen.ncibi.org/ConceptWeb/cws?qt=search&st=" + URLEncoder.encode(conceptKeyword,"UTF-8"));
+}
 BufferedReader inp = new BufferedReader(new InputStreamReader(u.openStream()));
 
 ArrayList<String[]> list = new ArrayList<String[]>();
@@ -66,11 +76,16 @@ else
 	<% 
   	for(String[] rs : list)
 	{
+		String owner = "Public";
+		if(rs[4].trim().equals("Experimental"))
+		{
+			owner = "Private";
+		}
 	%>
   	<tr>
    		<td>
 		<div class="resultText"> 
-			<a href="indexws?id=<%= rs[0].trim() %>&queryType=concept&owner=Public" title="Click on name to launch Concept Explorer">
+			<a href="indexws?id=<%= rs[0].trim() %>&queryType=concept&owner=<%= owner %>" title="Click on name to launch Concept Explorer">
 			<%= rs[1].trim() %></a> 
 		</div>
 		<br />

@@ -40,12 +40,8 @@ class PubmedNCIBIService {
 		def searchText = searchFilter.searchText
 		if (searchText == null) return 0
 
-		def geneidString = SearchUtils.geneidString(searchFilter)
-		def geneidList = SearchUtils.geneidList(geneidString)
-		if (geneidList == null) return 0;
-		if (geneidList.isEmpty()) return 0;
-		
-		def geneid = geneidList[0]
+		def geneid = SearchUtils.firstGeneId(searchFilter)
+		if (geneid == null) return 0;
 		def docs = getPubmedResultsByGene(geneid)
 
 		return docs.size()

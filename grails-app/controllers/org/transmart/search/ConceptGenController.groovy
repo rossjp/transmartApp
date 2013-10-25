@@ -24,6 +24,12 @@ import org.transmart.searchapp.SearchKeyword
 
 class ConceptGenController {
 
+	
+	/*
+	 * DO NOT USE THIS as a referance!
+	 * The ConceptGen NCIBI tool-face is implemented by ConceptExplorer, 
+	 * See, grails-app/controllers/transmart/ConceptExplorerController.groovy
+	 */
     def index = {
 		render(view:'index') 
 	}

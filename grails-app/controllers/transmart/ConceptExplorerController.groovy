@@ -20,10 +20,12 @@
 
 package transmart
 
+import org.transmart.searchapp.AuthUser
 import org.transmart.searchapp.SearchKeyword
-import org.transmart.conceptgen.module.DataAssembler
 
 class ConceptExplorerController {
+	
+	def springSecurityService
 
     def index = { 
 
@@ -52,11 +54,18 @@ class ConceptExplorerController {
 	
 	def searchws = {
 		def conceptKeyword = ""
+		def gene = false
 		for(SearchKeyword keyword: session.searchFilter.globalFilter.getAllFilters()) {
 			conceptKeyword = keyword.keyword
+			gene = false
+			if (keyword.dataCategory == 'GENE') {
+				gene = true
+			}
 		}
+
+		def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
 		
-		render(view: "searchws", model:[conceptKeyword:conceptKeyword, taxid:9606])
+		render(view: "searchws", model:[conceptKeyword:conceptKeyword, taxid:9606, user:user, gene:gene])
 	}
 	
 	def graph2 = {

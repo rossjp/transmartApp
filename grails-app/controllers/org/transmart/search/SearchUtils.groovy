@@ -58,4 +58,12 @@ class SearchUtils {
 		
 		return geneSymbols(httpSession.searchFilter)
 	}
+	
+	public static firstGeneId(SearchFilter searchFilter) {
+		def geneidString = geneidString(searchFilter)
+		def geneidList = geneidList(geneidString)
+		if (geneidList == null) return null
+		if (geneidList.isEmpty()) return null
+		return geneidList[0]		
+	}
 }

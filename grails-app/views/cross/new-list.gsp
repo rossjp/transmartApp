@@ -266,9 +266,10 @@
 			    tabpanel.remove(Ext.getCmp("tab7"));
 			    tabpanel.remove(Ext.getCmp("tab8"));
 				
-				// disable the MetScape tab if the search result is not a gene??
+				// disable the MetScape and Pubmed tab if the search result is not a gene
 				if(${session.searchFilter.globalFilter.getGeneFilters().size()} == 0) {
 					 tabpanel.remove(Ext.getCmp("tab9"));
+					 tabpanel.remove(Ext.getCmp("tab5"));					 
 				}
 				
 			    // set active tab
