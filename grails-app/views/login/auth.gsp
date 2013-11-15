@@ -67,11 +67,6 @@
 
 <div align="center" style="clear:both; margin-left:auto; margin-right:auto; margin-top:20px;text-align:center">
 <table style="width:auto; border:0px; text-align:center; margin:auto;" align="center">
-	<tr><td colspan=3 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
-		<a href="http://www.hopkinsmedicine.org/som/" target="_blank">
-		<img src="${resource(dir:'images',file:'johns-hopkins-medicine-logo.png')}" alt="Johns Hopkins Medical Center (logo)"/>
-		</a>
-	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr>
 		<td colspan=3 valign="middle" style="text-align:center;vertical-align:middle;border:1px;font-size:11px" nowrap="nowrap">
