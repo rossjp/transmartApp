@@ -25,7 +25,6 @@ grails.project.test.reports.dir = "target/test-reports"
 //grails.plugin.location.'rdc-modules' = "../Rmodules"
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -52,19 +51,15 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ':hibernate4:4.3.5.2'
+        compile ":hibernate:3.6.10.7"
         compile ":quartz:1.0-RC2"
         compile ":rdc-rmodules:0.3-SNAPSHOT"
-        compile ":spring-security-core:2.0-RC4"
-	compile ":spring-security-ui:1.0-RC2"        
-	compile ":resources:1.2"
-        build ":tomcat:7.0.52.1"
+        compile ":spring-security-core:1.2.7.3"
+        compile ":resources:1.2"
+        build ":tomcat:7.0.47"
         build ":build-info:1.1"
 		runtime ":prototype:1.0"
         runtime ":transmart-core:1.0-SNAPSHOT"
-         compile ':scaffolding:2.1.0'
-         compile ':cache:1.1.3'
-        compile ':asset-pipeline:1.8.3'
 
         test ":code-coverage:1.2.6"
     }
