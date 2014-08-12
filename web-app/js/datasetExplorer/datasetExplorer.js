@@ -208,7 +208,8 @@ Ext.onReady(function()
 			{
 				id : 'exportMenu',
 				minWidth: 250,
-				items : [{
+				items : [
+				/*{
 					text : 'Summary Statistics',
 					handler : function()	{
 						if((typeof(grid)!='undefined') && (grid!=null))	{
@@ -217,7 +218,7 @@ Ext.onReady(function()
 							alert("Nothing to export");
 						}
 					}
-				}
+				} */
                 /*
 				,
 				'-'
@@ -742,7 +743,7 @@ Ext.onReady(function()
 					collapsible : true						
 				}
 		);*/
-		/*analysisDataExportPanel = new Ext.Panel(
+		analysisDataExportPanel = new Ext.Panel(
 				{
 					id : 'analysisDataExportPanel',
 					title : 'Data Export',
@@ -766,7 +767,7 @@ Ext.onReady(function()
 					},
 					collapsible : true						
 				}
-		); */
+		); 
 		
 		dataAssociationPanel = new Ext.Panel(
 				{
@@ -881,8 +882,8 @@ Ext.onReady(function()
 		resultsTabPanel.add(analysisGridPanel);
 		//Commented out the Jobs panel to hide as it isn't used without Gene Pattern
 		//resultsTabPanel.add(analysisJobsPanel);
-		resultsTabPanel.add(analysisDataExportPanel);
-		resultsTabPanel.add(analysisExportJobsPanel);
+		//resultsTabPanel.add(analysisDataExportPanel);
+		//resultsTabPanel.add(analysisExportJobsPanel);
 		if (GLOBAL.metacoreAnalyticsEnabled) {
 			resultsTabPanel.add(metacoreEnrichmentPanel);
 		}
