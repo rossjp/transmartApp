@@ -742,7 +742,7 @@ Ext.onReady(function()
 					collapsible : true						
 				}
 		);*/
-		analysisDataExportPanel = new Ext.Panel(
+		/*analysisDataExportPanel = new Ext.Panel(
 				{
 					id : 'analysisDataExportPanel',
 					title : 'Data Export',
@@ -766,7 +766,7 @@ Ext.onReady(function()
 					},
 					collapsible : true						
 				}
-		);
+		); */
 		
 		dataAssociationPanel = new Ext.Panel(
 				{
