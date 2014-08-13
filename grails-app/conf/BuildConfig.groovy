@@ -49,6 +49,7 @@ grails.project.dependency.resolution = {
 		compile 'antlr:antlr:2.7.7'
         compile 'org.transmartproject:transmart-core-api:1.0-SNAPSHOT'
                 build "commons-dbcp:commons-dbcp:1.4"
+        compile 'org.jfree:jfreechart:1.0.14'
 
     }
 
