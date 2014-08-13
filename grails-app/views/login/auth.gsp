@@ -28,6 +28,16 @@
 	text-align:center;
 }
 
+#login .mod_text {
+}
+
+#login .mod_title {
+	margin-bottom:20px;
+	text-align:left;
+	font-size:24px;
+	color: #006dba;
+}
+
 #login .inner {
 	width:260px;
 	margin:0px auto;
@@ -141,9 +151,43 @@
 						</div>
 					</div>
 				</div>
+				<g:if test='${grailsApplication?.config?.motd}'>
+                	<br />
+					<div class="x-box-tl">
+                    	<div class="x-box-tr">
+                        	<div class="x-box-tc">
+                    	</div>
+                	</div>
+                	</div>
+                	<div class="x-box-ml">
+                    	<div class="x-box-mr">
+                        	<div class="x-box-mc" style="text-align:left">
+                            	<br />
+                            	<g:if test='${grailsApplication?.config?.motd?.motd_title}' >
+	                            	<h3 class='motd-title'>
+    	                        		${grailsApplication.config.motd.motd_title}
+        	                    	</h3>
+        	                 	</g:if>
+                            	<g:if test='${grailsApplication?.config?.motd?.motd_text}' >
+	                            	<div class='motd-text'>
+    	                        		${grailsApplication.config.motd.motd_text}
+        	                    	</div>
+        	                	</g:if>
+        	                	<br />
+                        	</div>
+                		</div>
+                	</div>
+					<div class="x-box-bl">
+                       	<div class="x-box-br">
+                           	<div class="x-box-bc">
+                        	</div>
+                    	</div>
+                	</div>
+                </g:if>
 			</div>
 		</td>
 	</tr>
 </table>
 </div>
 </body>
+</html>
