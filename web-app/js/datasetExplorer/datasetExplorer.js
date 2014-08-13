@@ -538,7 +538,7 @@ Ext.onReady(function()
 						id : 'exportbutton',
 						text : 'Export',
 						iconCls : 'exportbutton',
-						disabled : false,
+						disabled : true,
 						menu : expmenu,
 						handler : function(){
 						// alert('export');
