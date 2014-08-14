@@ -11,19 +11,32 @@ class DataAttestationController {
 
     def index = {
         def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
-        def da = DataAttestation.findByAuthUserId(user.id)
-        if (da == null || !da.hasAgreed())
+    	if (DataAttestation.needsDataAttestation(user))
             render(view:"attestation")
         else
             redirect(uri:'/search');
     }
     def agree = {
         def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
-        new DataAttestation(authUserId: user.id, lastDateAgreed: new Date()).save()
+        DataAttestation.updateOrAddNewAgreementDate(user)
         redirect(uri: '/search')
     }
 
     def disagree = {
         redirect(uri: '/logout')
     }
+
+	def clear = {
+	    def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
+    	def da = DataAttestation.findByAuthUserId(user.id)
+    	if (da != null) {
+            try {
+                da.delete(flush: true)
+            }
+		    catch (org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "Could not delete user ${user}"
+            }
+        }
+        redirect(uri: '/logout')		
+	}    
 }

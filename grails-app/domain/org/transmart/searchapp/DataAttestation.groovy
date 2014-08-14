@@ -52,8 +52,27 @@ class DataAttestation {
 	def hasAgreed() {
 		def agreed = true 
 		def today = new Date()
-		if (today - lastDateAgreed > 90)
+		if (daysBetween(lastDateAgreed,today) > 90)
 			agreed = false
 		return agreed
-	}	
+	}
+	
+	static needsDataAttestation(user) {
+		def da = DataAttestation.findByAuthUserId(user.id)
+        return (da == null || !da.hasAgreed())
+    }
+    
+    static updateOrAddNewAgreementDate(user) {
+    	def da = DataAttestation.findByAuthUserId(user.id)
+    	if (da == null) {
+			new DataAttestation(authUserId: user.id, lastDateAgreed: new Date()).save()
+    	} else {
+    		da.lastDateAgreed = new Date()
+    		da.save()
+    	}
+    }
+
+    int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
 }

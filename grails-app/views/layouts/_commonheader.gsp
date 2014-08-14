@@ -16,7 +16,6 @@
   
  
 -->
-
 <table class="menuDetail" width="100%" style="border-bottom: 2px solid #ddd;">
 	<tr>
 		<th style="text-align: left;">

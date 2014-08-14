@@ -1,4 +1,7 @@
-import org.transmart.searchapp.AccessLog;
+import org.transmart.searchapp.AccessLog
+import org.DataAttestation
+import org.transmart.searchapp.AuthUser
+import org.transmart.searchapp.DataAttestation
 
 /*************************************************************************
  * tranSMART - translational medicine data mart
@@ -35,15 +38,22 @@ class UserLandingController {
     def springSecurityService
 	
 	   def index = {
-            new AccessLog(username: springSecurityService.getPrincipal().username, event:"Login",
+	        def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
+            log.info("User in UserLandingController = " + user)
+            new AccessLog(username: user, event:"Login",
                   eventmessage: request.getHeader("user-agent"),
                   accesstime:new Date()).save()
-                  def skip_disclaimer = grailsApplication.config.com.recomdata?.skipdisclaimer?:false;
-                  if(skip_disclaimer){
-                        redirect(uri:'/search');     
-                  }else{
-                  redirect(uri: '/userLanding/disclaimer.gsp')
-                  }
+            def skip_data_attestation =  grailsApplication.config.com.recomdata?.skipdataattestation?:false;
+            if ((!skip_data_attestation) && DataAttestation.needsDataAttestation(user)) {
+            		redirect(uri: '/dataAttestation/index')
+            } else {
+                def skip_disclaimer = grailsApplication.config.com.recomdata?.skipdisclaimer?:false;
+                if(skip_disclaimer){
+                    redirect(uri:'/search');     
+                }else{
+                      redirect(uri: '/userLanding/disclaimer.gsp')
+                }
+            }
       }
 	def agree = {
 		new AccessLog(username: springSecurityService.getPrincipal().username, event:"Disclaimer accepted",
