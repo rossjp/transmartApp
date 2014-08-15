@@ -534,7 +534,7 @@ Ext.onReady(function()
 					),
 					'->',
 					new Ext.Toolbar.Separator(),
-/*					new Ext.Toolbar.Button({
+					new Ext.Toolbar.Button({
 						id : 'exportbutton',
 						text : 'Export',
 						iconCls : 'exportbutton',
@@ -547,7 +547,6 @@ Ext.onReady(function()
 						// else {alert("Nothing to export");}
 					}}),
 					new Ext.Toolbar.Separator(),
-*/
 					new Ext.Toolbar.Button(
 							{
 								id : 'printanalysisbutton',
@@ -922,15 +921,15 @@ Ext.onReady(function()
 					        	   }
 					           }
 					           ,
-//					           {
-//					        	   text : 'Export',
-//					        	   iconCls : 'exportbutton',
-//					        	   handler : function()
-//					        	   {
-//					        	   showExportStepSplitTimeSeries();
-//					        	   }
-//					           }
-//					           ,
+					           {
+					        	   text : 'Export',
+					        	   iconCls : 'exportbutton',
+					        	   handler : function()
+					        	   {
+					        	   showExportStepSplitTimeSeries();
+					        	   }
+					           }
+					           ,
 					           {
 					        	   text : 'Clear',
 					        	   iconCls : 'clearbutton',
@@ -4058,14 +4057,14 @@ function getExportButtonSecurityComplete(result)
 {
 	var mobj=result.responseText.evalJSON();
 	var canExport=mobj.canExport;
-//	if(canExport || GLOBAL.IsAdmin)
-//	{
-//		Ext.getCmp("exportbutton").enable();
-//	}
-//	else
-//	{
+	if(canExport || GLOBAL.IsAdmin)
+	{
+		Ext.getCmp("exportbutton").enable();
+	}
+	else
+	{
 		Ext.getCmp("exportbutton").disable();
-//	}
+	}
 }
 
 function activateTab(tab)
