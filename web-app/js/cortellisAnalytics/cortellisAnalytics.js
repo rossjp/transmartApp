@@ -205,11 +205,7 @@ function renderCohortSummary(){
 
 		
 
-	}
-
-	cohortsSummary += "NOTE: Some analyses only use the first Subset"
-	cohortsSummary += "<br>"
-	
+	}	
 	var innerHtml = ""
 
 	if(""==cohortsSummary){
