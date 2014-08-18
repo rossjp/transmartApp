@@ -209,7 +209,7 @@ Ext.onReady(function()
 				id : 'exportMenu',
 				minWidth: 250,
 				items : [
-				/*{
+				{
 					text : 'Summary Statistics',
 					handler : function()	{
 						if((typeof(grid)!='undefined') && (grid!=null))	{
@@ -218,7 +218,7 @@ Ext.onReady(function()
 							alert("Nothing to export");
 						}
 					}
-				} */
+				} 
                 /*
 				,
 				'-'

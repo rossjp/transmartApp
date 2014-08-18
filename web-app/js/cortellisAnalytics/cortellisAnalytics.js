@@ -201,17 +201,15 @@ function renderCohortSummary(){
 			cohortsSummary += currentQuery
 
 			cohortsSummary += "<br>"
-			cohortsSummary += "NOTE: Some analyses only use the first Subset"
-			cohortsSummary += "<br>"
-
-
-
 		}
 
 		
 
 	}
 
+	cohortsSummary += "NOTE: Some analyses only use the first Subset"
+	cohortsSummary += "<br>"
+	
 	var innerHtml = ""
 
 	if(""==cohortsSummary){

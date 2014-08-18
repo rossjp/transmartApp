@@ -32,6 +32,8 @@ function renderCohortSummaryMetaCoreEnrichment(cohortSummaryDisplayId) {
 			cohortsSummary += "<br>"
 		}
 	}
+	cohortsSummary += "NOTE: Some analyses only use the first Subset"
+	cohortsSummary += "<br>"
 	var innerHtml = ""
 	if ("" == cohortsSummary) {
 		innerHtml = "<font style='color:red;font-weight:bold;'>Warning! You have not selected a study and the analyses will not work. Please go back to the 'Comparison' tab and make a cohort selection.</font>";
