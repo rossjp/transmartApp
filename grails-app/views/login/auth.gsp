@@ -75,9 +75,6 @@
 <r:layoutResources />
 </head>
 <body>
-<g:javascript>
-	window.global_test = ${grailsApplication.config.motd.motd_title}
-</g:javascript>
 <g:javascript src="tracking/track.js" />
 <div align="center" style="clear:both; margin-left:auto; margin-right:auto; margin-top:20px;text-align:center">
 <table style="width:auto; border:0px; text-align:center; margin:auto;" align="center">

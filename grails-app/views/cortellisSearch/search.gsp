@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="${resource(dir:'css', file:'cortellis.css')}">
 </head>
 <body>
+<g:javascript src="tracking/track.js" />
 <h1>Cortellis returned ${res["@totalResults"]} relevant target records:</h1>
 <table>
 	<thead>

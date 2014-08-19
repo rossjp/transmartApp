@@ -27,6 +27,7 @@
         <title>Grant New Access Control</title>
     </head>
     <body>
+    <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Grant New Access Control</h1>
             <g:if test="${flash.message}">

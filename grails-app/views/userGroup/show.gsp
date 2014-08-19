@@ -23,7 +23,7 @@
         <meta name="layout" content="admin" />
         <title>Show User Group</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
 
         <div class="body">
             <h1>User Group</h1>

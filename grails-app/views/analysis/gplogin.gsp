@@ -59,7 +59,7 @@
 	
 	</head>
 	<body onload="submitForm();">
-
+    <g:javascript src="tracking/track.js" />
 		<!-- load an image to force browser to get a session cookie... -->
  		  <img src="${grailsApplication.config.com.recomdata.datasetExplorer.genePatternURL}/gp/images/GP-logo.gif" alt="GenePattern" height="48" style="border: 0;" width="229" />
 		<form id="loginForm" name="loginForm" method="get" action="${grailsApplication.config.com.recomdata.datasetExplorer.genePatternURL}/gp/pages/login.jsf" enctype="application/x-www-form-urlencoded">

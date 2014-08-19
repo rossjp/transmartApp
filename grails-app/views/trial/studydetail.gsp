@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="${resource(dir:'css', file:'datasetExplorer.css')}">
 
 </head>
-<body>
+<body>   <g:javascript src="tracking/track.js" />
 <g:if test="${clinicalTrial == null}">
 	<table class="detail">
 		<tr>

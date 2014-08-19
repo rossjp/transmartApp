@@ -42,7 +42,7 @@
 	  </style>
   </head>
 
-  <body>
+  <body><g:javascript src="tracking/track.js" />
     <h1>${title}</h1>
     <h2>Error Details</h2>
   	<div class="message">

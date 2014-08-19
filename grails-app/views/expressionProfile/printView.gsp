@@ -27,6 +27,7 @@
 		<title>${grailsApplication.config.com.recomdata.searchtool.appTitle}</title>
 	</head>
 	<body onload="window.print();">
+    <g:javascript src="tracking/track.js" />
 		<table>
 			<tr><td><img src="${createLink(action:'displayChart') + '?filename=' + filename}"/></td></tr>
 			<tr><td>&nbsp;</td></tr>

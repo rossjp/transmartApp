@@ -23,7 +23,7 @@
 		<meta name="layout" content="admin" />
 		<title>Create Role</title>
 	</head>	
-	<body>
+	<body><g:javascript src="tracking/track.js" />
 		<div class="body">
 	
 			<h1>Create Role</h1>

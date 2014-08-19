@@ -23,7 +23,7 @@
 		<title>Show Gene Signature</title>
 	</head>
 	
-	<body>
+	<body> <g:javascript src="tracking/track.js" />
 		<div class="body">
 			<div class="dialog">
 				<table>

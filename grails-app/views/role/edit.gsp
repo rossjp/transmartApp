@@ -24,7 +24,7 @@
 		<title>Edit Role</title>
 	</head>
 	
-	<body>
+	<body> <g:javascript src="tracking/track.js" />
 		<div class="body">
 			<h1>Edit Role</h1>
 			<g:if test="${flash.message}">

@@ -38,7 +38,7 @@
     <script type="text/javascript"	src="${resource(dir:'js', file:'ext/ext-all.js')}"></script>
 </head>
 
-<body>
+<body>  <g:javascript src="tracking/track.js" />
 <div class="body">
     <h1>Manage Group Membership</h1>
     <g:if test="${flash.message}">

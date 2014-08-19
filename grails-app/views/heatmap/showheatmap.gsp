@@ -310,7 +310,7 @@
 	<!-- ************************************** --> 
 </head>
 
-<body>
+<body> <g:javascript src="tracking/track.js" />
 <div id="pageTop" style="padding: 15px 10px 15px 10px">
 	<div>
 		<h3 style="background: #dfe8f6; padding-bottom: 5px; padding-top: 5px;">

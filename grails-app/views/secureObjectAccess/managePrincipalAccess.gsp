@@ -24,7 +24,7 @@
     <meta name="layout" content="admin" />
     <title>Access Control by Study</title>
 </head>
-<body>
+<body> <g:javascript src="tracking/track.js" />
 <div class="body">
     <h1>Access Control by Study</h1>
     <g:if test="${flash.message}">

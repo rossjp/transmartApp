@@ -26,6 +26,7 @@
         <title>Edit AuthUserSecureAccess</title>
     </head>
     <body>
+    <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Edit AuthUserSecureAccess</h1>
             <g:if test="${flash.message}">

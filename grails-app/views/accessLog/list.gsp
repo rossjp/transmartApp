@@ -28,6 +28,7 @@
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'css/jQueryUI/smoothness', file:'jquery-ui-1.8.17.custom.css')}">
     </head>
     <body>
+    <g:javascript src="tracking/track.js" />
     <div class="body">
         <g:form name="form">
         <table style="width:500px"><tr><td>

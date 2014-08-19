@@ -33,7 +33,7 @@
 
 	</script>
 </head>
-<body>
+<body>  <g:javascript src="tracking/track.js" />
 <div id="summary">
 
 	<p class="Title">

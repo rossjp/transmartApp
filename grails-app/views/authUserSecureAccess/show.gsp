@@ -26,6 +26,7 @@
         <title>Show AuthUserSecureAccess</title>
     </head>
     <body>
+    <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Show Access Control </h1>
             <g:if test="${flash.message}">

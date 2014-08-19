@@ -37,7 +37,7 @@ function showheatmap(){
 
 </script>
 </head>
-<body onLoad="javascript:init()">
+<body onLoad="javascript:init()">   <g:javascript src="tracking/track.js" />
 <div style="margin-top:100px;text-align: center;">
 
 <img src="${resource(dir:'images',file:'loader-large.gif')}" alt="loading" />

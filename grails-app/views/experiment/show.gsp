@@ -26,6 +26,7 @@
         <title>Show Experiment</title>
     </head>
     <body>
+    <g:javascript src="tracking/track.js" />
         <div class="nav">
             <span class="menuButton"><a class="home" href="${resource(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Experiment List</g:link></span>

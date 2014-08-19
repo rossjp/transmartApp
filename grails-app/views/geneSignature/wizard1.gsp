@@ -42,7 +42,7 @@
 
 <body>
 
-<div class="body">
+<div class="body"><g:javascript src="tracking/track.js" />
 	<!-- initialize -->
 	<g:set var="gs" value="${wizard.geneSigInst.properties}" />
 	

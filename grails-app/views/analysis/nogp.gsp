@@ -16,7 +16,7 @@
   
  
 -->
-
+<g:javascript src="tracking/track.js" />
 <div style="border: 0px">
 	<br><br><br>
 	<table class="snoborder" width="100%">

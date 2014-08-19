@@ -112,7 +112,7 @@
 		});
 	</script>
 </head>
-<body>
+<body> <g:javascript src="tracking/track.js" />
 	<!-- Ext.Viewport automatically renders to document body -->
 </body>
 </html>

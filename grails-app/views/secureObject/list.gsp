@@ -23,7 +23,7 @@
         <meta name="layout" content="admin" />
         <title>Study List</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Study List</h1>
             <g:if test="${flash.message}">

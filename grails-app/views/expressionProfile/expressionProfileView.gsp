@@ -26,6 +26,7 @@
 </head>
 
 <body>
+<g:javascript src="tracking/track.js" />
 
 <!--  wait image for gene selections -->
 <g:waitIndicator divId="expr_profile_main_loading_div" />

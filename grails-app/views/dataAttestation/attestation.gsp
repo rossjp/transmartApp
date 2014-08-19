@@ -23,6 +23,7 @@
     <r:layoutResources/>
 </head>
 <body>
+<g:javascript src="tracking/track.js" />
 <center>
     <div style="width: 400px; margin: 50px auto 50px auto;">
         <img style="display: block; margin: 12px auto;" src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.largeLogo)}" alt="Transmart" />

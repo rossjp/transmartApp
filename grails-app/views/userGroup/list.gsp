@@ -25,7 +25,7 @@
         <meta name="layout" content="admin" />
         <title>User Group List</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
 
         <div class="body">
             <h1>User Group List</h1>

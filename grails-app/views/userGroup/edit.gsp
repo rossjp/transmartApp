@@ -25,7 +25,7 @@
         <meta name="layout" content="admin" />
         <title>Edit UserGroup</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
 
         <div class="body">
             <h1>Edit UserGroup</h1>

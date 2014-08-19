@@ -65,6 +65,7 @@
 	</script>
 </head>
 <body>
+<g:javascript src="tracking/track.js" />
 <h1>${res["@name"]}</h1>
 
 <div id="infoTabs">

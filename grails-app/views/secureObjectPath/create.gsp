@@ -23,7 +23,7 @@
         <meta name="layout" content="admin" />
         <title>Create Concept Path Link</title>
     </head>
-    <body>
+    <body>  <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Create Concept Path Link</h1>
             <g:if test="${flash.message}">

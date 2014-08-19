@@ -36,7 +36,7 @@
 
 	</script>
 </head>
-<body>
+<body>  <g:javascript src="tracking/track.js" />
 	<g:waitIndicator divId="summary_loading" />
 	<div id="summary" style="display: block;">	
 		<p class="Title">

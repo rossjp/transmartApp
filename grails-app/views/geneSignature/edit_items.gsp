@@ -48,7 +48,7 @@
 	</script>	
  </head>
  
- <body>
+ <body>  <g:javascript src="tracking/track.js" />
  <div class="body">  	
     <!-- user message -->
    	<g:if test="${flash.message}">${flash.message}<br></g:if>

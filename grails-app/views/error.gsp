@@ -5,7 +5,7 @@
     <meta name="layout" content="main">
     <g:if env="development"><link rel="stylesheet" href="${resource(dir: 'css', file: 'errors.css')}" type="text/css"></g:if>
 </head>
-<body>
+<body><g:javascript src="tracking/track.js" />
 <g:if env="development">
     <g:renderException exception="${exception}" />
 </g:if>

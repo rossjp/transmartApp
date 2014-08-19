@@ -33,6 +33,8 @@
   </head>
   
   <body>
+  <g:javascript src="tracking/track.js" />
+
   <div id="divwfstatus" style="background:#fff;height:100%;padding:5px; font:12px tahoma, arial, helvetica, sans-serif;">  
    <div> Initializing workflow &nbsp;&nbsp;<img src="${resource(dir:'images', file:'loading-balls.gif')}"/></div>
   </div>

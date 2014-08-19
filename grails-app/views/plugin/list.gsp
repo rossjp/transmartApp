@@ -25,7 +25,7 @@
         <meta name="layout" content="main" />
         <title>Plugin List</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="create" action="create">New Plugin</g:link></span>

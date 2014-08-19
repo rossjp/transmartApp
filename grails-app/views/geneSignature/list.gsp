@@ -93,7 +93,7 @@
         	helpURL = '${grailsApplication.config.com.recomdata.searchtool.adminHelpURL}';
         </script>
     </head>
-    <body>
+    <body>  <g:javascript src="tracking/track.js" />
     <div class="body">   
   		<g:form frm="GenSignatureFrm" method="post">
   		<g:hiddenField name="id" value="" />

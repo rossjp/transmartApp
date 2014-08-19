@@ -25,7 +25,7 @@
         <meta name="layout" content="admin" />
         <title>Create Study</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Create Study</h1>
             <g:if test="${flash.message}">

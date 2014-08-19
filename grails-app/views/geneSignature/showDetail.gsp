@@ -41,7 +41,7 @@
 			Ext.QuickTips.init();
 		</script>
 	</head>
-	<body>
+	<body><g:javascript src="tracking/track.js" />
 		<div id="page">
 	<g:render template="gene_sig_detail" model="['gs':gs]"/>
 		</div>

@@ -23,7 +23,7 @@
         <meta name="layout" content="admin" />
         <title>Concept Path Link List</title>
     </head>
-    <body>
+    <body> <g:javascript src="tracking/track.js" />
         <div class="body">
             <h1>Concept Path Link List</h1>
             <g:if test="${flash.message}">

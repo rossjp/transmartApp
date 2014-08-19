@@ -21,7 +21,7 @@
 	<meta name='layout' content='main' />
 	<title>${grailsApplication.config.com.recomdata.searchtool.appTitle}</title>
 </head>
-<body>
+<body> <g:javascript src="tracking/track.js" />
 
 	<div style="width: 600px; margin: 50px auto 50px auto;">
 	<h3> Training Guide</h3>
