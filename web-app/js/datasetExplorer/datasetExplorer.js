@@ -533,19 +533,19 @@ Ext.onReady(function()
 							}
 					),
 					// '->',
-					// new Ext.Toolbar.Separator(),
-					// new Ext.Toolbar.Button({
-						// id : 'exportbutton',
-						// text : 'Export',
-						// iconCls : 'exportbutton',
-						// disabled : true,
-						// menu : expmenu,
-						// handler : function(){
-						//alert('export');
+					 //new Ext.Toolbar.Separator(),
+					 new Ext.Toolbar.Button({
+						 id : 'exportbutton',
+						 //text : 'Export',
+						 //iconCls : 'exportbutton',
+						 disabled : true,
+						 //menu : expmenu,
+						 //handler : function(){
+						 //alert('export');
 						//showExportStepSplitTimeSeries();
 						//if((typeof(grid)!='undefined') && (grid!=null)){exportGrid();}
-						//else {alert("Nothing to export");}
-					// }}),
+						//else {alert("Nothing to export");}}
+					}),
 					new Ext.Toolbar.Separator(),
 					new Ext.Toolbar.Button(
 							{
