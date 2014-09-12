@@ -777,6 +777,10 @@ Ext.onReady(function()
 					split : true,
 					height : 90,
 					layout : 'fit',
+                    bodyCfg:
+                    {
+                        id:'dataAssociationContent'
+                    },
 					tbar : new Ext.Toolbar({
 						id : 'advancedWorkflowToolbar',
 						title : 'Advanced Workflow actions',
