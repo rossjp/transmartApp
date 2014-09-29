@@ -685,8 +685,7 @@ Ext.onReady(function()
 		        }]
 				}
 		);
-
-
+        //Note: this is not added to the main panel due to Neptune privacy concerns
 		analysisGridPanel = new Ext.Panel(
 				{
 					id : 'analysisGridPanel',
@@ -776,11 +775,8 @@ Ext.onReady(function()
 					region : 'center',
 					split : true,
 					height : 90,
+					bodyCfg: {id:'dataAssociationContent'},
 					layout : 'fit',
-                    bodyCfg:
-                    {
-                        id:'dataAssociationContent'
-                    },
 					tbar : new Ext.Toolbar({
 						id : 'advancedWorkflowToolbar',
 						title : 'Advanced Workflow actions',
@@ -883,7 +879,8 @@ Ext.onReady(function()
 		resultsTabPanel.add(queryPanel);
 		resultsTabPanel.add(dataAssociationPanel);
 		resultsTabPanel.add(analysisPanel);
-		resultsTabPanel.add(analysisGridPanel);
+		//Removed Grid Panel due to Neptune Privacy concerns		
+		//resultsTabPanel.add(analysisGridPanel);
 		//Commented out the Jobs panel to hide as it isn't used without Gene Pattern
 		//resultsTabPanel.add(analysisJobsPanel);
 		//resultsTabPanel.add(analysisDataExportPanel);
@@ -2035,20 +2032,29 @@ function setupDragAndDrop()
 	}
 
 	/* set up drag and drop for grid */
+
+	/*
+	*
+	* Removed Grid Panel due to Neptune Privacy concerns
+	*
 	var mcd = Ext.get(analysisGridPanel.body);
 	dtg = new Ext.dd.DropTarget(mcd,
 			{
 		ddGroup : 'analysis'
 			}
 	);
-
+	
 	dtg.notifyDrop = function(source, e, data)
+	
 	{
 		// createAnalysisItem(data.node.text, data.node.id);
 		// alert("build analsyis graph now!");
 		buildAnalysis(data.node);
 		return true;
 	}
+	*
+	*
+	*/
 }
 
 function getPreviousQueryFromIDComplete(subset, result) {
