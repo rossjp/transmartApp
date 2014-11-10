@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
         compile 'org.transmartproject:transmart-core-api:1.1.0'
                 build "commons-dbcp:commons-dbcp:1.4"
         compile 'org.jfree:jfreechart:1.0.14'
+        runtime 'gene-pattern:gene-pattern:3.4'
 
     }
 
