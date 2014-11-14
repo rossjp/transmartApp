@@ -20,13 +20,12 @@
 <head>
     <meta name='layout' content='main' />
     <title>Neptune Data Attestation Agreement</title>
-    <r:layoutResources/>
 </head>
 <body>
 <g:javascript src="tracking/track.js" />
 <center>
     <div style="width: 400px; margin: 50px auto 50px auto;">
-        <img style="display: block; margin: 12px auto;" src="${resource(dir:'images',file:grailsApplication.config.com.recomdata.searchtool.largeLogo)}" alt="Transmart" />
+        <img style="display: block; margin: 12px auto;" src="${resource(dir: 'images', file: grailsApplication.config.com.recomdata.largeLogo)}" alt="Transmart" />
         <center><h1>ATTENTION: Users of ${grailsApplication.config.com.recomdata.searchtool.appTitle}</h1></center>
         <div style="text-align: justify; margin: 18px;">
         <p>

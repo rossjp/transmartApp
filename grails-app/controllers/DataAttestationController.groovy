@@ -13,12 +13,12 @@ class DataAttestationController {
     	if (DataAttestation.needsDataAttestation(user))
             render(view:"attestation")
         else
-            redirect(uri:'/search');
+            redirect(uri:'/RWG/index');
     }
     def agree = {
         def user = AuthUser.findByUsername(springSecurityService.getPrincipal().username)
         DataAttestation.updateOrAddNewAgreementDate(user)
-        redirect(uri: '/search')
+        redirect(uri: '/RWG/index')
     }
 
     def disagree = {
