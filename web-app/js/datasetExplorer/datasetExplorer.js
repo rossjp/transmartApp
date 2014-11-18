@@ -730,7 +730,9 @@ Ext.onReady(function () {
 
         resultsTabPanel.add(queryPanel);
 		resultsTabPanel.add(analysisPanel);
-		resultsTabPanel.add(analysisGridPanel);
+        if (gridViewEnabled) {
+            resultsTabPanel.add(analysisGridPanel);
+        }
         resultsTabPanel.add(dataAssociationPanel);
 		resultsTabPanel.add(analysisDataExportPanel);
 		resultsTabPanel.add(analysisExportJobsPanel);
@@ -1827,18 +1829,20 @@ function setupDragAndDrop() {
 		return true;
 	}
 
-	/* set up drag and drop for grid */
-	var mcd = Ext.get(analysisGridPanel.body);
-	dtg = new Ext.dd.DropTarget(mcd,
-			{
-            ddGroup: 'makeQuery'
-			}
-	);
+    if (gridViewEnabled) {
+        /* set up drag and drop for grid */
+        var mcd = Ext.get(analysisGridPanel.body);
+        dtg = new Ext.dd.DropTarget(mcd,
+            {
+                ddGroup: 'makeQuery'
+            }
+        );
 
-    dtg.notifyDrop = function (source, e, data) {
-		buildAnalysis(data.node);
-		return true;
-	}
+        dtg.notifyDrop = function (source, e, data) {
+            buildAnalysis(data.node);
+            return true;
+        }
+    }
 }
 
 function getValue(node, defaultvalue)
