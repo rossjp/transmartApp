@@ -190,6 +190,7 @@
 
     var helpURL = '${grailsApplication.config.com.recomdata.adminHelpURL}';
     var gridViewEnabled = '${grailsApplication.config.com.recomdata.gridViewEnabled}';
+    var dataExportEnabled = '${grailsApplication.config.com.recomdata.dataExportEnabled}';
 
 </script>
 

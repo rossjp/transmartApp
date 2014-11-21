@@ -170,7 +170,7 @@ Ext.onReady(function () {
 					        	 	validateHeatmap();
 					        	 	advancedWorkflowContextHelpId="1085";
 					        	 },
-					        	 disabled : GLOBAL.GPURL == "" 
+					        	 disabled : GLOBAL.GPURL == ""
 					         }
 					         ,
 					         {
@@ -209,8 +209,8 @@ Ext.onReady(function () {
 					        	 disabled : GLOBAL.GPURL == ""
 					         }
 					         ,
-				        	 '-' 
-					         ,					         
+				        	 '-'
+					         ,
 					         {
 					        	 text : 'Principal Component Analysis',
 					        	 disabled : true,
@@ -392,7 +392,7 @@ Ext.onReady(function () {
 					region : 'north',
 					height : 340,
 					autoScroll : true,
-					split : true,					
+					split : true,
             autoLoad: {
 						url : pageInfo.basePath+'/panels/subsetPanel.html',
 						scripts : true,
@@ -567,32 +567,34 @@ Ext.onReady(function () {
         // Data Exports
         // ************
 
-		analysisDataExportPanel = new Ext.Panel(
-				{
-					id : 'analysisDataExportPanel',
-					title : 'Data Export',
-					region : 'center',
-					split : true,
-					height : 90,
-					layout : 'fit',
-                listeners: {
-						activate : function(p) {
-                        if (isSubsetQueriesChanged(p.subsetQueries) || !Ext.get('dataTypesGridPanel')) {
-							p.body.mask("Loading...", 'x-mask-loading');
-							runAllQueries(getDatadata, p);
-			        	 	return;
-                        }
-						},
-                    'afterLayout': {
-                        fn: function (el) {
-                            onWindowResize();
-                        }
-						}
-					},
-					collapsible : true						
-				}
-		);
-		
+		if (dataExportEnabled) {
+            analysisDataExportPanel = new Ext.Panel(
+                    {
+                        id : 'analysisDataExportPanel',
+                        title : 'Data Export',
+                        region : 'center',
+                        split : true,
+                        height : 90,
+                        layout : 'fit',
+                    listeners: {
+                            activate : function(p) {
+                            if (isSubsetQueriesChanged(p.subsetQueries) || !Ext.get('dataTypesGridPanel')) {
+                                p.body.mask("Loading...", 'x-mask-loading');
+                                runAllQueries(getDatadata, p);
+                                return;
+                            }
+                            },
+                        'afterLayout': {
+                            fn: function (el) {
+                                onWindowResize();
+                            }
+                            }
+                        },
+                        collapsible : true
+                    }
+            );
+        }
+
         // ******************
         // Advanced Workflow
         // ******************
@@ -633,7 +635,7 @@ Ext.onReady(function () {
                         if (isSubsetQueriesChanged(p.subsetQueries)) {
                             runAllQueries(_activateAdvancedWorkflow, p);
 				}
-		
+
                         _activateAdvancedWorkflow();
 						},
                     'afterLayout': {
@@ -649,26 +651,27 @@ Ext.onReady(function () {
         // ******************
         // Export Jobs
         // ******************
-
-        analysisExportJobsPanel = new Ext.Panel(
-				{
-                id: 'analysisExportJobsPanel',
-                title: 'Export Jobs',
-					region : 'center',
-					split : true,
-					height : 90,
-					layout : 'fit',
-                listeners: {
-						activate : function(p) {
-                        p.body.mask("Loading...", 'x-mask-loading');
-                        getExportJobs(p)
-						},
-						deactivate: function(){
-						}
-					},
-					collapsible : true						
-				}
-		);
+        if (dataExportEnabled) {
+            analysisExportJobsPanel = new Ext.Panel(
+                {
+                    id: 'analysisExportJobsPanel',
+                    title: 'Export Jobs',
+                    region: 'center',
+                    split: true,
+                    height: 90,
+                    layout: 'fit',
+                    listeners: {
+                        activate: function (p) {
+                            p.body.mask("Loading...", 'x-mask-loading');
+                            getExportJobs(p)
+                        },
+                        deactivate: function () {
+                        }
+                    },
+                    collapsible: true
+                }
+            );
+        }
 
         /**
          * panel to display list of jobs belong to a user
@@ -734,8 +737,12 @@ Ext.onReady(function () {
             resultsTabPanel.add(analysisGridPanel);
         }
         resultsTabPanel.add(dataAssociationPanel);
-		resultsTabPanel.add(analysisDataExportPanel);
-		resultsTabPanel.add(analysisExportJobsPanel);
+		if (dataExportEnabled) {
+            resultsTabPanel.add(analysisDataExportPanel);
+        }
+        if (dataExportEnabled) {
+            resultsTabPanel.add(analysisExportJobsPanel);
+        }
 		resultsTabPanel.add(analysisJobsPanel);
 		resultsTabPanel.add(workspacePanel);
         resultsTabPanel.add(sampleExplorerPanel);
