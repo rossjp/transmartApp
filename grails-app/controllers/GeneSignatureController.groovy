@@ -6,6 +6,7 @@ import org.transmart.biomart.CellLine
 import org.transmart.biomart.Compound
 import org.transmart.biomart.ConceptCode
 import org.transmart.searchapp.AccessLog
+import org.transmart.searchapp.AuthUser
 import org.transmart.searchapp.GeneSignature
 import org.transmart.searchapp.GeneSignatureFileSchema
 
@@ -52,7 +53,7 @@ class GeneSignatureController {
         //log.info "saving Gene Signature access log"
         al.save();
 
-        redirect(action: 'list')
+        redirect(action: "list")
     }
 
     /**
@@ -60,7 +61,7 @@ class GeneSignatureController {
      */
     def refreshSummary = {
         flash.message = null
-        redirect(action: 'list')
+        redirect(action: "list")
     }
 
     /**
@@ -111,7 +112,7 @@ class GeneSignatureController {
         def newWizard = new WizardModelDetails(loggedInUser: user, geneSigInst: geneSigInst);
         session.setAttribute(WIZ_DETAILS_ATTRIBUTE, newWizard)
 
-        redirect(action: 'create1')
+        redirect(action: "create1")
     }
 
     /**
@@ -124,7 +125,7 @@ class GeneSignatureController {
         // load gs instance
         def geneSigInst = GeneSignature.get(params.id)
         def clone = geneSigInst.clone()
-        clone.modifiedByAuthUser = user
+        clone.modifiedByAuthUser = AuthUser.findByUsername(user.username)
         if (clone.experimentTypeCellLine?.id == null) clone.experimentTypeCellLine = null
         // this is hack, don't know how to get around this!
         log.debug "experimentTypeCellLine: " + clone.experimentTypeCellLine + "; null? " + (clone.experimentTypeCellLine == null)
@@ -132,7 +133,7 @@ class GeneSignatureController {
         def newWizard = new WizardModelDetails(loggedInUser: user, geneSigInst: clone, wizardType: WizardModelDetails.WIZ_TYPE_EDIT, editId: geneSigInst.id);
         session.setAttribute(WIZ_DETAILS_ATTRIBUTE, newWizard)
 
-        redirect(action: 'edit1')
+        redirect(action: "edit1")
     }
 
     /**
@@ -145,7 +146,7 @@ class GeneSignatureController {
         // load gs inst to clone
         def geneSigInst = GeneSignature.get(params.id)
         def clone = geneSigInst.clone()
-        clone.createdByAuthUser = user
+        clone.createdByAuthUser = AuthUser.findByUsername(user.username)
         clone.modifiedByAuthUser = null;
         clone.name = clone.name + " (clone)"
         clone.description = clone.description + " (clone)"
@@ -163,7 +164,7 @@ class GeneSignatureController {
         session.setAttribute(WIZ_DETAILS_ATTRIBUTE, newWizard)
 
         // reset items
-        redirect(action: 'create1')
+        redirect(action: "create1")
     }
 
     /**
@@ -172,11 +173,11 @@ class GeneSignatureController {
     def makePublic = {
         def user = springSecurityService.getPrincipal()
         def gsInst = GeneSignature.get(params.id)
-        gsInst.modifiedByAuthUser = user
+        gsInst.modifiedByAuthUser = AuthUser.findByUsername(user.username)
         geneSignatureService.makePublic(gsInst, true)
 
         flash.message = "GeneSignature '${gsInst.name}' was made public to everyone"
-        redirect(action: list)
+        redirect(action: "list")
     }
 
     /**
@@ -185,11 +186,11 @@ class GeneSignatureController {
     def makePrivate = {
         def user = springSecurityService.getPrincipal()
         def gsInst = GeneSignature.get(params.id)
-        gsInst.modifiedByAuthUser = user
+        gsInst.modifiedByAuthUser = AuthUser.findByUsername(user.username)
         geneSignatureService.makePublic(gsInst, false)
 
         flash.message = "GeneSignature '${gsInst.name}' was made private"
-        redirect(action: list)
+        redirect(action: "list")
     }
 
     /**
@@ -198,11 +199,11 @@ class GeneSignatureController {
     def delete = {
         def user = springSecurityService.getPrincipal()
         def gsInst = GeneSignature.get(params.id)
-        gsInst.modifiedByAuthUser = user
+        gsInst.modifiedByAuthUser = AuthUser.findByUsername(user.username)
         geneSignatureService.delete(gsInst)
 
         flash.message = "GeneSignature '${gsInst.name}' was marked as deleted"
-        redirect(action: list)
+        redirect(action: "list")
     }
 
     /**
@@ -355,6 +356,11 @@ class GeneSignatureController {
         // good to go, call save service
         try {
             gs = geneSignatureService.saveWizard(gs, file)
+            if (gs.hasErrors()) {
+                flash.message = 'Could not save Gene Signature'
+                render(view: "wizard3", model: [wizard: wizard, existingValues: existingValues])
+                return
+            }
 
             // clean up session
             wizard = null
@@ -362,7 +368,7 @@ class GeneSignatureController {
 
             // send message to user
             flash.message = "GeneSignature '${gs.name}' was created on: ${gs.dateCreated}"
-            redirect(action: 'list')
+            redirect(action: "list")
 
         } catch (FileSchemaException fse) {
             flash.message = fse.getMessage()
@@ -392,7 +398,7 @@ class GeneSignatureController {
         def gsReal = GeneSignature.get(wizard.editId)
         def origFile = gsReal.uploadFile
         clone.copyPropertiesTo(gsReal)
-        gsReal.modifiedByAuthUser = user
+        gsReal.modifiedByAuthUser = AuthUser.findByUsername(user.username)
         gsReal.uploadFile = origFile
 
         // refresh items if new file uploaded
@@ -432,7 +438,7 @@ class GeneSignatureController {
 
             // send message to user
             flash.message = "GeneSignature '${gsReal.name}' was updated on: ${gsReal.lastUpdated}"
-            redirect(action: 'list')
+            redirect(action: "list")
 
         } catch (FileSchemaException fse) {
             flash.message = fse.getMessage()
@@ -622,9 +628,9 @@ class GeneSignatureController {
                 }
             }
             log.debug " redirect params>> " + newParams
-            redirect(action: showEditItems, params: newParams)
+            redirect(action: "showEditItems", params: newParams)
         } else {
-            redirect(action: showEditItems, params: ["id": gs.id])
+            redirect(action: "showEditItems", params: ["id": gs.id])
         }
     }
 
