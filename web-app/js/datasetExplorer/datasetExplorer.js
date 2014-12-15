@@ -717,7 +717,9 @@ Ext.onReady(function () {
             }
         );
 
-        sampleExplorerPanel = new Ext.Panel(
+/*  Removed from Neptune version.
+
+    sampleExplorerPanel = new Ext.Panel(
             {
                 id: "sampleExplorer",
                 title:"Sample Details",
@@ -729,7 +731,7 @@ Ext.onReady(function () {
                     }
                 }
             }
-        )
+        )*/
 
         resultsTabPanel.add(queryPanel);
 		resultsTabPanel.add(analysisPanel);
@@ -739,13 +741,12 @@ Ext.onReady(function () {
         resultsTabPanel.add(dataAssociationPanel);
 		if (dataExportEnabled) {
             resultsTabPanel.add(analysisDataExportPanel);
-        }
-        if (dataExportEnabled) {
             resultsTabPanel.add(analysisExportJobsPanel);
         }
 		resultsTabPanel.add(analysisJobsPanel);
 		resultsTabPanel.add(workspacePanel);
-        resultsTabPanel.add(sampleExplorerPanel);
+        //Removing from Neptune version.
+        //resultsTabPanel.add(sampleExplorerPanel);
 
         function loadResources(resources, bootstrap) {
             var scripts = [];
@@ -4042,7 +4043,9 @@ function ontFilterLoaded(el, success, response, options) {
 
 function clearQuery() {
     if (confirm("Are you sure you want to clear your current analysis?")) {
-        clearAnalysisPanel();
+        if (gridViewEnabled) {
+            clearAnalysisPanel();
+        }
         resetQuery();
         clearDataAssociation();
     }
