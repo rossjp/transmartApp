@@ -613,6 +613,9 @@ Ext.onReady(function () {
 						items : []
 						}),
 					autoScroll : true,
+                    bodyCfg: {
+                        id:'dataAssociationContent'
+                    },
                 autoLoad: {
 			        	url : pageInfo.basePath+'/dataAssociation/defaultPage',
 			           	method:'POST',
