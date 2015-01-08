@@ -374,7 +374,11 @@ table.menuDetail th.menuVisited {
 }
 
 #navigateTermsPanel .locked a span {
-	color: #AAA;	
+	color: #AAA;
+}
+
+.x-tree-node-disabled {
+    display: none;
 }
 
 #navigateTermsPanel .defaultPathNode {
