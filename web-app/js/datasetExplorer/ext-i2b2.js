@@ -61,6 +61,7 @@ Ext.ux.OntologyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
    		 
             //If the node has been disabled, ignore all children
             if (!node.disabled) {
+                window.alert(c.name);
                 node.appendChild(c);
             }
         }

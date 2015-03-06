@@ -5024,6 +5024,7 @@ class I2b2HelperService {
             if (isAdminRole(role)) {
                 admin = true;
                 log.trace("ADMINISTRATOR, SKIPPING PERMISSION CHECKING")
+println("ADMINISTRATOR, SKIPPING PERMISSION CHECKING")
                 //1)If we are an admin then grant admin to all the paths
                 for (key in children.keySet()) {
                     access.put(key, 'Admin');
@@ -5038,6 +5039,7 @@ class I2b2HelperService {
             for (key in children.keySet()) {
                 def childtoken = children[key];
                 log.trace("Key:" + key + " Token:" + childtoken.toString());
+println("Key:" + key + " Token:" + childtoken.toString())
                 if (childtoken == null) {
                     access.put(key, "VIEW"); //give read access if no security token
                 } else if (tokens.containsKey(childtoken)) //null tokens are assumed to be unlocked
@@ -5049,6 +5051,7 @@ class I2b2HelperService {
             }
         }
         log.debug(access.toString());
+println(access.toString())
         return access;
     }
 
